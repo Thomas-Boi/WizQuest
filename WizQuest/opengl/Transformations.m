@@ -81,6 +81,10 @@
     globalRotation.y += t.y;
 }
 
+- (void)translateBy:(GLKVector2)t withMultiplier:(float)m {
+    
+}
+
 - (void)rotate:(float)rotation withMultiplier:(float)m
 {
     // reverse sign so the rotation is counter clockwise when swipe left to right

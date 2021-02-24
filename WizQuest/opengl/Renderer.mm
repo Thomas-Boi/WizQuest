@@ -79,15 +79,16 @@ enum
     [EAGLContext setCurrentContext:view.context];
     if (![self setupShaders])
         return;
+    
     rotAngle = 0.0f;
-    isRotating = 1;
+    //isRotating = 0;
 
     crateTexture = [self setupTexture:@"crate.jpg"];
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, crateTexture);
     glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
 
-    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
     
@@ -99,12 +100,12 @@ enum
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    if (isRotating)
+    /*if (isRotating)
     {
         rotAngle += 0.001f * elapsedTime;
         if (rotAngle >= 360.0f)
             rotAngle = 0.0f;
-    }
+    }*/
     mvp = GLKMatrix4Rotate(transformations, rotAngle, 0.0, 1.0, 0.0 );
     
     // Perspective

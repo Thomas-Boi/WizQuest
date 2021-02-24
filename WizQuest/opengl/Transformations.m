@@ -81,8 +81,13 @@
     globalRotation.y += t.y;
 }
 
-- (void)translateBy:(GLKVector2)t withMultiplier:(float)m {
+- (void)translateBy:(GLKVector2)t {
+        
+    float dx = translateEnd.x + t.x;
+    float dy = translateEnd.y - t.y;
     
+    translateEnd = GLKVector2Make(dx, dy);
+
 }
 
 - (void)rotate:(float)rotation withMultiplier:(float)m

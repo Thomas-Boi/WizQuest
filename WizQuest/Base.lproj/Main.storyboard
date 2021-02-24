@@ -26,7 +26,7 @@
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="leftButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="akW-xq-G9E"/>
+                                    <action selector="moveLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Cr-4F-gB7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp5-L4-Wyn" userLabel="RightButton">
@@ -39,7 +39,7 @@
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="rightButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IBy-lL-zx7"/>
+                                    <action selector="moveRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HNc-FA-fDp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -52,6 +52,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zp5-L4-Wyn" secondAttribute="bottom" constant="20" id="nhF-ip-Yee"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="leftButton" destination="tYB-Fk-dCU" id="cPE-Nu-x6D"/>
+                        <outlet property="rightButton" destination="zp5-L4-Wyn" id="o4Q-Xl-Ey4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

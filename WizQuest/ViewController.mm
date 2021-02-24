@@ -11,13 +11,46 @@
 @interface ViewController () {
     Renderer *glesRenderer; // ###
     Transformations *transformations;
-    __weak IBOutlet UILabel *positionLabel;
-    __weak IBOutlet UILabel *rotationLabel;
-    
+    NSTimer *timer;
 }
+
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightButton;
+
 @end
 
 @implementation ViewController
+
+// MARK: Handle actions
+
+- (IBAction)moveLeft:(UIButton *)sender {
+    [transformations translateBy:GLKVector2Make(-0.05f, 0.0f)];
+}
+
+- (IBAction)moveRight:(UIButton *)sender {
+    [transformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+}
+
+- (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {
+    if (gesture.view == _leftButton) {
+        if (gesture.state == UIGestureRecognizerStateBegan) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveLeft:) userInfo:nil repeats:true];
+        } else if (gesture.state == UIGestureRecognizerStateEnded) {
+            [timer invalidate];
+            timer = nil;
+        }
+    } else if (gesture.view == _rightButton) {
+        if (gesture.state == UIGestureRecognizerStateBegan) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveRight:) userInfo:nil repeats:true];
+        } else if (gesture.state == UIGestureRecognizerStateEnded) {
+            [timer invalidate];
+            timer = nil;
+        }
+    }
+}
+
+
+// MARK: OpenGL setup in ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,9 +65,18 @@
     
     // Initialize transformations
     // by default everything is normal
-    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 45.0f)];
+    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 0.0f)];
     
-    // ### >>>
+    [transformations start];
+    // ### >>
+    
+    UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
+    UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
+    [self.leftButton addGestureRecognizer:leftPress];
+    [self.rightButton addGestureRecognizer:rightPress];
+    
+    leftPress.minimumPressDuration = 0.0f;
+    rightPress.minimumPressDuration = 0.0f;
     
 }
 
@@ -42,10 +84,6 @@
 {
     GLKMatrix4 modelViewMatrix = [transformations getModelViewMatrix];
     [glesRenderer update:modelViewMatrix]; // ###
-    
-    // need to format text and display the position
-    // positionLabel.text = transformations.globalPosition;
-    // rotationLabel.text = transformations.globalRotation;
     
 }
 
@@ -55,54 +93,4 @@
     [glesRenderer draw:rect]; // ###
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    // Begin transformations
-    [transformations start];
-}
-
-- (IBAction)pinch:(UIPinchGestureRecognizer *)sender
-{
-    if (glesRenderer.isRotating) return;
-    [transformations scale:[sender scale]];
-}
-
-- (IBAction)pan:(UIPanGestureRecognizer *)sender
-{
-    if (glesRenderer.isRotating) return;
-    
-    if (sender.numberOfTouches == 1)
-    {
-        [self rotateCube:sender];
-        
-    }
-    else if (sender.numberOfTouches == 2)
-    {
-        [self moveCube:sender];
-        
-    }
-    
-}
-
-- (void)moveCube:(UIPanGestureRecognizer *)sender
-{
-    CGPoint translation = [sender translationInView:sender.view];
-    float x = translation.x/sender.view.frame.size.width;
-    float y = translation.y/sender.view.frame.size.height;
-    GLKVector2 translate = GLKVector2Make(x, y);
-    [transformations translate:translate withMultiplier:5.0f];
-}
-
-- (void)rotateCube:(UIPanGestureRecognizer *)sender
-{
-    CGPoint translation = [sender translationInView:sender.view];
-    // only get the horizontal component
-    float x = translation.x/sender.view.frame.size.width;
-    [transformations rotate:x withMultiplier:5.0f];
-}
-
-- (IBAction)doubleTap:(UITapGestureRecognizer *)sender
-{
-    glesRenderer.isRotating = !glesRenderer.isRotating;
-}
 @end

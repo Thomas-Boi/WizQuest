@@ -15,7 +15,10 @@
 - (id)initWithDepth:(float)z Scale:(float)s Translation:(GLKVector2)t Rotation:(GLKVector3)r;
 - (void)start;
 - (void)scale:(float)s;
+
 - (void)translate:(GLKVector2)t withMultiplier:(float)m;
+- (void)translateBy:(GLKVector2)t; // to translate cube in certain direction
+
 - (void)rotate:(float)rotation withMultiplier:(float)m;
 - (void)reset;
 - (GLKMatrix4)getModelViewMatrix;

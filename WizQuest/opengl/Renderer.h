@@ -6,13 +6,14 @@
 #define Renderer_h
 #import <GLKit/GLKit.h>
 #import "UniformEnum.h"
+#import "GameObject.h"
 
 @interface Renderer : NSObject
 
 - (void)setup:(GLKView *)view;
 - (void)loadModels;
 - (void)update:(GLKMatrix4) transformations;
-- (void)draw;
+- (void)draw:(GameObject *) obj;
 
 @end
 

@@ -14,25 +14,10 @@
 #import "UniformEnum.h"
 #import <Foundation/Foundation.h>
 
-@interface GameObject : NSObject {
-    int _id;
-    GLuint programObject;
-    
-    GLKMatrix4 mvp;
-    GLKMatrix3 normalMatrix;
-    float *vertices, *normals, *texCoords;
-    int *indices, numIndices;
-    
-    // Uniform index.
-    // hold important data as seen below
-    // these values are constant across all
-    // passes between the vertex and frag shader
-    GLint _uniforms[NUM_UNIFORMS];
-}
-
+@interface GameObject : NSObject
 @property(readonly) int _id;
 @property(readonly) GLuint programObject;
-@property(readonly) GLKMatrix4 mvp;
+@property(readonly) GLKMatrix4 mv;
 @property(readonly) GLKMatrix3 normalMatrix;
 @property(readonly) float *vertices;
 @property(readonly) float *normals;
@@ -41,8 +26,8 @@
 @property(readonly) int numIndices;
 @property(readonly) GLint *uniforms;
 
-- (bool)setupVertShader:(char *) vShader AndFragShader:(char *) fShader;
+- (bool)setupVertShader:(char *) vShaderName AndFragShader:(char *) fShaderName;
 - (void)loadModels;
-
+- (void)loadTransformation:(GLKMatrix4) transformation;
 @end
 #endif /* GameObject_h */

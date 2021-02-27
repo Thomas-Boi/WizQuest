@@ -12,6 +12,7 @@
 {
     Renderer *renderer;
     ObjectTracker *tracker;
+    GameObject *obj;
 }
 
 @end
@@ -24,6 +25,9 @@
     [renderer setup:view];
     [renderer loadModels];
     tracker = [[ObjectTracker alloc] init];
+    obj = [[GameObject alloc] init];
+    [obj setupVertShader:(char *)"Shader.vsh" AndFragShader:(char *)"Shader.fsh"];
+    [obj loadModels];
 }
 
 - (void) addObject:(GameObject *) obj
@@ -33,12 +37,12 @@
 
 - (void) update:(GLKMatrix4) transformations
 {
-    [renderer update:transformations];
+    [obj loadTransformation:transformations];
 }
 
 - (void) draw
 {
-    [renderer draw];
+    [renderer draw:obj];
 }
 
 @end

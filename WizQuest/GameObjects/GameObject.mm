@@ -10,7 +10,7 @@
 @interface GameObject()
 {
     GLESRenderer glesRenderer; // use the cube for now
-
+    GLint _uniforms[NUM_UNIFORMS];
 }
 @end
 
@@ -18,15 +18,14 @@
 // props
 @synthesize _id;
 @synthesize programObject;
-@synthesize mvp;
+@synthesize mv;
 @synthesize normalMatrix;
 @synthesize vertices;
 @synthesize normals;
 @synthesize texCoords;
 @synthesize indices;
 @synthesize numIndices;
-
-- (int *)uniforms
+- (GLint *) uniforms
 {
     return _uniforms;
 }
@@ -40,11 +39,11 @@
 
 // attach the shaders to the program object
 // also initialize the programObject
-- (bool)setupVertShader:(char *) vShader AndFragShader:(char *) fShader
+- (bool)setupVertShader:(char *) vShaderName AndFragShader:(char *) fShaderName
 {
     // Load shaders
-    char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.vsh"] pathExtension]] cStringUsingEncoding:1]);
-    char *fShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.fsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.fsh"] pathExtension]] cStringUsingEncoding:1]);
+    char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:vShaderName] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:vShaderName] pathExtension]] cStringUsingEncoding:1]);
+    char *fShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:fShaderName] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:fShaderName] pathExtension]] cStringUsingEncoding:1]);
     programObject = glesRenderer.LoadProgram(vShaderStr, fShaderStr);
     if (programObject == 0)
         return false;
@@ -92,9 +91,11 @@
     return texName;
 }
 
-- (void)draw
+- (void)loadTransformation:(GLKMatrix4) transformation
 {
-
+    mv = transformation;
+    normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
+    
 }
 
 // lifecycle

@@ -9,7 +9,7 @@ uniform mat4 modelViewProjectionMatrix;
 void main()
 {
     // Simple passthrough shader
-    v_color = color;
+    v_color = vec4(0.0, 1.0, 0.0, 1.0); // green
 
     gl_Position = modelViewProjectionMatrix * position;
 }

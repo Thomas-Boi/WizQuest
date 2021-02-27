@@ -9,10 +9,16 @@
 #import "ViewController.h"
 
 @interface ViewController () {
-    // Renderer *glesRenderer; // ###
     GameManager *manager;
     Transformations *transformations;
+<<<<<<< HEAD
     NSTimer *timer;
+=======
+    Transformations *platformTransformations;
+    __weak IBOutlet UILabel *positionLabel;
+    __weak IBOutlet UILabel *rotationLabel;
+    
+>>>>>>> GameManager now use ObjectTracker and Transformation to draw object
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
@@ -58,14 +64,16 @@
     // Do any additional setup after loading the view.
     // ### <<<
     // set up the opengl window and draw
-
-    // glesRenderer = [[Renderer alloc] init];
+    // Initialize transformations
+    // by default everything is normal
+    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:0.5f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 45.0f)];
+    
+    // set up the manager
     GLKView *view = (GLKView *)self.view;
-    // [glesRenderer setup:view];
-    // [glesRenderer loadModels];
     manager = [[GameManager alloc] init];
     [manager initManager:view];
     
+<<<<<<< HEAD
     // Initialize transformations
     // by default everything is normal
     transformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 0.0f)];
@@ -81,13 +89,16 @@
     leftPress.minimumPressDuration = 0.0f;
     rightPress.minimumPressDuration = 0.0f;
     
+=======
+    
+    // ### >>>
+>>>>>>> GameManager now use ObjectTracker and Transformation to draw object
 }
 
 - (void)update
 {
-    GLKMatrix4 modelViewMatrix = [transformations getModelViewMatrix];
-    //[glesRenderer update:modelViewMatrix]; // ###
-    [manager update:modelViewMatrix];
+    //GLKMatrix4 modelViewMatrix = [transformations getModelViewMatrix];
+    //[manager update:modelViewMatrix];
     
 }
 

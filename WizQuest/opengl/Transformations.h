@@ -23,6 +23,7 @@
 - (void)reset;
 - (GLKMatrix4)getModelViewMatrix;
 
++ (GLKMatrix4)createModelViewMatrixWithTranslation:(GLKVector3)translation Rotation:(float)rotation RotationAxis:(GLKVector3)rotAxis Scale:(GLKVector3)scale;
 @end
 
 #endif /* Transformations_h */

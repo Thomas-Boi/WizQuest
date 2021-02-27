@@ -12,6 +12,7 @@
 #import "GameObject.h"
 #import "Renderer.h"
 #import "ObjectTracker.h"
+#import "Transformations.h"
 
 @interface GameManager : NSObject
 

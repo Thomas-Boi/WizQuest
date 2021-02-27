@@ -14,9 +14,14 @@
 
 @interface ObjectTracker : NSObject
 
-@property GameObject *player;
-@property(readonly) GameObject *platforms;
-@property(readonly) GameObject *enemies;
+@property(readonly) GameObject *player;
+@property(readonly) NSMutableArray *platforms;
+@property(readonly) NSMutableArray *monsters;
+
+- (void) addPlayer: (GameObject *) player;
+- (void) addPlatform: (GameObject *) platform;
+- (void) addMonster: (GameObject *) monster;
+- (void) cleanUp;
 
 @end
 

@@ -17,7 +17,7 @@
 @interface GameObject : NSObject
 @property(readonly) int _id;
 @property(readonly) GLuint programObject;
-@property(readonly) GLKMatrix4 mv;
+@property(readonly) GLKMatrix4 modelViewMatrix;
 @property(readonly) GLKMatrix3 normalMatrix;
 @property(readonly) float *vertices;
 @property(readonly) float *normals;
@@ -26,8 +26,8 @@
 @property(readonly) int numIndices;
 @property(readonly) GLint *uniforms;
 
-- (bool)setupVertShader:(char *) vShaderName AndFragShader:(char *) fShaderName;
-- (void)loadModels;
+- (bool)setupVertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName;
+- (void)loadModels:(NSString *)modelName;
 - (void)loadTransformation:(GLKMatrix4) transformation;
 @end
 #endif /* GameObject_h */

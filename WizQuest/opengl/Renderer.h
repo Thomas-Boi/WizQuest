@@ -11,9 +11,8 @@
 @interface Renderer : NSObject
 
 - (void)setup:(GLKView *)view;
-- (void)loadModels;
-- (void)update:(GLKMatrix4) transformations;
 - (void)draw:(GameObject *) obj;
+- (void)clear;
 
 @end
 

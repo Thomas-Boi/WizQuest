@@ -18,7 +18,7 @@
 // props
 @synthesize _id;
 @synthesize programObject;
-@synthesize mv;
+@synthesize modelViewMatrix;
 @synthesize normalMatrix;
 @synthesize vertices;
 @synthesize normals;
@@ -32,18 +32,17 @@
 
 
 // methods
-- (void)loadModels
+- (void)loadModels:(NSString *)modelName
 {
     numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
 } 
 
 // attach the shaders to the program object
 // also initialize the programObject
-- (bool)setupVertShader:(char *) vShaderName AndFragShader:(char *) fShaderName
+- (bool)setupVertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName
 {
-    // Load shaders
-    char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:vShaderName] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:vShaderName] pathExtension]] cStringUsingEncoding:1]);
-    char *fShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:fShaderName] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:fShaderName] pathExtension]] cStringUsingEncoding:1]);
+    char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[vShaderName stringByDeletingPathExtension] ofType:[vShaderName pathExtension]] cStringUsingEncoding:1]);
+    char *fShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[fShaderName stringByDeletingPathExtension] ofType:[fShaderName pathExtension]] cStringUsingEncoding:1]);
     programObject = glesRenderer.LoadProgram(vShaderStr, fShaderStr);
     if (programObject == 0)
         return false;
@@ -93,8 +92,8 @@
 
 - (void)loadTransformation:(GLKMatrix4) transformation
 {
-    mv = transformation;
-    normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mv), NULL);
+    modelViewMatrix = transformation;
+    normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
     
 }
 

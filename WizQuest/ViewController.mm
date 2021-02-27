@@ -65,10 +65,14 @@
     
     // Initialize transformations
     // by default everything is normal
+<<<<<<< HEAD
     transformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 0.0f)];
     
     [transformations start];
     // ### >>
+=======
+    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:0.5f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 45.0f)];
+>>>>>>> Added basic code into the GameObject
     
     UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
@@ -90,7 +94,35 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    [glesRenderer draw:rect]; // ###
+    [glesRenderer draw]; // ###
 }
 
+<<<<<<< HEAD
+=======
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Begin transformations
+    [transformations start];
+}
+
+
+
+- (void)moveCube:(UIPanGestureRecognizer *)sender
+{
+    CGPoint translation = [sender translationInView:sender.view];
+    float x = translation.x/sender.view.frame.size.width;
+    float y = translation.y/sender.view.frame.size.height;
+    GLKVector2 translate = GLKVector2Make(x, y);
+    [transformations translate:translate withMultiplier:5.0f];
+}
+
+- (void)rotateCube:(UIPanGestureRecognizer *)sender
+{
+    CGPoint translation = [sender translationInView:sender.view];
+    // only get the horizontal component
+    float x = translation.x/sender.view.frame.size.width;
+    [transformations rotate:x withMultiplier:5.0f];
+}
+
+>>>>>>> Added basic code into the GameObject
 @end

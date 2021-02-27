@@ -10,47 +10,37 @@
 @interface GameObject()
 {
     GLESRenderer glesRenderer; // use the cube for now
-    GLuint programObject;
-    
-    GLKMatrix4 mvp;
-    GLKMatrix3 normalMatrix;
-    
-    float *vertices, *normals, *texCoords;
-    int *indices, numIndices;}
+
+}
 @end
 
 @implementation GameObject
 // props
 @synthesize _id;
+@synthesize programObject;
+@synthesize mvp;
+@synthesize normalMatrix;
+@synthesize vertices;
+@synthesize normals;
+@synthesize texCoords;
+@synthesize indices;
+@synthesize numIndices;
 
 - (int *)uniforms
 {
     return _uniforms;
 }
 
+
 // methods
 - (void)loadModels
 {
-    // numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
-}
-
-/*! Set up the view
- \ param view, a view
- */
-
-- (void)setup:(GLKView *)view
-{
-
-    if (![self setupShaders])
-        return;
-    
-}
- 
+    numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices);
+} 
 
 // attach the shaders to the program object
 // also initialize the programObject
-
-- (bool)setupShaders
+- (bool)setupVertShader:(char *) vShader AndFragShader:(char *) fShader
 {
     // Load shaders
     char *vShaderStr = glesRenderer.LoadShaderFile([[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:"Shader.vsh"] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:"Shader.vsh"] pathExtension]] cStringUsingEncoding:1]);

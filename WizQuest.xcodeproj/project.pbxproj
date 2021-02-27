@@ -19,8 +19,8 @@
 		FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887225E5CAA900F5FBBA /* Renderer.mm */; };
 		FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887025E5CAA900F5FBBA /* Transformations.m */; };
 		FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */; };
-		FA7B888025E5D14200F5FBBA /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887F25E5D14200F5FBBA /* GameManager.m */; };
-		FA7B888325E5DEEA00F5FBBA /* ObjectTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888225E5DEEA00F5FBBA /* ObjectTracker.m */; };
+		FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887F25E5D14200F5FBBA /* GameManager.mm */; };
+		FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */; };
 		FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888925E5DF9C00F5FBBA /* GameObject.mm */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +47,8 @@
 		FA7B887225E5CAA900F5FBBA /* Renderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
 		FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLESRenderer.cpp; sourceTree = "<group>"; };
 		FA7B887E25E5D12B00F5FBBA /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
-		FA7B887F25E5D14200F5FBBA /* GameManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
-		FA7B888225E5DEEA00F5FBBA /* ObjectTracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectTracker.m; sourceTree = "<group>"; };
+		FA7B887F25E5D14200F5FBBA /* GameManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
+		FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectTracker.mm; sourceTree = "<group>"; };
 		FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectTracker.h; sourceTree = "<group>"; };
 		FA7B888825E5DF9000F5FBBA /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		FA7B888925E5DF9C00F5FBBA /* GameObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
@@ -85,6 +85,8 @@
 		FA7B884C25E5C48200F5FBBA /* WizQuest */ = {
 			isa = PBXGroup;
 			children = (
+				FA7B886E25E5CAA900F5FBBA /* Shader.fsh */,
+				FA7B886F25E5CAA900F5FBBA /* Shader.vsh */,
 				FA7B888725E5DF7300F5FBBA /* GameObjects */,
 				FA7B887B25E5CB1500F5FBBA /* opengl */,
 				FA7B884D25E5C48200F5FBBA /* AppDelegate.h */,
@@ -110,14 +112,12 @@
 				FA7B886C25E5CAA900F5FBBA /* GLESRenderer.hpp */,
 				FA7B886B25E5CAA900F5FBBA /* Renderer.h */,
 				FA7B887225E5CAA900F5FBBA /* Renderer.mm */,
-				FA7B886E25E5CAA900F5FBBA /* Shader.fsh */,
-				FA7B886F25E5CAA900F5FBBA /* Shader.vsh */,
 				FA7B886D25E5CAA900F5FBBA /* Transformations.h */,
 				FA7B887025E5CAA900F5FBBA /* Transformations.m */,
 				FA7B887E25E5D12B00F5FBBA /* GameManager.h */,
-				FA7B887F25E5D14200F5FBBA /* GameManager.m */,
+				FA7B887F25E5D14200F5FBBA /* GameManager.mm */,
 				FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */,
-				FA7B888225E5DEEA00F5FBBA /* ObjectTracker.m */,
+				FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */,
 				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 			);
 			path = opengl;
@@ -208,9 +208,9 @@
 				FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */,
 				FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */,
 				FA7B885525E5C48200F5FBBA /* ViewController.mm in Sources */,
-				FA7B888325E5DEEA00F5FBBA /* ObjectTracker.m in Sources */,
+				FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */,
 				FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */,
-				FA7B888025E5D14200F5FBBA /* GameManager.m in Sources */,
+				FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */,
 				FA7B886025E5C48200F5FBBA /* main.m in Sources */,
 				FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */,
 			);

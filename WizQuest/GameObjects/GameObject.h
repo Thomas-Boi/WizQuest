@@ -43,7 +43,6 @@
 
 - (bool)setupVertShader:(char *) vShader AndFragShader:(char *) fShader;
 - (void)loadModels;
-- (void)move:(GLKMatrix4) transformations;
 
 @end
 #endif /* GameObject_h */

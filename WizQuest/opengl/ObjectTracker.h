@@ -8,11 +8,15 @@
 #ifndef ObjectTracker_h
 #define ObjectTracker_h
 
-@interface ObjectTracker {
-    // instance vars
-    
-}
+#import "GameObject.h"
+#import <Foundation/Foundation.h>
 
+
+@interface ObjectTracker : NSObject
+
+@property GameObject *player;
+@property(readonly) GameObject *platforms;
+@property(readonly) GameObject *enemies;
 
 @end
 

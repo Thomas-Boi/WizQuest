@@ -10,6 +10,9 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 #import "GameObject.h"
+#import "Player.h"
+#import "Platform.h"
+#import "Monster.h"
 #import "Renderer.h"
 #import "ObjectTracker.h"
 #import "Transformations.h"

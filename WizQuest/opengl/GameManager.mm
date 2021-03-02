@@ -32,21 +32,28 @@
     @autoreleasepool {
         // note: all models use the cube. The param is for future use
         // test data for putting object on the screen
-        GameObject *player = [self createGameObject:@"playerModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:initialPlayerTransform];
+        Player *player = (Player *)[self createGameObject:@"playerModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:initialPlayerTransform];
         [tracker addPlayer:player];
         
         // since player depth is 5, init z to be -5
         // floor
         GLKMatrix4 floorTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(0.0, -2.1, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(10.0, 1.0, 1.0)];
 
-        GameObject *floor = [self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:floorTransform];
+        Platform *floor = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:floorTransform];
         [tracker addPlatform:floor];
         
         // left wall
         GLKMatrix4 leftWallTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(-4.1, 0.5, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 5.0, 1.0)];
 
-        GameObject *wall = [self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:leftWallTransform];
+        Platform *wall = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:leftWallTransform];
         [tracker addPlatform:wall];
+        
+        // monster
+        GLKMatrix4 monsterTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
+
+        Monster *monster = (Monster *)[self createGameObject:@"platformModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:monsterTransform];
+        [tracker addMonster:monster];
+        
     }
 }
 
@@ -91,11 +98,15 @@
     [renderer draw:tracker.player];
     
     
-    for (GameObject *platform in tracker.platforms)
+    for (Platform *platform in tracker.platforms)
     {
         [renderer draw:platform];
     }
     
+    for (Monster *monster in tracker.monsters)
+    {
+        [renderer draw:monster];
+    }
     
 }
 

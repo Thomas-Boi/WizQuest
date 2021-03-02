@@ -57,7 +57,7 @@
     [super viewDidLoad];
 
     // Initialize transformations for the player
-    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
+    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, -1.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
     [playerTransformations start];
     
     // set up the opengl window and draw

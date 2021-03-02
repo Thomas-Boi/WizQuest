@@ -10,15 +10,9 @@
 
 @interface ViewController () {
     GameManager *manager;
-    Transformations *transformations;
-<<<<<<< HEAD
+    Transformations *playerTransformations;
     NSTimer *timer;
-=======
     Transformations *platformTransformations;
-    __weak IBOutlet UILabel *positionLabel;
-    __weak IBOutlet UILabel *rotationLabel;
-    
->>>>>>> GameManager now use ObjectTracker and Transformation to draw object
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
@@ -31,11 +25,11 @@
 // MARK: Handle actions
 
 - (IBAction)moveLeft:(UIButton *)sender {
-    [transformations translateBy:GLKVector2Make(-0.05f, 0.0f)];
+    [playerTransformations translateBy:GLKVector2Make(-0.05f, 0.0f)];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
-    [transformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+    [playerTransformations translateBy:GLKVector2Make(0.05f, 0.0f)];
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {
@@ -61,26 +55,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // ### <<<
-    // set up the opengl window and draw
-    // Initialize transformations
-    // by default everything is normal
-    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:0.5f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 45.0f)];
+
+    // Initialize transformations for the player
+    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
+    [playerTransformations start];
     
+    // set up the opengl window and draw
     // set up the manager
     GLKView *view = (GLKView *)self.view;
     manager = [[GameManager alloc] init];
-    [manager initManager:view];
+    GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
+    [manager initManager:view initialPlayerTransform:initialPlayerTransformation];
     
-<<<<<<< HEAD
-    // Initialize transformations
-    // by default everything is normal
-    transformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:GLKVector3Make(0.0f, 0.0f, 0.0f)];
-    
-    [transformations start];
-    // ### >>
-    
+    // set up UI
     UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     [self.leftButton addGestureRecognizer:leftPress];
@@ -89,16 +76,12 @@
     leftPress.minimumPressDuration = 0.0f;
     rightPress.minimumPressDuration = 0.0f;
     
-=======
-    
-    // ### >>>
->>>>>>> GameManager now use ObjectTracker and Transformation to draw object
 }
 
 - (void)update
 {
-    //GLKMatrix4 modelViewMatrix = [transformations getModelViewMatrix];
-    //[manager update:modelViewMatrix];
+    GLKMatrix4 modelViewMatrix = [playerTransformations getModelViewMatrix];
+    [manager update:modelViewMatrix];
     
 }
 

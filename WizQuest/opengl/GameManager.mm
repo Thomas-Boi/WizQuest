@@ -18,30 +18,35 @@
 
 
 @implementation GameManager
-- (void) initManager:(GLKView *)view
+- (void) initManager:(GLKView *)view  initialPlayerTransform:(GLKMatrix4) transform
 {
     renderer = [[Renderer alloc] init];
     [renderer setup:view];
     tracker = [[ObjectTracker alloc] init];
-    [self loadObjects];
+    [self loadObjects:transform];
 }
 
 // add the player, platforms, and enemies to the tracker
-- (void) loadObjects
+- (void) loadObjects:(GLKMatrix4) initialPlayerTransform
 {
     @autoreleasepool {
+        // note: all models use the cube. The param is for future use
         // test data for putting object on the screen
-        GLKMatrix4 initialPlayerTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(0.0, 0.0, -4.0) Rotation:45.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(0.5, 0.5, 0.5)];
-        
         GameObject *player = [self createGameObject:@"playerModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:initialPlayerTransform];
         [tracker addPlayer:player];
         
-        //
-        GLKMatrix4 initialPlatformTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(0.0, 0.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
+        // since player depth is 5, init z to be -5
+        // floor
+        GLKMatrix4 floorTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(0.0, -2.1, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(10.0, 1.0, 1.0)];
 
-        GameObject *platform = [self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:initialPlatformTransform];
-        [tracker addPlatform:platform];
+        GameObject *floor = [self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:floorTransform];
+        [tracker addPlatform:floor];
         
+        // left wall
+        GLKMatrix4 leftWallTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(-4.1, 0.5, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 5.0, 1.0)];
+
+        GameObject *wall = [self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:leftWallTransform];
+        [tracker addPlatform:wall];
     }
 }
 
@@ -64,15 +69,18 @@
 
 }
 
+// update the player movement and slide the platform here
 - (void) update:(GLKMatrix4) transformations
 {
     
     [tracker.player loadTransformation:transformations];
     
+    /*
     for (GameObject *platform in tracker.platforms)
     {
         [platform loadTransformation:transformations];
     }
+     */
     
     
 }

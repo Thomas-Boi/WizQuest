@@ -12,7 +12,7 @@
 
 @interface Transformations : NSObject
 
-- (id)initWithDepth:(float)z Scale:(float)s Translation:(GLKVector2)t Rotation:(GLKVector3)r;
+- (id)initWithDepth:(float)z Scale:(float)s Translation:(GLKVector2)t Rotation:(float)r RotationAxis:(GLKVector3)rotAxis;
 - (void)start;
 - (void)scale:(float)s;
 

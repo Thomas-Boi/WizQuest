@@ -9,8 +9,6 @@
 
 @interface Transformations ()
 {
-    GLKVector3 globalPosition;
-    GLKVector3 globalRotation;
     float depth;
     
     float scaleStart;
@@ -23,33 +21,24 @@
     GLKQuaternion rotationEnd;
     GLKVector3 rotationAxis;
 }
-
-@property(nonatomic) GLKVector3 globalPosition;
-@property(nonatomic) GLKVector3 globalRotation;
 @end
 
 
 @implementation Transformations
 
-@synthesize globalPosition=globalPosition;
-@synthesize globalRotation=globalRotation;
-
-- (id)initWithDepth:(float)z Scale:(float)s Translation:(GLKVector2)t Rotation:(GLKVector3)r
+- (id)initWithDepth:(float)z Scale:(float)s Translation:(GLKVector2)t Rotation:(float)r RotationAxis:(GLKVector3)rotAxis
 {
     if (self = [super init])
     {
         depth = z;
         scaleEnd = s;
         translateEnd = t;
-        rotationAxis = GLKVector3Make(0.0f, 1.0f, 1.0f);
+        rotationAxis = rotAxis;
         
-        globalPosition = GLKVector3Make(t.x, t.y, depth);
-        globalRotation = GLKVector3Make(r.x, r.y, r.z);
-        
-        r.z = GLKMathDegreesToRadians(r.z);
+        r = GLKMathDegreesToRadians(r);
         rotationEnd = GLKQuaternionIdentity;
-        GLKQuaternion rotQuat = GLKQuaternionMakeWithAngleAndVector3Axis(-r.z, rotationAxis);
-        rotationEnd = GLKQuaternionMultiply(rotQuat , rotationEnd);
+        GLKQuaternion rotQuat = GLKQuaternionMakeWithAngleAndVector3Axis(-r, rotationAxis);
+        rotationEnd = GLKQuaternionMultiply(rotQuat, rotationEnd);
     }
     return self;
 }
@@ -77,8 +66,15 @@
         
     translateEnd = GLKVector2Make(dx, dy);
     translateStart = GLKVector2Make(t.x, t.y);
-    globalPosition.x += t.x;
-    globalRotation.y += t.y;
+}
+
+- (void)translateBy:(GLKVector2)t {
+        
+    float dx = translateEnd.x + t.x;
+    float dy = translateEnd.y - t.y;
+    
+    translateEnd = GLKVector2Make(dx, dy);
+
 }
 
 - (void)rotate:(float)rotation withMultiplier:(float)m
@@ -87,9 +83,6 @@
     float deltaRotation = -(rotation - rotationStart) * m;
     rotationStart = rotation;
     GLKQuaternion rotQuat = GLKQuaternionMakeWithAngleAndVector3Axis(deltaRotation, rotationAxis);
-    
-    globalRotation.y += deltaRotation;
-    globalRotation.z += deltaRotation;
     rotationEnd = GLKQuaternionMultiply(rotQuat, rotationEnd);
 }
 
@@ -106,6 +99,22 @@
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, translateEnd.x, translateEnd.y, -depth);
     modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quaternionMatrix);
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scaleEnd, scaleEnd, scaleEnd);
+    return modelViewMatrix;
+}
+
+// static function that can be used to create mv matrix on the fly.
++ (GLKMatrix4)createModelViewMatrixWithTranslation:(GLKVector3)translation Rotation:(float)rotation RotationAxis:(GLKVector3)rotAxis Scale:(GLKVector3)scale
+{
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
+    
+    rotation = GLKMathDegreesToRadians(rotation);
+    GLKQuaternion rotQuat = GLKQuaternionMakeWithAngleAndVector3Axis(rotation, rotAxis);
+    GLKMatrix4 quaternionMatrix = GLKMatrix4MakeWithQuaternion(rotQuat);
+    
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, translation.x, translation.y, translation.z);
+    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quaternionMatrix);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scale.x, scale.y, scale.z);
+     
     return modelViewMatrix;
 }
 @end

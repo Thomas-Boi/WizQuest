@@ -14,11 +14,16 @@
 		FA7B885A25E5C48200F5FBBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7B885925E5C48200F5FBBA /* Assets.xcassets */; };
 		FA7B885D25E5C48200F5FBBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7B885B25E5C48200F5FBBA /* LaunchScreen.storyboard */; };
 		FA7B886025E5C48200F5FBBA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885F25E5C48200F5FBBA /* main.m */; };
-		FA7B887425E5CAAA00F5FBBA /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FA7B886E25E5CAA900F5FBBA /* Shader.fsh */; };
-		FA7B887525E5CAAA00F5FBBA /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FA7B886F25E5CAA900F5FBBA /* Shader.vsh */; };
+		FA7B887425E5CAAA00F5FBBA /* PlayerShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FA7B886E25E5CAA900F5FBBA /* PlayerShader.fsh */; };
+		FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */; };
 		FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887225E5CAA900F5FBBA /* Renderer.mm */; };
 		FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887025E5CAA900F5FBBA /* Transformations.m */; };
 		FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */; };
+		FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887F25E5D14200F5FBBA /* GameManager.mm */; };
+		FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */; };
+		FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888925E5DF9C00F5FBBA /* GameObject.mm */; };
+		FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */; };
+		FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,12 +42,21 @@
 		FA7B886B25E5CAA900F5FBBA /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		FA7B886C25E5CAA900F5FBBA /* GLESRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLESRenderer.hpp; sourceTree = "<group>"; };
 		FA7B886D25E5CAA900F5FBBA /* Transformations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transformations.h; sourceTree = "<group>"; };
-		FA7B886E25E5CAA900F5FBBA /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
-		FA7B886F25E5CAA900F5FBBA /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		FA7B886E25E5CAA900F5FBBA /* PlayerShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = PlayerShader.fsh; sourceTree = "<group>"; };
+		FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = PlayerShader.vsh; sourceTree = "<group>"; };
 		FA7B887025E5CAA900F5FBBA /* Transformations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Transformations.m; sourceTree = "<group>"; };
 		FA7B887125E5CAA900F5FBBA /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
 		FA7B887225E5CAA900F5FBBA /* Renderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
 		FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLESRenderer.cpp; sourceTree = "<group>"; };
+		FA7B887E25E5D12B00F5FBBA /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		FA7B887F25E5D14200F5FBBA /* GameManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
+		FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectTracker.mm; sourceTree = "<group>"; };
+		FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectTracker.h; sourceTree = "<group>"; };
+		FA7B888825E5DF9000F5FBBA /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		FA7B888925E5DF9C00F5FBBA /* GameObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
+		FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.vsh; sourceTree = "<group>"; };
+		FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.fsh; sourceTree = "<group>"; };
+		FAE352AD25E9CDFF001043EA /* UniformEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformEnum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,8 @@
 		FA7B884C25E5C48200F5FBBA /* WizQuest */ = {
 			isa = PBXGroup;
 			children = (
+				FAB23ED725EAE64E0052DDA3 /* shaders */,
+				FA7B888725E5DF7300F5FBBA /* GameObjects */,
 				FA7B887B25E5CB1500F5FBBA /* opengl */,
 				FA7B884D25E5C48200F5FBBA /* AppDelegate.h */,
 				FA7B884E25E5C48200F5FBBA /* AppDelegate.m */,
@@ -99,12 +115,35 @@
 				FA7B886C25E5CAA900F5FBBA /* GLESRenderer.hpp */,
 				FA7B886B25E5CAA900F5FBBA /* Renderer.h */,
 				FA7B887225E5CAA900F5FBBA /* Renderer.mm */,
-				FA7B886E25E5CAA900F5FBBA /* Shader.fsh */,
-				FA7B886F25E5CAA900F5FBBA /* Shader.vsh */,
 				FA7B886D25E5CAA900F5FBBA /* Transformations.h */,
 				FA7B887025E5CAA900F5FBBA /* Transformations.m */,
+				FA7B887E25E5D12B00F5FBBA /* GameManager.h */,
+				FA7B887F25E5D14200F5FBBA /* GameManager.mm */,
+				FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */,
+				FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */,
+				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 			);
 			path = opengl;
+			sourceTree = "<group>";
+		};
+		FA7B888725E5DF7300F5FBBA /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B888825E5DF9000F5FBBA /* GameObject.h */,
+				FA7B888925E5DF9C00F5FBBA /* GameObject.mm */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		FAB23ED725EAE64E0052DDA3 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B886E25E5CAA900F5FBBA /* PlayerShader.fsh */,
+				FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */,
+				FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */,
+				FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +204,11 @@
 			files = (
 				FA7B885D25E5C48200F5FBBA /* LaunchScreen.storyboard in Resources */,
 				FA7B885A25E5C48200F5FBBA /* Assets.xcassets in Resources */,
-				FA7B887525E5CAAA00F5FBBA /* Shader.vsh in Resources */,
+				FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */,
+				FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */,
+				FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */,
 				FA7B885825E5C48200F5FBBA /* Main.storyboard in Resources */,
-				FA7B887425E5CAAA00F5FBBA /* Shader.fsh in Resources */,
+				FA7B887425E5CAAA00F5FBBA /* PlayerShader.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */,
 				FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */,
 				FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */,
 				FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */,
 				FA7B885525E5C48200F5FBBA /* ViewController.mm in Sources */,
+				FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */,
 				FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */,
+				FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */,
 				FA7B886025E5C48200F5FBBA /* main.m in Sources */,
 				FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */,
 			);

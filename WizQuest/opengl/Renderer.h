@@ -5,16 +5,14 @@
 #ifndef Renderer_h
 #define Renderer_h
 #import <GLKit/GLKit.h>
+#import "UniformEnum.h"
+#import "GameObject.h"
 
 @interface Renderer : NSObject
 
-@property float rotAngle;
-@property bool isRotating;
-
 - (void)setup:(GLKView *)view;
-- (void)loadModels;
-- (void)update:(GLKMatrix4) transformations;
-- (void)draw:(CGRect)drawRect;
+- (void)draw:(GameObject *) obj;
+- (void)clear;
 
 @end
 

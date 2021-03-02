@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Renderer.h" // ###
 #import "Transformations.h"
+#import "GameManager.h"
 
 //@interface ViewController : UIViewController
 @interface ViewController : GLKViewController // ###

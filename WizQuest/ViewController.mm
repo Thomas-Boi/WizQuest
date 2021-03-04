@@ -15,8 +15,14 @@
     Transformations *platformTransformations;
 }
 
+// MARK: Button references
+
+@property (weak, nonatomic) IBOutlet UIView *actBtnView;
+
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (weak, nonatomic) IBOutlet UIButton *shootButton;
+@property (weak, nonatomic) IBOutlet UIButton *jumpButton;
 
 @end
 
@@ -67,7 +73,7 @@
     GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
     [manager initManager:view initialPlayerTransform:initialPlayerTransformation];
     
-    // set up UI
+    // set up UI buttons
     UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     [self.leftButton addGestureRecognizer:leftPress];
@@ -75,6 +81,12 @@
     
     leftPress.minimumPressDuration = 0.0f;
     rightPress.minimumPressDuration = 0.0f;
+    
+    // Set jump/shoot buttons to be bottom right
+    self.actBtnView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
+    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+
     
 }
 

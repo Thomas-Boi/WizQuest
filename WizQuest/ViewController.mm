@@ -42,6 +42,9 @@
 }
 
 - (IBAction)jump:(UIButton *)sender {
+    if (jumpTimer != nil) {
+        return;
+    }
     jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
 }
 

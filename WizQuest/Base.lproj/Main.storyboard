@@ -52,6 +52,9 @@
                                         <state key="normal" backgroundImage="arrowshape.bounce.forward.fill" catalog="system">
                                             <color key="titleColor" systemColor="linkColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="jump:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tig-Nv-AFy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K3I-JV-6X0" userLabel="ShootButton">
                                         <rect key="frame" x="8" y="8" width="60" height="60"/>

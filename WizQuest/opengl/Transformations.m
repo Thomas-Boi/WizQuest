@@ -71,7 +71,7 @@
 - (void)translateBy:(GLKVector2)t {
         
     float dx = translateEnd.x + t.x;
-    float dy = translateEnd.y - t.y;
+    float dy = translateEnd.y + t.y;
     
     translateEnd = GLKVector2Make(dx, dy);
 

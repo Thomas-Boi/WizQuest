@@ -11,8 +11,11 @@
 @interface ViewController () {
     GameManager *manager;
     Transformations *playerTransformations;
-    NSTimer *timer;
     Transformations *platformTransformations;
+
+    NSTimer *timer;
+    NSTimer *jumpTimer;
+    int jumpCount;
 }
 
 // MARK: Button references
@@ -36,6 +39,25 @@
 
 - (IBAction)moveRight:(UIButton *)sender {
     [playerTransformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+}
+
+- (IBAction)jump:(UIButton *)sender {
+    jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
+}
+
+- (void)performJump {
+    jumpCount++;
+    if (jumpCount > 35) {
+        [playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
+    } else {
+        [playerTransformations translateBy:GLKVector2Make(0.0f, 0.04f)];
+    }
+    // reset jump timer and counter
+    if (jumpCount >= 70) {
+        [jumpTimer invalidate];
+        jumpTimer = nil;
+        jumpCount = 0;
+    }
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {

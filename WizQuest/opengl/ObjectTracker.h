@@ -8,19 +8,21 @@
 #ifndef ObjectTracker_h
 #define ObjectTracker_h
 
-#import "GameObject.h"
+#import "Player.h"
+#import "Platform.h"
+#import "Monster.h"
 #import <Foundation/Foundation.h>
 
 
 @interface ObjectTracker : NSObject
 
-@property(readonly) GameObject *player;
+@property(readonly) Player *player;
 @property(readonly) NSMutableArray *platforms;
 @property(readonly) NSMutableArray *monsters;
 
-- (void) addPlayer: (GameObject *) player;
-- (void) addPlatform: (GameObject *) platform;
-- (void) addMonster: (GameObject *) monster;
+- (void) addPlayer: (Player *) player;
+- (void) addPlatform: (Platform *) platform;
+- (void) addMonster: (Monster *) monster;
 - (void) cleanUp;
 
 @end

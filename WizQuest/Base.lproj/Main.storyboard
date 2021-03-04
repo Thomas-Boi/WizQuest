@@ -42,6 +42,31 @@
                                     <action selector="moveRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HNc-FA-fDp"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XRp-gT-tfN" userLabel="ActionButtonView">
+                                <rect key="frame" x="666" y="234" width="186" height="159"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-3x-g8f" userLabel="JumpButton">
+                                        <rect key="frame" x="85" y="57.5" width="85" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" backgroundImage="arrowshape.bounce.forward.fill" catalog="system">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="jump:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tig-Nv-AFy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K3I-JV-6X0" userLabel="ShootButton">
+                                        <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="shooting-target"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="f5a-yv-e2T"/>
+                                    <constraint firstAttribute="height" constant="159" id="rC1-eL-TPP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -53,8 +78,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actBtnView" destination="XRp-gT-tfN" id="yS9-C0-Orv"/>
+                        <outlet property="jumpButton" destination="eEj-3x-g8f" id="mqC-DL-hak"/>
                         <outlet property="leftButton" destination="tYB-Fk-dCU" id="cPE-Nu-x6D"/>
                         <outlet property="rightButton" destination="zp5-L4-Wyn" id="o4Q-Xl-Ey4"/>
+                        <outlet property="shootButton" destination="K3I-JV-6X0" id="kHg-jG-IbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -63,10 +91,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.bounce.forward.fill" catalog="system" width="128" height="86"/>
         <image name="left" width="490" height="448"/>
         <image name="right" width="490" height="448"/>
+        <image name="shooting-target" width="256" height="256"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

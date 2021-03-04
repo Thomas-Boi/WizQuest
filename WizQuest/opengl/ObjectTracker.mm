@@ -9,7 +9,7 @@
 
 @interface ObjectTracker()
 {
-    GameObject *_player;
+    Player *_player;
     NSMutableArray *_platforms;
     NSMutableArray *_monsters;
 }
@@ -26,7 +26,7 @@
     return _platforms;
 }
 
-@synthesize monsters;
+@synthesize monsters=_monsters;
 
 - (instancetype) init
 {
@@ -36,17 +36,17 @@
     return self;
 }
 
-- (void) addPlayer: (GameObject *) player
+- (void) addPlayer: (Player *) player
 {
     _player = player;
 }
 
-- (void) addPlatform: (GameObject *) platform
+- (void) addPlatform: (Platform *) platform
 {
     [_platforms addObject:platform];
 }
 
-- (void) addMonster: (GameObject *) monster
+- (void) addMonster: (Monster *) monster
 {
     [_monsters addObject:monster];
 }

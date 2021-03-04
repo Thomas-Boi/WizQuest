@@ -11,12 +11,21 @@
 @interface ViewController () {
     GameManager *manager;
     Transformations *playerTransformations;
-    NSTimer *timer;
     Transformations *platformTransformations;
+
+    NSTimer *timer;
+    NSTimer *jumpTimer;
+    int jumpCount;
 }
+
+// MARK: Button references
+
+@property (weak, nonatomic) IBOutlet UIView *actBtnView;
 
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (weak, nonatomic) IBOutlet UIButton *shootButton;
+@property (weak, nonatomic) IBOutlet UIButton *jumpButton;
 
 @end
 
@@ -30,6 +39,28 @@
 
 - (IBAction)moveRight:(UIButton *)sender {
     [playerTransformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+}
+
+- (IBAction)jump:(UIButton *)sender {
+    if (jumpTimer != nil) {
+        return;
+    }
+    jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
+}
+
+- (void)performJump {
+    jumpCount++;
+    if (jumpCount > 35) {
+        [playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
+    } else {
+        [playerTransformations translateBy:GLKVector2Make(0.0f, 0.04f)];
+    }
+    // reset jump timer and counter
+    if (jumpCount >= 70) {
+        [jumpTimer invalidate];
+        jumpTimer = nil;
+        jumpCount = 0;
+    }
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {
@@ -57,7 +88,7 @@
     [super viewDidLoad];
 
     // Initialize transformations for the player
-    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, 0.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
+    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, -1.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
     [playerTransformations start];
     
     // set up the opengl window and draw
@@ -67,7 +98,7 @@
     GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
     [manager initManager:view initialPlayerTransform:initialPlayerTransformation];
     
-    // set up UI
+    // set up UI buttons
     UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
     [self.leftButton addGestureRecognizer:leftPress];
@@ -75,6 +106,12 @@
     
     leftPress.minimumPressDuration = 0.0f;
     rightPress.minimumPressDuration = 0.0f;
+    
+    // Set jump/shoot buttons to be bottom right
+    self.actBtnView.translatesAutoresizingMaskIntoConstraints = false;
+    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
+    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+
     
 }
 

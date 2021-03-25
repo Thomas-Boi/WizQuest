@@ -18,55 +18,47 @@
 
 
 @implementation GameManager
-- (void) initManager:(GLKView *)view  initialPlayerTransform:(GLKMatrix4) transform
+- (void) initManager:(GLKView *)view
 {
     renderer = [[Renderer alloc] init];
     [renderer setup:view];
     tracker = [[ObjectTracker alloc] init];
-    [self loadObjects:transform];
+    [self createGameScene];
 }
 
-// add the player, platforms, and enemies to the tracker
-- (void) loadObjects:(GLKMatrix4) initialPlayerTransform
+
+// add platforms, and enemies to the tracker
+- (void) createGameScene
 {
     @autoreleasepool {
         // note: all models use the cube. The param is for future use
         // test data for putting object on the screen
-        Player *player = (Player *)[self createGameObject:@"playerModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:initialPlayerTransform];
+        int depth = -10;
+        Player *player = [[Player alloc] init];
+        [player initPosition:GLKVector3Make(0, 0, depth) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube"];
         [tracker addPlayer:player];
         
+        /*
         // since player depth is 5, init z to be -5
         // floor
-        GLKMatrix4 floorTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(0.0, -2.1, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(10.0, 1.0, 1.0)];
+        GLKMatrix4 floorTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(0.0, -2.1, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(10.0, 1.0, 1.0)];
 
         Platform *floor = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:floorTransform];
         [tracker addPlatform:floor];
         
         // left wall
-        GLKMatrix4 leftWallTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(-4.1, 0.5, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 5.0, 1.0)];
+        GLKMatrix4 leftWallTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(-4.1, 0.5, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 5.0, 1.0)];
 
         Platform *wall = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:leftWallTransform];
         [tracker addPlatform:wall];
         
         // monster
-        GLKMatrix4 monsterTransform = [Transformations createModelViewMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
+        GLKMatrix4 monsterTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
 
         Monster *monster = (Monster *)[self createGameObject:@"platformModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:monsterTransform];
         [tracker addMonster:monster];
+        */
         
-    }
-}
-
-// create a game object here. Need the model, shaders, and its
-// initial transformation (position, rotation, scale)
-- (GameObject *) createGameObject:(NSString *) modelName VertShader:(NSString *) vShaderName FragShader:(NSString *) fShaderName Transformation:(GLKMatrix4) transformations
-{
-    @autoreleasepool {
-        GameObject *obj = [[GameObject alloc] init];
-        [obj setupVertShader:vShaderName AndFragShader:fShaderName];
-        [obj loadModels:modelName];
-        [obj loadTransformation:transformations];
-        return obj;
     }
 }
 
@@ -76,11 +68,11 @@
 
 }
 
-// update the player movement and slide the platform here
-- (void) update:(GLKMatrix4) transformations
+// update the player movement and any physics here
+- (void) update:(float) deltaTime
 {
     
-    [tracker.player loadTransformation:transformations];
+    //[tracker.player loadModelMatrix:playerTransform];
     
     /*
     for (GameObject *platform in tracker.platforms)
@@ -97,7 +89,7 @@
     [renderer clear];
     [renderer draw:tracker.player];
     
-    
+    /*
     for (Platform *platform in tracker.platforms)
     {
         [renderer draw:platform];
@@ -107,6 +99,7 @@
     {
         [renderer draw:monster];
     }
+     */
     
 }
 

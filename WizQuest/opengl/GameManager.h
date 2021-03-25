@@ -19,9 +19,9 @@
 
 @interface GameManager : NSObject
 
-- (void) initManager:(GLKView *)view initialPlayerTransform:(GLKMatrix4) transform;
+- (void) initManager:(GLKView *)view;
 - (void) addObject:(GameObject *) obj;
-- (void) update:(GLKMatrix4) transformations;
+- (void) update:(float) deltaTime;
 - (void) draw;
 
 @end

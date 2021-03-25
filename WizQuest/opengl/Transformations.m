@@ -103,7 +103,7 @@
 }
 
 // static function that can be used to create mv matrix on the fly.
-+ (GLKMatrix4)createModelViewMatrixWithTranslation:(GLKVector3)translation Rotation:(float)rotation RotationAxis:(GLKVector3)rotAxis Scale:(GLKVector3)scale
++ (GLKMatrix4)createTransformMatrixWithTranslation:(GLKVector3)translation Rotation:(float)rotation RotationAxis:(GLKVector3)rotAxis Scale:(GLKVector3)scale
 {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
     
@@ -113,6 +113,35 @@
     
     modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, translation.x, translation.y, translation.z);
     modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quaternionMatrix);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scale.x, scale.y, scale.z);
+     
+    return modelViewMatrix;
+}
+
+
++(GLKMatrix4)createTransformationMatrixWithTranslation:(GLKVector3)translation RotationX:(float) rotX RotationY:(float) rotY RotationZ:(float) rotZ Scale:(GLKVector3)scale
+{
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
+    
+    float rotXRad = GLKMathDegreesToRadians(rotX);
+    GLKVector3 rotAxisX = GLKVector3Make(1, 0, 0);
+    GLKQuaternion rotQuatX = GLKQuaternionMakeWithAngleAndVector3Axis(rotXRad, rotAxisX);
+    GLKMatrix4 quatMatrixX = GLKMatrix4MakeWithQuaternion(rotQuatX);
+    
+    float rotYRad = GLKMathDegreesToRadians(rotY);
+    GLKVector3 rotAxisY = GLKVector3Make(0, 1, 0);
+    GLKQuaternion rotQuatY = GLKQuaternionMakeWithAngleAndVector3Axis(rotYRad, rotAxisY);
+    GLKMatrix4 quatMatrixY = GLKMatrix4MakeWithQuaternion(rotQuatY);
+    
+    float rotZRad = GLKMathDegreesToRadians(rotZ);
+    GLKVector3 rotAxisZ = GLKVector3Make(0, 1, 0);
+    GLKQuaternion rotQuatZ = GLKQuaternionMakeWithAngleAndVector3Axis(rotZRad, rotAxisZ);
+    GLKMatrix4 quatMatrixZ = GLKMatrix4MakeWithQuaternion(rotQuatZ);
+
+    modelViewMatrix = GLKMatrix4Translate(modelViewMatrix, translation.x, translation.y, translation.z);
+    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quatMatrixX);
+    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quatMatrixY);
+    modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, quatMatrixZ);
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scale.x, scale.y, scale.z);
      
     return modelViewMatrix;

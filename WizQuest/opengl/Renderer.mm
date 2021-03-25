@@ -18,6 +18,16 @@ enum
 
 @interface Renderer () {
     GLKView *theView;
+    
+    GLKMatrix4 projectionMatrix;
+    
+    // Lighting parameters
+    // ### Add lighting parameter variables here...
+    GLKVector4 specularLightPosition;
+    GLKVector4 specularComponent;
+    GLfloat shininess;
+    GLKVector4 ambientComponent;
+    
 }
 
 @end
@@ -41,6 +51,21 @@ enum
     glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     
+    // global light values
+    specularComponent = GLKVector4Make(255/255.0f, 255/255.0f, 255/255.0f, 1.0f);
+    specularLightPosition = GLKVector4Make(0.0f, 1.0f, 0.0f, 1.0f);
+    shininess = 1000.0f;
+    ambientComponent = GLKVector4Make(0.2f, 0.2f, 0.2f, 1.0f);
+    
+    // Setup blending for alpha values (transparent things)
+    /*
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+     */
+    
+    // Calculate projection matrix
+    float aspect = fabsf((float)(theView.bounds.size.width / theView.bounds.size.height));
+    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
 }
 
 // clear the screen
@@ -52,49 +77,38 @@ enum
 
 - (void)draw:(GameObject *) obj
 {
+    // Select VAO
+    glBindVertexArray(obj.vertexArray);
+    
+    // select the shader program
+    glUseProgram(obj.programObject);
+    
+    // Select IBO (index buffer object) and draw
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.indexBuffer);
+    
+    // select the texture
+    glBindTexture(GL_TEXTURE_2D, obj.texture);
+    
+    // Set up uniforms for the shaders
+    GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, obj.modelViewMatrix);
 
-    // get the projection
-    float aspect = (float)theView.drawableWidth / (float)theView.drawableHeight;
-    GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspect, 1.0f, 20.0f);
-    GLKMatrix4 mvp = GLKMatrix4Multiply(perspective, obj.modelViewMatrix);
+    // update specular
+    // pass on global lighting, fog and texture values
+    glUniform4fv(obj.uniforms[UNIFORM_LIGHT_SPECULAR_POSITION], 1, specularLightPosition.v);
+    glUniform1i(obj.uniforms[UNIFORM_LIGHT_SHININESS], shininess);
+    glUniform4fv(obj.uniforms[UNIFORM_LIGHT_SPECULAR_COMPONENT], 1, specularComponent.v);
+    glUniform4fv(obj.uniforms[UNIFORM_LIGHT_AMBIENT_COMPONENT], 1, ambientComponent.v);
     
-    // set up all the necessary uniform matrices
-    // mvp for model-view-project aka position to scene of the shader
-    glUniformMatrix4fv(obj.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
+    // ### Set values for lighting parameter uniforms here...
+    glUniform4fv(obj.uniforms[UNIFORM_LIGHT_DIFFUSE_POSITION], 1, obj.diffuseLightPosition.v);
+    glUniform4fv(obj.uniforms[UNIFORM_LIGHT_DIFFUSE_COMPONENT], 1, obj.diffuseComponent.v);
     
-    // normal of the obj
+    glUniformMatrix4fv(obj.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, modelViewProjectionMatrix.m);
+    glUniformMatrix4fv(obj.uniforms[UNIFORM_MODELVIEW_MATRIX], 1, 0, obj.modelViewMatrix.m);
     glUniformMatrix3fv(obj.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, obj.normalMatrix.m);
-    
-    // pass through?
-    glUniform1i(obj.uniforms[UNIFORM_PASSTHROUGH], false);
-    
-    // fragment shader
-    glUniform1i(obj.uniforms[UNIFORM_SHADEINFRAG], true);
 
-    glUseProgram ( obj.programObject ); // get the program object with attached shaders
-
-    // tell opengl which vertices to use for drawing
-    glVertexAttribPointer ( 0, 3, GL_FLOAT,
-                           GL_FALSE, 3 * sizeof ( GLfloat ), obj.vertices );
-    glEnableVertexAttribArray ( 0 ); // has to enable it for opengl
-
-    // set the color attribue (attrib) for the vertices
-    // this is green (rgba)
-    // glVertexAttrib4f ( 1, 0.0f, 1.0f, 0.0f, 1.0f );
-
-    // tell opengl to use normals for the obj's normals so we can apply texture
-    glVertexAttribPointer ( 2, 3, GL_FLOAT,
-                           GL_FALSE, 3 * sizeof ( GLfloat ), obj.normals );
-    glEnableVertexAttribArray ( 2 ); // also enable it
-    
-    // tell opengl to use texCoords so we can apply texture
-    glVertexAttribPointer ( 3, 2, GL_FLOAT,
-                           GL_FALSE, 2 * sizeof ( GLfloat ), obj.texCoords );
-    glEnableVertexAttribArray ( 3 );
-
-    // draw the object
-    glDrawElements ( GL_TRIANGLES, obj.numIndices, GL_UNSIGNED_INT, obj.indices );
-}
+    glDrawElements(GL_TRIANGLES, obj.numIndices, GL_UNSIGNED_INT, 0);
+    }
 
 
 @end

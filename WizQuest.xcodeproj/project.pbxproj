@@ -79,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA05092E260C32AD00C80294 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B887125E5CAA900F5FBBA /* crate.jpg */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		FA7B884125E5C48200F5FBBA = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +106,7 @@
 		FA7B884C25E5C48200F5FBBA /* WizQuest */ = {
 			isa = PBXGroup;
 			children = (
+				FA05092E260C32AD00C80294 /* textures */,
 				FAB23ED725EAE64E0052DDA3 /* shaders */,
 				FA7B888725E5DF7300F5FBBA /* GameObjects */,
 				FA7B887B25E5CB1500F5FBBA /* opengl */,
@@ -120,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */,
-				FA7B887125E5CAA900F5FBBA /* crate.jpg */,
 				FA7B886C25E5CAA900F5FBBA /* GLESRenderer.hpp */,
 				FA7B886B25E5CAA900F5FBBA /* Renderer.h */,
 				FA7B887225E5CAA900F5FBBA /* Renderer.mm */,
@@ -154,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				FA7B886E25E5CAA900F5FBBA /* PlayerShader.fsh */,
-				FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */,
 				FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */,
+				FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */,
 				FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */,
 			);
 			path = shaders;

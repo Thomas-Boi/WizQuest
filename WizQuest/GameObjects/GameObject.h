@@ -14,6 +14,7 @@
 #import "UniformEnum.h"
 #import <Foundation/Foundation.h>
 #import "Transformations.h"
+#import <Box2D/Box2D.h>
 
 @interface GameObject : NSObject
 @property(readonly) int _id;
@@ -22,6 +23,8 @@
 @property GLKVector3 position;
 @property GLKVector3 rotation;
 @property GLKVector3 scale;
+@property float height;
+@property float width;
 
 // matrices
 @property GLKMatrix4 modelMatrix;
@@ -44,6 +47,7 @@
 
 // physics stuff
 /*
+ 
 @property(readonly) btRigidBody *body;
 @property int tag;
 @property(readonly) btCollisionShape *shape;

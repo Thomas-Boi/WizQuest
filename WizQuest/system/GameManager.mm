@@ -33,9 +33,9 @@
     @autoreleasepool {
         // note: all models use the cube. The param is for future use
         // test data for putting object on the screen
-        int depth = -10;
+        int depth = 0;
         Player *player = [[Player alloc] init];
-        [player initPosition:GLKVector3Make(0, 0, depth) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube"];
+        [player initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, depth) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube"];
         [tracker addPlayer:player];
         
         /*

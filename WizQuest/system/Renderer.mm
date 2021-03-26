@@ -3,10 +3,7 @@
 //
 
 #import "Renderer.h"
-#import <Foundation/Foundation.h>
-#import <GLKit/GLKit.h>
-#include "GLESRenderer.hpp"
-#include <chrono>
+
 
 // Attribute index.
 enum
@@ -64,8 +61,14 @@ enum
      */
     
     // Calculate projection matrix
-    float aspect = fabsf((float)(theView.bounds.size.width / theView.bounds.size.height));
-    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    
+    // perspective for 3D view
+    //float aspect = fabsf((float)(theView.bounds.size.width / theView.bounds.size.height));
+    //projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    
+    // orthographic makes everything looks 2D
+    projectionMatrix = GLKMatrix4MakeOrtho(TOP_LEFT_X_COORD, TOP_LEFT_X_COORD + SCREEN_WIDTH, TOP_LEFT_Y_COORD, TOP_LEFT_Y_COORD + SCREEN_HEIGHT, EYE_NEAR_COORD, EYE_FAR_COORD);
+    
 }
 
 // clear the screen

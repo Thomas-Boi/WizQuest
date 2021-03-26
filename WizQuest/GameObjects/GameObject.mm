@@ -17,7 +17,9 @@ enum
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-
+// default sizes for the model created by GLESRenderer.cpp
+const int DEFAULT_HEIGHT = 1;
+const int DEFAULT_WIDTH = 1;
 
 @interface GameObject()
 {
@@ -41,11 +43,14 @@ enum
 
 @implementation GameObject
 
+// props
 @synthesize position;
 @synthesize rotation;
 @synthesize scale;
+@synthesize height;
+@synthesize width;
 
-// props
+// opengl matrices
 @synthesize _id;
 @synthesize modelMatrix;
 @synthesize modelViewMatrix;
@@ -239,6 +244,9 @@ enum
     GLKMatrix4 transform = [Transformations createTransformationMatrixWithTranslation:position RotationX:rotation.x RotationY:rotation.y RotationZ:rotation.z Scale:scale];
     [self loadModelMatrix:transform];
     
+    // since we change the scale, we have to update height and width
+    self.height = scale.x / DEFAULT_WIDTH;
+    self.width = scale.y / DEFAULT_HEIGHT;
 }
 
 // load the transformation for the GameObject

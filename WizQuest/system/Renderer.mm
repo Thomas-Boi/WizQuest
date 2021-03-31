@@ -45,7 +45,7 @@ enum
     theView = view;
     [EAGLContext setCurrentContext:view.context];
 
-    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
+    glClearColor ( 150/255.0f, 150/255.0f, 150/255.0f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     
     // global light values
@@ -67,7 +67,7 @@ enum
     //projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     // orthographic makes everything looks 2D
-    projectionMatrix = GLKMatrix4MakeOrtho(TOP_LEFT_X_COORD, TOP_LEFT_X_COORD + SCREEN_WIDTH, TOP_LEFT_Y_COORD, TOP_LEFT_Y_COORD + SCREEN_HEIGHT, EYE_NEAR_COORD, EYE_FAR_COORD);
+    projectionMatrix = GLKMatrix4MakeOrtho(SCREEN_LEFT_X_COORD, SCREEN_LEFT_X_COORD + SCREEN_WIDTH, SCREEN_BOTTOM_Y_COORD, SCREEN_BOTTOM_Y_COORD + SCREEN_HEIGHT, EYE_NEAR_COORD, EYE_FAR_COORD);
     
 }
 

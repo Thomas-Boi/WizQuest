@@ -9,8 +9,13 @@
 
 @interface ObjectTracker()
 {
+    // track player separately due to UI
     Player *_player;
+    
+    // platforms don't change throughout the game
     NSMutableArray *_platforms;
+    
+    // monsters change throughout the game
     NSMutableArray *_monsters;
 }
 
@@ -41,7 +46,7 @@
     _player = player;
 }
 
-- (void) addPlatform: (Platform *) platform
+- (void) addPlatform: (GameObject *) platform
 {
     [_platforms addObject:platform];
 }

@@ -31,8 +31,24 @@ const int NUM_POSITION_ITERATIONS = 3;
     return self;
 }
 
+// add a game object to the game (mass != 0)
+- (void) addObject:(GameObject *)obj
+{
+    switch(obj.bodyType)
+    {
+        case (DYNAMIC):
+            [self addDynamicObject:obj];
+            break;
+        case (STATIC):
+            [self addStaticObject:obj];
+            break;
+        default:
+            return;
+    }
+}
+
 // add a moving object to the game (mass != 0)
-- (void) addDynamicObject:(GameObject *)obj IsActive:(bool)isActive
+- (void) addDynamicObject:(GameObject *)obj
 {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -42,7 +58,7 @@ const int NUM_POSITION_ITERATIONS = 3;
     if (body)
     {
         body->SetUserData((__bridge void *)self);
-        body->SetAwake(isActive); // awake will start physics, else nothing happens until it is set to awake
+        //body->SetAwake(isActive); // awake will start physics, else nothing happens until it is set to awake
         
         b2PolygonShape dynamicBox;
         dynamicBox.SetAsBox(obj.height/2, obj.width/2);
@@ -51,7 +67,6 @@ const int NUM_POSITION_ITERATIONS = 3;
         fixtureDef.shape = &dynamicBox;
         fixtureDef.density = 1.0f;
         fixtureDef.friction = 0.3f;
-        fixtureDef.restitution = 1.0f;
         body->CreateFixture(&fixtureDef);
         
         // pass the physics body back to the obj
@@ -62,8 +77,27 @@ const int NUM_POSITION_ITERATIONS = 3;
 // add a non-moving object to the game
 - (void) addStaticObject:(GameObject *)obj
 {
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    bodyDef.fixedRotation = true;
+    bodyDef.position.Set(obj.position.x, obj.position.y);
+    b2Body *body = world->CreateBody(&bodyDef);
     
-}
+    if (body)
+    {
+        body->SetUserData((__bridge void *)self);
+        
+        b2PolygonShape dynamicBox;
+        dynamicBox.SetAsBox(obj.height/2, obj.width/2);
+        
+        b2FixtureDef fixtureDef;
+        fixtureDef.shape = &dynamicBox;
+        fixtureDef.friction = 0.3f;
+        body->CreateFixture(&fixtureDef);
+        
+        // pass the physics body back to the obj
+        [obj loadPhysicsBody:body];
+    }}
 
 
 - (void)update:(float)elapsedTime

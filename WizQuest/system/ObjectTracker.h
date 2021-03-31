@@ -9,7 +9,6 @@
 #define ObjectTracker_h
 
 #import "Player.h"
-#import "Platform.h"
 #import "Monster.h"
 #import <Foundation/Foundation.h>
 
@@ -21,7 +20,7 @@
 @property(readonly) NSMutableArray *monsters;
 
 - (void) addPlayer: (Player *) player;
-- (void) addPlatform: (Platform *) platform;
+- (void) addPlatform: (GameObject *) platform;
 - (void) addMonster: (Monster *) monster;
 - (void) cleanUp;
 

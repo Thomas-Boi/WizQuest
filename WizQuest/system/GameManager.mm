@@ -35,32 +35,38 @@
 - (void) createGameScene
 {
     @autoreleasepool {
-        // note: all models use the cube. The param is for future use
-        // test data for putting object on the screen
-        int depth = 0;
+        // note: models only accept "cube" or "sphere"
         Player *player = [[Player alloc] init];
-        [player initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, depth) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube"];
+        [player initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
         
         // tracker tracks things to be used for render and physics
         [tracker addPlayer:player];
         
         // physics tracks things for box2D
-        [physics addDynamicObject:player IsActive:true];
+        [physics addObject:player];
         
-        /*
-        // since player depth is 5, init z to be -5
-        // floor
-        GLKMatrix4 floorTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(0.0, -2.1, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(10.0, 1.0, 1.0)];
-
-        Platform *floor = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:floorTransform];
+        
+        GameObject *floor = [[GameObject alloc] init];
+        [floor initPosition:GLKVector3Make(SCREEN_WIDTH/2, 0, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(SCREEN_WIDTH, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:floor];
+        [physics addObject:floor];
         
-        // left wall
-        GLKMatrix4 leftWallTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(-4.1, 0.5, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 5.0, 1.0)];
-
-        Platform *wall = (Platform *)[self createGameObject:@"platformModel" VertShader:@"PlatformShader.vsh" FragShader:@"PlatformShader.fsh" Transformation:leftWallTransform];
-        [tracker addPlatform:wall];
         
+        GameObject *leftPlatform = [[GameObject alloc] init];
+        float smallPlatformWidth = SCREEN_WIDTH / 4;
+        float xPos = smallPlatformWidth / 2;
+        [leftPlatform initPosition:GLKVector3Make(xPos, SCREEN_HEIGHT / 4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:leftPlatform];
+        [physics addObject:leftPlatform];
+        
+        
+        GameObject *rightPlatform = [[GameObject alloc] init];
+        xPos = SCREEN_WIDTH - smallPlatformWidth / 2;
+        [rightPlatform initPosition:GLKVector3Make(xPos, SCREEN_HEIGHT / 4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:rightPlatform];
+        [physics addObject:rightPlatform];
+        
+          /*
         // monster
         GLKMatrix4 monsterTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
 
@@ -86,12 +92,8 @@
     // update each object's position based on physics engine's data
     [tracker.player update];
     
-    /*
-    for (GameObject *platform in tracker.platforms)
-    {
-        [platform loadTransformation:transformations];
-    }
-     */
+    // platforms don't need to be updated
+    
     
     
 }
@@ -101,12 +103,13 @@
     [renderer clear];
     [renderer draw:tracker.player];
     
-    /*
-    for (Platform *platform in tracker.platforms)
+    
+    for (GameObject *platform in tracker.platforms)
     {
         [renderer draw:platform];
     }
     
+    /*
     for (Monster *monster in tracker.monsters)
     {
         [renderer draw:monster];

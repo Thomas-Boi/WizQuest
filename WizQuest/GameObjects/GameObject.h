@@ -15,6 +15,7 @@
 #import <Foundation/Foundation.h>
 #import "Transformations.h"
 #import <Box2D/Box2D.h>
+#import "PhysicsBodyTypeEnum.h"
 
 @interface GameObject : NSObject
 @property(readonly) int _id;
@@ -46,15 +47,14 @@
 @property(readonly) GLuint texture;
 
 // physics stuff
-/*
- 
-@property(readonly) btRigidBody *body;
-@property int tag;
-@property(readonly) btCollisionShape *shape;
-*/
+@property(readonly) PhysicsBodyTypeEnum bodyType;
+@property(readonly) b2Body *body;
 
-// creating the objects
-- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName;
+
+// creating the object
+- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType;
+
+// for the play
 
 // props
 

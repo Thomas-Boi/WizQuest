@@ -200,6 +200,7 @@
 		FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectTracker.h; sourceTree = "<group>"; };
 		FA7B888825E5DF9000F5FBBA /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		FA7B888925E5DF9C00F5FBBA /* GameObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
+		FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsBodyTypeEnum.h; sourceTree = "<group>"; };
 		FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.vsh; sourceTree = "<group>"; };
 		FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.fsh; sourceTree = "<group>"; };
 		FAC0E93425EEBFE3003CBB17 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -438,10 +439,11 @@
 				FA7B887F25E5D14200F5FBBA /* GameManager.mm */,
 				FA7B888525E5DEFA00F5FBBA /* ObjectTracker.h */,
 				FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */,
-				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 				FA0509D6260C6FFA00C80294 /* PhysicsWorld.h */,
 				FA0509D7260C700800C80294 /* PhysicsWorld.mm */,
 				FA594A89260E5A1600584156 /* ScreenInfo.h */,
+				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
+				FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */,
 			);
 			path = system;
 			sourceTree = "<group>";

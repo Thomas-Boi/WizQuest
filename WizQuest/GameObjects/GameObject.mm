@@ -45,7 +45,7 @@ const int DEFAULT_WIDTH = 1;
     
     // physics
     b2Body *_body;
-    //btCollisionShape *_shape;
+    PhysicsBodyTypeEnum _bodyType;
 }
 @end
 
@@ -78,11 +78,8 @@ const int DEFAULT_WIDTH = 1;
 
 
 // physics
-/*
-@synthesize body;
-@synthesize tag;
-@synthesize shape;
- */
+@synthesize bodyType=_bodyType;
+@synthesize body=_body;
 
 
 - (GLint *) uniforms
@@ -91,11 +88,17 @@ const int DEFAULT_WIDTH = 1;
 }
 
 // init the minimum details needed for an object
-- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName
+// note: just making the body type is not enough to init its physics
+// the GameObject must also be added to a PhysicsWorld object
+// position is counting from the center of the game object
+// scale along the x-axis will be used as the width
+// scale along the y-axis will be used as the height
+- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName   PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType
 {
     [self loadPosition:position Rotation:rotation Scale:scale];
     [self loadVertShader:vShaderName AndFragShader:fShaderName];
     [self loadModel:modelName];
+    _bodyType = bodyType;
 }
 
 // get the model info from GLESRenderer then bind it to the vertexArray
@@ -283,12 +286,13 @@ const int DEFAULT_WIDTH = 1;
 // this can be overridden by the child classes
 - (void)update
 {
-    // if this has a physics body update it
-    if (_body)
+    if (_body && (_bodyType != STATIC && _bodyType != NONE))
     {
+        // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();
         [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z) Rotation:_rotation Scale:_scale];
     }
+    
 }
 
 

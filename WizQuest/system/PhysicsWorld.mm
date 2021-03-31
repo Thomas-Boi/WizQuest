@@ -66,7 +66,7 @@ const int NUM_POSITION_ITERATIONS = 3;
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.friction = 1.0f;
         body->CreateFixture(&fixtureDef);
         
         // pass the physics body back to the obj
@@ -92,7 +92,7 @@ const int NUM_POSITION_ITERATIONS = 3;
         
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.friction = 1.0f;
         body->CreateFixture(&fixtureDef);
         
         // pass the physics body back to the obj

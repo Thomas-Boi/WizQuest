@@ -55,14 +55,15 @@
         GameObject *leftPlatform = [[GameObject alloc] init];
         float smallPlatformWidth = SCREEN_WIDTH / 4;
         float xPos = smallPlatformWidth / 2;
-        [leftPlatform initPosition:GLKVector3Make(xPos, SCREEN_HEIGHT / 4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        float yPos = SCREEN_HEIGHT / 3;
+        [leftPlatform initPosition:GLKVector3Make(xPos, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:leftPlatform];
         [physics addObject:leftPlatform];
         
         
         GameObject *rightPlatform = [[GameObject alloc] init];
         xPos = SCREEN_WIDTH - smallPlatformWidth / 2;
-        [rightPlatform initPosition:GLKVector3Make(xPos, SCREEN_HEIGHT / 4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [rightPlatform initPosition:GLKVector3Make(xPos, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:rightPlatform];
         [physics addObject:rightPlatform];
         
@@ -83,6 +84,12 @@
 
 }
 
+// for the player
+- (void)applyImpulseOnPlayer:(float)x Y:(float)y
+{
+    tracker.player.body->ApplyLinearImpulse(b2Vec2(x, y), tracker.player.body->GetPosition(), true);
+}
+
 // update the player movement and any physics here
 - (void) update:(float) deltaTime
 {
@@ -93,9 +100,6 @@
     [tracker.player update];
     
     // platforms don't need to be updated
-    
-    
-    
 }
 
 - (void) draw

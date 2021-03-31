@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 
+// movement speeds for the player
+const float playerXSpeed = 0.2;
+const float playerYSpeed = 10;
+
 @interface ViewController () {
     GameManager *manager;
 
@@ -32,18 +36,23 @@
 // MARK: Handle actions
 
 - (IBAction)moveLeft:(UIButton *)sender {
-    //[playerTransformations translateBy:GLKVector2Make(-0.05f, 0.0f)];
+    [manager applyImpulseOnPlayer:-playerXSpeed Y:0];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
-    //[playerTransformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+    [manager applyImpulseOnPlayer:playerXSpeed Y:0];
 }
 
 - (IBAction)jump:(UIButton *)sender {
+    /*
     if (jumpTimer != nil) {
         return;
     }
     jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
+     */
+    
+    [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
+    
 }
 
 - (void)performJump {

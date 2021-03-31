@@ -21,6 +21,8 @@
 @interface GameManager : NSObject
 
 - (void) initManager:(GLKView *)view;
+// for the player and UI 
+- (void) applyImpulseOnPlayer:(float)x Y:(float)y;
 - (void) addObject:(GameObject *) obj;
 - (void) update:(float) deltaTime;
 - (void) draw;

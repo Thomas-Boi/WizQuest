@@ -54,8 +54,6 @@
 // creating the object
 - (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType;
 
-// for the play
-
 // props
 
 - (void)loadPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale;

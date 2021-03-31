@@ -286,7 +286,7 @@ const int DEFAULT_WIDTH = 1;
 // this can be overridden by the child classes
 - (void)update
 {
-    if (_body && (_bodyType != STATIC && _bodyType != NONE))
+    if (_body && _bodyType != STATIC)
     {
         // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();

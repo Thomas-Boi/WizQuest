@@ -9,7 +9,6 @@
 #define PhysicsBodyTypeEnum_h
 typedef enum
 {
-    NONE,
     STATIC,
     KINEMATIC,
     DYNAMIC

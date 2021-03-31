@@ -97,6 +97,7 @@
     [physics update:deltaTime];
     
     // update each object's position based on physics engine's data
+    // this is required for non-static physics bodies
     [tracker.player update];
     
     // platforms don't need to be updated

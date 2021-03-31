@@ -16,8 +16,6 @@
 @interface PhysicsWorld : NSObject
 - (void) update:(float)elapsedTime;
 - (void) addObject:(GameObject *)obj;
-- (void) addDynamicObject:(GameObject *)obj;
-- (void) addStaticObject:(GameObject *)obj;
 
 @end
 #endif /* PhysicsWorld_h */

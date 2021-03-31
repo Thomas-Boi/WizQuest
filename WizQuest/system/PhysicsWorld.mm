@@ -6,13 +6,15 @@
 //
 
 #import "PhysicsWorld.h"
+// values for the world's steps behaviour
+const float MAX_TIMESTEP = 1.0f/60.0f;
+const int NUM_VELOCITY_ITERATIONS = 10;
+const int NUM_POSITION_ITERATIONS = 3;
 
 @interface PhysicsWorld()
 {
     b2Vec2 *gravity;
     b2World *world;
-    
-    
 }
 
 @end
@@ -29,18 +31,22 @@
     return self;
 }
 
-- (void) addDynamicObject:(GameObject *)obj
+// add a moving object to the game (mass != 0)
+- (void) addDynamicObject:(GameObject *)obj IsActive:(bool)isActive
 {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(obj.position.x, obj.position.y);
     b2Body *body = world->CreateBody(&bodyDef);
+    
     if (body)
     {
         body->SetUserData((__bridge void *)self);
-        body->SetAwake(false);
+        body->SetAwake(isActive); // awake will start physics, else nothing happens until it is set to awake
+        
         b2PolygonShape dynamicBox;
-        //dynamicBox.SetAsBox(BRICK_WIDTH/2, BRICK_HEIGHT/2);
+        dynamicBox.SetAsBox(obj.height/2, obj.width/2);
+        
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &dynamicBox;
         fixtureDef.density = 1.0f;
@@ -48,13 +54,30 @@
         fixtureDef.restitution = 1.0f;
         body->CreateFixture(&fixtureDef);
         
+        // pass the physics body back to the obj
+        [obj loadPhysicsBody:body];
     }
 }
 
+// add a non-moving object to the game
 - (void) addStaticObject:(GameObject *)obj
 {
     
 }
 
 
+- (void)update:(float)elapsedTime
+{
+    if (world)
+    {
+        // keep looping until we iterate through all steps
+        // within the elapsed time. The remainder will also
+        // count as one step no matter how small
+        while (elapsedTime >= 0)
+        {
+            world->Step(MAX_TIMESTEP, NUM_VELOCITY_ITERATIONS, NUM_POSITION_ITERATIONS);
+            elapsedTime -= MAX_TIMESTEP;
+        }
+    }
+}
 @end

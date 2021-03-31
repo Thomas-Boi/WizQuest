@@ -13,7 +13,8 @@
 #import "GameObject.h"
 
 @interface PhysicsWorld : NSObject
-- (void) addDynamicObject:(GameObject *)obj;
+- (void) update:(float)elapsedTime;
+- (void) addDynamicObject:(GameObject *)obj IsActive:(bool)isActive;
 - (void) addStaticObject:(GameObject *)obj;
 
 @end

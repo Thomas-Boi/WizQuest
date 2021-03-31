@@ -16,6 +16,7 @@
 #import "Renderer.h"
 #import "ObjectTracker.h"
 #import "Transformations.h"
+#import "PhysicsWorld.h"
 
 @interface GameManager : NSObject
 

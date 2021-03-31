@@ -20,11 +20,11 @@
 @property(readonly) int _id;
 
 // state in world
-@property GLKVector3 position;
-@property GLKVector3 rotation;
-@property GLKVector3 scale;
-@property float height;
-@property float width;
+@property (readonly) GLKVector3 position;
+@property (readonly) GLKVector3 rotation;
+@property (readonly) GLKVector3 scale;
+@property (readonly) float height;
+@property (readonly) float width;
 
 // matrices
 @property GLKMatrix4 modelMatrix;
@@ -56,18 +56,22 @@
 // creating the objects
 - (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName;
 
-// helper/utility methods
-- (bool)loadVertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName;
+// props
+
 - (void)loadPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale;
 - (void)loadModel:(NSString *)modelName;
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix;
-- (void)loadTexture:(NSString *)textureFileName;
+
+// shaders stuff
+- (bool)loadVertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName;- (void)loadTexture:(NSString *)textureFileName;
 - (void)loadDiffuseLightPosition:(GLKVector4)diffuseLightPosition DiffuseComponent: (GLKVector4)component;
 - (void)loadDefaultDiffuseLight;
 
+// physics
+- (void)loadPhysicsBody:(b2Body *)body;
+
 // lifecycles
 - (void)update;
-- (void)updateWithViewMatrix:(GLKMatrix4) viewMatrix;
 
 @end
 #endif /* GameObject_h */

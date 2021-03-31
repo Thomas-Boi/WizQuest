@@ -12,6 +12,7 @@
 {
     Renderer *renderer;
     ObjectTracker *tracker;
+    PhysicsWorld *physics;
 }
 
 @end
@@ -22,7 +23,10 @@
 {
     renderer = [[Renderer alloc] init];
     [renderer setup:view];
+    
     tracker = [[ObjectTracker alloc] init];
+    
+    physics = [[PhysicsWorld alloc] init];
     [self createGameScene];
 }
 
@@ -36,7 +40,12 @@
         int depth = 0;
         Player *player = [[Player alloc] init];
         [player initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, depth) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube"];
+        
+        // tracker tracks things to be used for render and physics
         [tracker addPlayer:player];
+        
+        // physics tracks things for box2D
+        [physics addDynamicObject:player IsActive:true];
         
         /*
         // since player depth is 5, init z to be -5
@@ -71,8 +80,11 @@
 // update the player movement and any physics here
 - (void) update:(float) deltaTime
 {
+    // update physics engine
+    [physics update:deltaTime];
     
-    //[tracker.player loadModelMatrix:playerTransform];
+    // update each object's position based on physics engine's data
+    [tracker.player update];
     
     /*
     for (GameObject *platform in tracker.platforms)

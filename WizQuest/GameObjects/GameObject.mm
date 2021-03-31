@@ -23,6 +23,13 @@ const int DEFAULT_WIDTH = 1;
 
 @interface GameObject()
 {
+    // props
+    GLKVector3 _position;
+    GLKVector3 _rotation;
+    GLKVector3 _scale;
+    float _height;
+    float _width;
+
     // shader
     GLESRenderer glesRenderer; // use the cube for now
     GLint _uniforms[NUM_UNIFORMS];
@@ -37,6 +44,7 @@ const int DEFAULT_WIDTH = 1;
     GLuint indexBuffer;
     
     // physics
+    b2Body *_body;
     //btCollisionShape *_shape;
 }
 @end
@@ -44,11 +52,11 @@ const int DEFAULT_WIDTH = 1;
 @implementation GameObject
 
 // props
-@synthesize position;
-@synthesize rotation;
-@synthesize scale;
-@synthesize height;
-@synthesize width;
+@synthesize position=_position;
+@synthesize rotation=_rotation;
+@synthesize scale=_scale;
+@synthesize height=_height;
+@synthesize width=_width;
 
 // opengl matrices
 @synthesize _id;
@@ -143,11 +151,6 @@ const int DEFAULT_WIDTH = 1;
     
     // Reset VAO
     glBindVertexArray(0);
-    
-    /*
-    self.tag = tag;
-    [self loadPhysics: numVerts Mass:mass];
-     */
 }
 
 // attach the shaders to the program object
@@ -238,21 +241,21 @@ const int DEFAULT_WIDTH = 1;
 // and z-axis respectively.
 - (void)loadPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale
 {
-    self.position = position;
-    self.rotation = rotation;
-    self.scale = scale;
+    _position = position;
+    _rotation = rotation;
+    _scale = scale;
     GLKMatrix4 transform = [Transformations createTransformationMatrixWithTranslation:position RotationX:rotation.x RotationY:rotation.y RotationZ:rotation.z Scale:scale];
     [self loadModelMatrix:transform];
     
     // since we change the scale, we have to update height and width
-    self.height = scale.x / DEFAULT_WIDTH;
-    self.width = scale.y / DEFAULT_HEIGHT;
+    _height = scale.x / DEFAULT_WIDTH;
+    _width = scale.y / DEFAULT_HEIGHT;
 }
 
 // load the transformation for the GameObject
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix
 {
-    self.modelMatrix = modelMatrix;
+    [self modelMatrix] = modelMatrix;
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelMatrix), NULL);
     modelViewMatrix = modelMatrix;
 }
@@ -268,68 +271,24 @@ const int DEFAULT_WIDTH = 1;
     [self loadDiffuseLightPosition:GLKVector4Make(0, 1, 0, 1) DiffuseComponent:GLKVector4Make(255/255.0f, 255/255.0f, 255/255.0f, 1.0)];
 }
 
-/*
-- (void)loadPhysics: (int)vertexCount Mass:(int)mass
-{
-    _shape = new btConvexHullShape();
-    for (int i = 0; i < vertexCount; i += 3)
-    {
-        float v1 = vertices[i];
-        float v2 = vertices[i+1];
-        float v3 = vertices[i+2];
-        btVector3 btv = btVector3(v1, v2, v3);
-        ((btConvexHullShape*)_shape)->addPoint(btv);
-    }
-    
-    //1
-    btQuaternion rotation;
-    rotation.setEulerZYX(self.rotation.x, self.rotation.y, self.rotation.z);
-    
-    //2
-    btVector3 position = btVector3(self.position.x, self.position.y, self.position.z);
-    
-    //3
-    btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
-    
-    //4
-    btScalar bodyMass = mass;
-    btVector3 bodyInertia;
-    _shape->calculateLocalInertia(bodyMass, bodyInertia);
-    
-    //5
-    btRigidBody::btRigidBodyConstructionInfo bodyCI = btRigidBody::btRigidBodyConstructionInfo(bodyMass, motionState, _shape, bodyInertia);
-    
-    //6
-    bodyCI.m_restitution = 1.0f;
-    bodyCI.m_friction = 0.5f;
-    
-    //7
-    body = new btRigidBody(bodyCI);
 
-    //8
-    body->setUserPointer((__bridge void*)self);
-    
-    //9
-    body->setLinearFactor(btVector3(1,1,0));
+- (void)loadPhysicsBody:(b2Body *) newBody
+{
+    _body = newBody;
 }
-*/
+
 
 // lifecycle
 // update the object every draw cycle
-// this should be implemented by the child classes
+// this can be overridden by the child classes
 - (void)update
 {
-    
-    
-}
-
-// update the object every draw cycle.
-// Also set its new transformation
-// this should be implemented by the child classes
-- (void)updateWithViewMatrix:(GLKMatrix4) viewMatrix
-{
-    modelViewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
-    [self update];
+    // if this has a physics body update it
+    if (_body)
+    {
+        b2Vec2 position2D = _body->GetPosition();
+        [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z) Rotation:_rotation Scale:_scale];
+    }
 }
 
 

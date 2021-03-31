@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 
+// movement speeds for the player
+const float playerXSpeed = 0.2;
+const float playerYSpeed = 10;
+
 @interface ViewController () {
     GameManager *manager;
-    Transformations *playerTransformations;
-    Transformations *platformTransformations;
 
     NSTimer *timer;
     NSTimer *jumpTimer;
@@ -34,26 +36,31 @@
 // MARK: Handle actions
 
 - (IBAction)moveLeft:(UIButton *)sender {
-    [playerTransformations translateBy:GLKVector2Make(-0.05f, 0.0f)];
+    [manager applyImpulseOnPlayer:-playerXSpeed Y:0];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
-    [playerTransformations translateBy:GLKVector2Make(0.05f, 0.0f)];
+    [manager applyImpulseOnPlayer:playerXSpeed Y:0];
 }
 
 - (IBAction)jump:(UIButton *)sender {
+    /*
     if (jumpTimer != nil) {
         return;
     }
     jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
+     */
+    
+    [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
+    
 }
 
 - (void)performJump {
     jumpCount++;
     if (jumpCount > 35) {
-        [playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
+        //[playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
     } else {
-        [playerTransformations translateBy:GLKVector2Make(0.0f, 0.04f)];
+        //[playerTransformations translateBy:GLKVector2Make(0.0f, 0.04f)];
     }
     // reset jump timer and counter
     if (jumpCount >= 70) {
@@ -87,16 +94,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    /*
     // Initialize transformations for the player
     playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, -1.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
     [playerTransformations start];
+     */
     
     // set up the opengl window and draw
     // set up the manager
     GLKView *view = (GLKView *)self.view;
     manager = [[GameManager alloc] init];
-    GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
-    [manager initManager:view initialPlayerTransform:initialPlayerTransformation];
+    //GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
+    [manager initManager:view];
     
     // set up UI buttons
     UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
@@ -117,8 +126,8 @@
 
 - (void)update
 {
-    GLKMatrix4 modelViewMatrix = [playerTransformations getModelViewMatrix];
-    [manager update:modelViewMatrix];
+    //GLKMatrix4 modelViewMatrix = [playerTransformations getModelViewMatrix];
+    [manager update:self.timeSinceLastUpdate];
     
 }
 

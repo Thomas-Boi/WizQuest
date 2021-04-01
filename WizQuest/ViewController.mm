@@ -9,8 +9,8 @@
 #import "ViewController.h"
 
 // movement speeds for the player
-const float playerXSpeed = 0.2;
-const float playerYSpeed = 10;
+const float playerXSpeed = 0.5;
+const float playerYSpeed = 14;
 
 @interface ViewController () {
     GameManager *manager;

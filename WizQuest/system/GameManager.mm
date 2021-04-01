@@ -45,29 +45,70 @@
         // physics tracks things for box2D
         [physics addObject:player];
         
+        // make the walls
+        float platformThickness = 1;
+        float halfWallWidth = platformThickness/2;
+        GameObject *leftWall = [[GameObject alloc] init];
+        [leftWall initPosition:GLKVector3Make(0, SCREEN_HEIGHT / 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(platformThickness, SCREEN_HEIGHT, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:leftWall];
+        [physics addObject:leftWall];
         
-        GameObject *floor = [[GameObject alloc] init];
-        [floor initPosition:GLKVector3Make(SCREEN_WIDTH/2, 0, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(SCREEN_WIDTH, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
-        [tracker addPlatform:floor];
-        [physics addObject:floor];
+        GameObject *rightWall = [[GameObject alloc] init];
+        [rightWall initPosition:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT / 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(platformThickness, SCREEN_HEIGHT, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:rightWall];
+        [physics addObject:rightWall];
         
+        
+        // make the horizontal platform
+        float floorWidth = SCREEN_WIDTH/5 * 2.5;
+        GameObject *leftFloor = [[GameObject alloc] init];
+        [leftFloor initPosition:GLKVector3Make(floorWidth/2 + halfWallWidth, 0, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:leftFloor];
+        [physics addObject:leftFloor];
+        
+        GameObject *rightFloor = [[GameObject alloc] init];
+        [rightFloor initPosition:GLKVector3Make(SCREEN_WIDTH - floorWidth/2 - halfWallWidth, 0, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:rightFloor];
+        [physics addObject:rightFloor];
+        
+        float centerPlatformWidth = SCREEN_WIDTH/3;
+        GameObject *middlePlatform = [[GameObject alloc] init];
+        [middlePlatform initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(centerPlatformWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:middlePlatform];
+        [physics addObject:middlePlatform];
         
         GameObject *leftPlatform = [[GameObject alloc] init];
         float smallPlatformWidth = SCREEN_WIDTH / 4;
-        float xPos = smallPlatformWidth / 2;
-        float yPos = SCREEN_HEIGHT / 3;
-        [leftPlatform initPosition:GLKVector3Make(xPos, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        float xPosLeft = smallPlatformWidth / 2 + halfWallWidth;
+        float yPos = SCREEN_HEIGHT / 2;
+        [leftPlatform initPosition:GLKVector3Make(xPosLeft, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:leftPlatform];
         [physics addObject:leftPlatform];
         
         
         GameObject *rightPlatform = [[GameObject alloc] init];
-        xPos = SCREEN_WIDTH - smallPlatformWidth / 2;
-        [rightPlatform initPosition:GLKVector3Make(xPos, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, 1, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        float xPosRight = SCREEN_WIDTH - xPosLeft;
+        [rightPlatform initPosition:GLKVector3Make(xPosRight, yPos, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(smallPlatformWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:rightPlatform];
         [physics addObject:rightPlatform];
         
-          /*
+        GameObject *topPlatform = [[GameObject alloc] init];
+        [topPlatform initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/5 * 4, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(centerPlatformWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:topPlatform];
+        [physics addObject:topPlatform];
+        
+        // ceiling is similar to the floor
+        GameObject *leftCeiling = [[GameObject alloc] init];
+        [leftCeiling initPosition:GLKVector3Make(floorWidth/2 + halfWallWidth, SCREEN_HEIGHT, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:leftCeiling];
+        [physics addObject:leftCeiling];
+        
+        GameObject *rightCeiling = [[GameObject alloc] init];
+        [rightCeiling initPosition:GLKVector3Make(SCREEN_WIDTH - floorWidth/2 - halfWallWidth, SCREEN_HEIGHT, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:rightCeiling];
+        [physics addObject:rightCeiling];
+        
+        /*
         // monster
         GLKMatrix4 monsterTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
 

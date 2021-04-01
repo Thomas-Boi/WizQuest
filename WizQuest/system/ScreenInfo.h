@@ -9,8 +9,8 @@
 #define ScreenInfo_h
 
 // sizes
-const int SCREEN_HEIGHT = 10;
-const int SCREEN_WIDTH = 20;
+const int SCREEN_HEIGHT = 16;
+const int SCREEN_WIDTH = 24;
 
 // view box top left coord
 const int SCREEN_LEFT_X_COORD = 0;

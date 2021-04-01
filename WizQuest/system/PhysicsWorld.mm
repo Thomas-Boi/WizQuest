@@ -25,7 +25,7 @@ const int NUM_POSITION_ITERATIONS = 3;
 {
     if (self = [super init])
     {
-        gravity = new b2Vec2(0.0f, -10.0f);
+        gravity = new b2Vec2(0.0f, -20.0f);
         world = new b2World(*gravity);
     }
     return self;

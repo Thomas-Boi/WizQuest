@@ -108,14 +108,12 @@
         [tracker addPlatform:rightCeiling];
         [physics addObject:rightCeiling];
         
-        /*
         // monster
-        GLKMatrix4 monsterTransform = [Transformations createTransformMatrixWithTranslation:GLKVector3Make(5.0, -1.0, -5.0) Rotation:0.0 RotationAxis:GLKVector3Make(1.0, 0.0, 0.0) Scale:GLKVector3Make(1.0, 1.0, 1.0)];
-
-        Monster *monster = (Monster *)[self createGameObject:@"platformModel" VertShader:@"PlayerShader.vsh" FragShader:@"PlayerShader.fsh" Transformation:monsterTransform];
-        [tracker addMonster:monster];
-        */
+        Monster *monster = [[Monster alloc] init];
+        [monster initPosition:GLKVector3Make( SCREEN_WIDTH/2 + 2, SCREEN_HEIGHT/2 - 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 2) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
         
+        [tracker addMonster:monster];
+        [physics addObject:monster];
     }
 }
 
@@ -135,13 +133,55 @@
 - (void) update:(float) deltaTime
 {
     // update physics engine
-    [physics update:deltaTime];
+    [self updatePhysics:deltaTime];
     
     // update each object's position based on physics engine's data
     // this is required for non-static physics bodies
     [tracker.player update];
     
     // platforms don't need to be updated
+    
+    // update all monsters
+    for (Monster *monster in tracker.monsters)
+    {
+        [monster update];
+    }
+}
+
+- (void) updatePhysics:(float) deltaTime
+{
+    [physics update:deltaTime];
+    
+    for (ContactDetected *contactDetected in physics.contacts)
+    {
+        if (tracker.player.body == contactDetected.bodyA)
+        {
+            NSLog(@"Contact 1 is the player");
+        }
+        
+        else if (tracker.player.body == contactDetected.bodyB)
+        {
+            NSLog(@"Contact 2 is the player");
+        }
+        else
+            continue;
+        
+        for (Monster *monster in tracker.monsters)
+        {
+            if (monster.body == contactDetected.bodyA)
+            {
+                NSLog(@"Contact 1 is the monster");
+            }
+            
+            else if (monster.body == contactDetected.bodyB)
+            {
+                NSLog(@"Contact 2 is the monster");
+            }
+        }
+        
+    }
+    [physics clearContacts];
+    
 }
 
 - (void) draw
@@ -155,12 +195,12 @@
         [renderer draw:platform];
     }
     
-    /*
+    
     for (Monster *monster in tracker.monsters)
     {
         [renderer draw:monster];
     }
-     */
+    
     
 }
 

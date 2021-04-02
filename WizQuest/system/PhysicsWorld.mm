@@ -11,15 +11,50 @@ const float MAX_TIMESTEP = 1.0f/60.0f;
 const int NUM_VELOCITY_ITERATIONS = 10;
 const int NUM_POSITION_ITERATIONS = 3;
 
+#pragma mark - Box2D contact listener class
+
+class PhysicsContactListener : public b2ContactListener
+{
+public:
+    void BeginContact(b2Contact* contact) {};
+    void EndContact(b2Contact* contact) {};
+    void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+    {
+        b2WorldManifold worldManifold;
+        contact->GetWorldManifold(&worldManifold);
+        b2PointState state1[2], state2[2];
+        b2GetPointStates(state1, state2, oldManifold, contact->GetManifold());
+        if (state2[0] == b2_addState)
+        {
+            // Use contact->GetFixtureA()->GetBody() to get the body
+            b2Body* bodyA = contact->GetFixtureA()->GetBody(), *bodyB = contact->GetFixtureB()->GetBody();
+            
+            PhysicsWorld *parentObj = (__bridge PhysicsWorld *)(bodyA->GetUserData());
+            // Call RegisterHit (assume CBox2D object is in user data)
+            [parentObj addContact:bodyA BodyB:bodyB];
+
+        }
+        /**/
+    }
+    void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {};
+};
+
+#pragma mark - PhysicsWorld
+
 @interface PhysicsWorld()
 {
+    NSMutableArray *_contacts;
+
     b2Vec2 *gravity;
     b2World *world;
+    PhysicsContactListener *contactListener;
 }
 
 @end
 
 @implementation PhysicsWorld
+
+@synthesize contacts=_contacts;
 
 - (id)init
 {
@@ -27,6 +62,10 @@ const int NUM_POSITION_ITERATIONS = 3;
     {
         gravity = new b2Vec2(0.0f, -20.0f);
         world = new b2World(*gravity);
+        
+        contactListener = new PhysicsContactListener();
+        world->SetContactListener(contactListener);
+        _contacts = [NSMutableArray array];
     }
     return self;
 }
@@ -91,4 +130,17 @@ const int NUM_POSITION_ITERATIONS = 3;
         }
     }
 }
+
+- (void) addContact:(b2Body *) bodyA BodyB:(b2Body *) bodyB
+{
+    ContactDetected *contactDetected = [[ContactDetected alloc] init];
+    [contactDetected addContact:bodyA BodyB:bodyB];
+    [_contacts addObject:contactDetected];
+}
+
+- (void) clearContacts
+{
+    [_contacts removeAllObjects];
+}
+
 @end

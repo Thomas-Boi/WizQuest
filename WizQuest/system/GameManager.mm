@@ -154,7 +154,31 @@
     
     for (ContactDetected *contactDetected in physics.contacts)
     {
-        NSLog(@"Contact");
+        if (tracker.player.body == contactDetected.bodyA)
+        {
+            NSLog(@"Contact 1 is the player");
+        }
+        
+        else if (tracker.player.body == contactDetected.bodyB)
+        {
+            NSLog(@"Contact 2 is the player");
+        }
+        else
+            continue;
+        
+        for (Monster *monster in tracker.monsters)
+        {
+            if (monster.body == contactDetected.bodyA)
+            {
+                NSLog(@"Contact 1 is the monster");
+            }
+            
+            else if (monster.body == contactDetected.bodyB)
+            {
+                NSLog(@"Contact 2 is the monster");
+            }
+        }
+        
     }
     [physics clearContacts];
     

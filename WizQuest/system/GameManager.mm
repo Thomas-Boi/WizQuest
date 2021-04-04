@@ -48,12 +48,12 @@
         // make the walls
         float platformThickness = 1;
         float halfWallWidth = platformThickness/2;
-        GameObject *leftWall = [[GameObject alloc] init];
+        Wall *leftWall = [[Wall alloc] init];
         [leftWall initPosition:GLKVector3Make(0, SCREEN_HEIGHT / 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(platformThickness, SCREEN_HEIGHT, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:leftWall];
         [physics addObject:leftWall];
         
-        GameObject *rightWall = [[GameObject alloc] init];
+        Wall *rightWall = [[Wall alloc] init];
         [rightWall initPosition:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT / 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(platformThickness, SCREEN_HEIGHT, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:rightWall];
         [physics addObject:rightWall];
@@ -108,12 +108,13 @@
         [tracker addPlatform:rightCeiling];
         [physics addObject:rightCeiling];
         
-        // monster
-        Monster *monster = [[Monster alloc] init];
+        // monster (only slow moving monster for now)
+        Monster *monster = [[Monster alloc] initWithMonsterType:1];
         [monster initPosition:GLKVector3Make( SCREEN_WIDTH/2 + 2, SCREEN_HEIGHT/2 - 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 2) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
         
         [tracker addMonster:monster];
         [physics addObject:monster];
+
     }
 }
 
@@ -145,6 +146,7 @@
     for (Monster *monster in tracker.monsters)
     {
         [monster update];
+        [monster move];
     }
 }
 
@@ -154,7 +156,7 @@
     
     for (ContactDetected *contactDetected in physics.contacts)
     {
-        if (tracker.player.body == contactDetected.bodyA)
+        /*if (tracker.player.body == contactDetected.bodyA)
         {
             NSLog(@"Contact 1 is the player");
         }
@@ -164,7 +166,7 @@
             NSLog(@"Contact 2 is the player");
         }
         else
-            continue;
+            continue;*/
         
         for (Monster *monster in tracker.monsters)
         {
@@ -176,6 +178,21 @@
             else if (monster.body == contactDetected.bodyB)
             {
                 NSLog(@"Contact 2 is the monster");
+            }
+            
+            // this is really inefficient but it works for now
+            for (GameObject *object in tracker.platforms)
+            {
+                if ([object isKindOfClass:[Wall class]])
+                {
+                    if (object.body == contactDetected.bodyA) {
+                        NSLog(@"Contact 1 is the wall");
+                        [monster changeDirection];
+                        
+                    } else if (object.body == contactDetected.bodyB) {
+                        NSLog(@"Contact 2 is the wall");
+                    }
+                }
             }
         }
         

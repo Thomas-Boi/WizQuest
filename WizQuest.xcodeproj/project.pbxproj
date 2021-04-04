@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6252092F261A5C64001A753B /* Wall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6252092E261A5C64001A753B /* Wall.mm */; };
 		FA0509A6260C6D2D00C80294 /* b2Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA050943260C6D2C00C80294 /* b2Body.cpp */; };
 		FA0509A7260C6D2D00C80294 /* b2World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA050944260C6D2C00C80294 /* b2World.cpp */; };
 		FA0509A8260C6D2D00C80294 /* b2Fixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA050945260C6D2C00C80294 /* b2Fixture.cpp */; };
@@ -78,6 +79,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6252092D261A5C4F001A753B /* Wall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wall.h; sourceTree = "<group>"; };
+		6252092E261A5C64001A753B /* Wall.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Wall.mm; sourceTree = "<group>"; };
 		FA050943260C6D2C00C80294 /* b2Body.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Body.cpp; sourceTree = "<group>"; };
 		FA050944260C6D2C00C80294 /* b2World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2World.cpp; sourceTree = "<group>"; };
 		FA050945260C6D2C00C80294 /* b2Fixture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Fixture.cpp; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 				FAC0E93A25EEC4AB003CBB17 /* Platform.mm */,
 				FAC0E94425EED8C0003CBB17 /* Monster.h */,
 				FAC0E94525EED8E4003CBB17 /* Monster.mm */,
+				6252092D261A5C4F001A753B /* Wall.h */,
+				6252092E261A5C64001A753B /* Wall.mm */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				FA533D9F261698BB00F2DEF9 /* ContactDetected.mm in Sources */,
 				FA0509C5260C6D2D00C80294 /* b2Timer.cpp in Sources */,
 				FA0509AD260C6D2D00C80294 /* b2PolygonContact.cpp in Sources */,
+				6252092F261A5C64001A753B /* Wall.mm in Sources */,
 				FAC0E94625EED8E4003CBB17 /* Monster.mm in Sources */,
 				FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */,
 				FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */,
@@ -759,7 +765,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6RP3H788Z;
-				HEADER_SEARCH_PATHS = "\"/Users/socas/Documents/WizQuest/WizQuest\"";
+				HEADER_SEARCH_PATHS = "\"/Users/a01033342/Documents/COMP8051Project/WizQuest\"/**";
 				INFOPLIST_FILE = WizQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -778,7 +784,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6RP3H788Z;
-				HEADER_SEARCH_PATHS = "\"/Users/socas/Documents/WizQuest/WizQuest\"";
+				HEADER_SEARCH_PATHS = "\"/Users/a01033342/Documents/COMP8051Project/WizQuest\"/**";
 				INFOPLIST_FILE = WizQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

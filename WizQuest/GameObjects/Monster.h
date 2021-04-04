@@ -12,5 +12,11 @@
 
 @interface Monster : GameObject
 
+-(id)initWithMonsterType:(int)type;
+-(void)setInitialStats;
+-(void)takeDamage;
+-(void)move;
+-(void)changeDirection;
+
 @end
 #endif /* Monster_h */

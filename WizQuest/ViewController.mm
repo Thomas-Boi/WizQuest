@@ -16,8 +16,7 @@ const float playerYSpeed = 14;
     GameManager *manager;
 
     NSTimer *timer;
-    NSTimer *jumpTimer;
-    int jumpCount;
+    bool jumping;
 }
 
 // MARK: Button references
@@ -44,19 +43,17 @@ const float playerYSpeed = 14;
 }
 
 - (IBAction)jump:(UIButton *)sender {
-    /*
-    if (jumpTimer != nil) {
+    /*if (jumpTimer != nil) {
         return;
     }
-    jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:true];
-     */
+    jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:false];*/
     
     [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
     
 }
 
 - (void)performJump {
-    jumpCount++;
+    /*jumpCount++;
     if (jumpCount > 35) {
         //[playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
     } else {
@@ -67,7 +64,7 @@ const float playerYSpeed = 14;
         [jumpTimer invalidate];
         jumpTimer = nil;
         jumpCount = 0;
-    }
+    }*/
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {

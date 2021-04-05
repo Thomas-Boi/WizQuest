@@ -207,6 +207,7 @@
 		FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsBodyTypeEnum.h; sourceTree = "<group>"; };
 		FA88AA78261BB11400667462 /* Spikes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
 		FA88AA79261BB16A00667462 /* Spikes.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Spikes.mm; sourceTree = "<group>"; };
+		FA88AA7E261BC33F00667462 /* MonsterInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonsterInfo.h; sourceTree = "<group>"; };
 		FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.vsh; sourceTree = "<group>"; };
 		FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.fsh; sourceTree = "<group>"; };
 		FAC0E93425EEBFE3003CBB17 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -450,6 +451,7 @@
 				FA594A89260E5A1600584156 /* ScreenInfo.h */,
 				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 				FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */,
+				FA88AA7E261BC33F00667462 /* MonsterInfo.h */,
 			);
 			path = system;
 			sourceTree = "<group>";

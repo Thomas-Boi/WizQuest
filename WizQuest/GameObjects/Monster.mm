@@ -64,4 +64,12 @@
     self.body->SetLinearVelocity(b2Vec2(speed, y));
 }
 
+- (void) onCollision:(GameObject *)otherObj
+{
+    if ([otherObj isKindOfClass:[Wall class]])
+    {
+        [self changeDirection];
+    }
+}
+
 @end

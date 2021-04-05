@@ -146,4 +146,10 @@
      
     return modelViewMatrix;
 }
+
++ (GLKMatrix4) changeMatrix:(GLKMatrix4)matrix ByTranslation:(GLKVector3)translate
+{
+    GLKMatrix4 newMatrix = GLKMatrix4Translate(matrix, translate.x, translate.y, translate.z);
+    return newMatrix;
+}
 @end

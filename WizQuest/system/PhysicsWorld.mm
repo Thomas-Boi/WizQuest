@@ -27,14 +27,18 @@ public:
         if (state2[0] == b2_addState)
         {
             // Use contact->GetFixtureA()->GetBody() to get the body
-            b2Body* bodyA = contact->GetFixtureA()->GetBody(), *bodyB = contact->GetFixtureB()->GetBody();
+            b2Body *bodyA = contact->GetFixtureA()->GetBody();
+            b2Body *bodyB = contact->GetFixtureB()->GetBody();
             
-            PhysicsWorld *parentObj = (__bridge PhysicsWorld *)(bodyA->GetUserData());
-            // Call RegisterHit (assume CBox2D object is in user data)
-            [parentObj addContact:bodyA BodyB:bodyB];
+            GameObject *objA = (__bridge GameObject *)(bodyA->GetUserData());
+            GameObject *objB = (__bridge GameObject *)(bodyB->GetUserData());
+         
+            [objA onCollision:objB];
+            [objB onCollision:objA];
+            
+            //[parentObj addContact:bodyA BodyB:bodyB];
 
         }
-        /**/
     }
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {};
 };
@@ -43,8 +47,6 @@ public:
 
 @interface PhysicsWorld()
 {
-    NSMutableArray *_contacts;
-
     b2Vec2 *gravity;
     b2World *world;
     PhysicsContactListener *contactListener;
@@ -54,7 +56,6 @@ public:
 
 @implementation PhysicsWorld
 
-@synthesize contacts=_contacts;
 
 - (id)init
 {
@@ -65,7 +66,6 @@ public:
         
         contactListener = new PhysicsContactListener();
         world->SetContactListener(contactListener);
-        _contacts = [NSMutableArray array];
     }
     return self;
 }
@@ -98,7 +98,8 @@ public:
     
     if (body)
     {
-        body->SetUserData((__bridge void *)self);
+        // body keeps a reference to parent object
+        body->SetUserData((__bridge void *)obj);
         //body->SetAwake(isActive); // awake will start physics, else nothing happens until it is set to awake
         
         b2PolygonShape dynamicBox;
@@ -108,6 +109,7 @@ public:
         fixtureDef.shape = &dynamicBox;
         fixtureDef.density = 1.0f;
         fixtureDef.friction = 1.0f;
+        fixtureDef.restitution = 0;
         body->CreateFixture(&fixtureDef);
         
         // pass the physics body back to the obj
@@ -131,16 +133,11 @@ public:
     }
 }
 
-- (void) addContact:(b2Body *) bodyA BodyB:(b2Body *) bodyB
-{
-    ContactDetected *contactDetected = [[ContactDetected alloc] init];
-    [contactDetected addContact:bodyA BodyB:bodyB];
-    [_contacts addObject:contactDetected];
-}
 
-- (void) clearContacts
+- (void) dealloc
 {
-    [_contacts removeAllObjects];
+    if (gravity) delete gravity;
+    if (world) delete world;
+    if (contactListener) delete contactListener;
 }
-
 @end

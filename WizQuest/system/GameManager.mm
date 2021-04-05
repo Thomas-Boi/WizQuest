@@ -7,6 +7,7 @@
 
 #import "GameManager.h"
 
+const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_HEIGHT);
 
 @interface GameManager()
 {
@@ -110,7 +111,7 @@
         
         // monster (only slow moving monster for now)
         Monster *monster = [[Monster alloc] initWithMonsterType:1];
-        [monster initPosition:GLKVector3Make( SCREEN_WIDTH/2 + 2, SCREEN_HEIGHT/2 - 2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 2) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
+        [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
         
         [tracker addMonster:monster];
         [physics addObject:monster];
@@ -134,7 +135,7 @@
 - (void) update:(float) deltaTime
 {
     // update physics engine
-    [self updatePhysics:deltaTime];
+    [physics update:deltaTime];
     
     // update each object's position based on physics engine's data
     // this is required for non-static physics bodies
@@ -145,60 +146,9 @@
     // update all monsters
     for (Monster *monster in tracker.monsters)
     {
-        [monster update];
         [monster move];
+        [monster update];
     }
-}
-
-- (void) updatePhysics:(float) deltaTime
-{
-    [physics update:deltaTime];
-    
-    for (ContactDetected *contactDetected in physics.contacts)
-    {
-        /*if (tracker.player.body == contactDetected.bodyA)
-        {
-            NSLog(@"Contact 1 is the player");
-        }
-        
-        else if (tracker.player.body == contactDetected.bodyB)
-        {
-            NSLog(@"Contact 2 is the player");
-        }
-        else
-            continue;*/
-        
-        for (Monster *monster in tracker.monsters)
-        {
-            if (monster.body == contactDetected.bodyA)
-            {
-                NSLog(@"Contact 1 is the monster");
-            }
-            
-            else if (monster.body == contactDetected.bodyB)
-            {
-                NSLog(@"Contact 2 is the monster");
-            }
-            
-            // this is really inefficient but it works for now
-            for (GameObject *object in tracker.platforms)
-            {
-                if ([object isKindOfClass:[Wall class]])
-                {
-                    if (object.body == contactDetected.bodyA) {
-                        NSLog(@"Contact 1 is the wall");
-                        [monster changeDirection];
-                        
-                    } else if (object.body == contactDetected.bodyB) {
-                        NSLog(@"Contact 2 is the wall");
-                    }
-                }
-            }
-        }
-        
-    }
-    [physics clearContacts];
-    
 }
 
 - (void) draw

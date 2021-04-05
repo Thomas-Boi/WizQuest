@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 // movement speeds for the player
-const float playerXSpeed = 0.5;
+const float playerXSpeed = 0.4;
 const float playerYSpeed = 14;
 
 @interface ViewController () {
@@ -42,29 +42,10 @@ const float playerYSpeed = 14;
     [manager applyImpulseOnPlayer:playerXSpeed Y:0];
 }
 
-- (IBAction)jump:(UIButton *)sender {
-    /*if (jumpTimer != nil) {
-        return;
-    }
-    jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(performJump) userInfo:nil repeats:false];*/
-    
+- (IBAction)jump:(UIButton *)sender
+{
     [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
     
-}
-
-- (void)performJump {
-    /*jumpCount++;
-    if (jumpCount > 35) {
-        //[playerTransformations translateBy:GLKVector2Make(0.0f, -0.04f)];
-    } else {
-        //[playerTransformations translateBy:GLKVector2Make(0.0f, 0.04f)];
-    }
-    // reset jump timer and counter
-    if (jumpCount >= 70) {
-        [jumpTimer invalidate];
-        jumpTimer = nil;
-        jumpCount = 0;
-    }*/
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {

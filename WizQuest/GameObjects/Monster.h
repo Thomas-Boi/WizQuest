@@ -9,6 +9,7 @@
 #define Monster_h
 #import <Foundation/Foundation.h>
 #import "GameObject.h"
+#import "Wall.h"
 
 @interface Monster : GameObject
 

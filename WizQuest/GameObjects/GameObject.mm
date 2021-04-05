@@ -255,6 +255,18 @@ const int DEFAULT_WIDTH = 1;
     _width = scale.y / DEFAULT_HEIGHT;
 }
 
+// load the position, rotation, and scale of an object.
+// this is usually used to init an object.
+// each element in the rotation are around the x-axis, y-axis,
+// and z-axis respectively.
+- (void)loadPosition: (GLKVector3)position
+{
+    GLKMatrix4 transform = [Transformations changeMatrix:modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
+    _position = position;
+    [self loadModelMatrix:transform];
+}
+
+
 // load the transformation for the GameObject
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix
 {
@@ -291,7 +303,13 @@ const int DEFAULT_WIDTH = 1;
         // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();
         [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z) Rotation:_rotation Scale:_scale];
+        //[self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
     }
+    
+}
+
+- (void) onCollision:(GameObject *)otherObj
+{
     
 }
 
@@ -300,6 +318,14 @@ const int DEFAULT_WIDTH = 1;
 - (void)dealloc
 {
     glDeleteProgram(programObject);
+    if (vertices) delete(vertices);
+    if (normals) delete(normals);
+    if (texCoords) delete(texCoords);
+    if (_body)
+    {
+        b2World *world = _body->GetWorld();
+        world->DestroyBody(_body);
+    }
 }
 @end
 

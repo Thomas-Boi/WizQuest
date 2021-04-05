@@ -70,6 +70,7 @@
 
 // lifecycles
 - (void)update;
+- (void)onCollision:(GameObject *)otherObj;
 
 @end
 #endif /* GameObject_h */

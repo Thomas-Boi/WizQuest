@@ -27,6 +27,8 @@
 
 + (GLKMatrix4)createTransformationMatrixWithTranslation:(GLKVector3)translation RotationX:(float) rotX RotationY:(float) rotY RotationZ:(float) rotZ Scale:(GLKVector3)scale;
 
++ (GLKMatrix4)changeMatrix: (GLKMatrix4)matrix ByTranslation: (GLKVector3) translate;
+
 @end
 
 #endif /* Transformations_h */

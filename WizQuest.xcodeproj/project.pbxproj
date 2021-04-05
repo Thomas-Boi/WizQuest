@@ -55,7 +55,6 @@
 		FA0509D2260C6D2D00C80294 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A4260C6D2D00C80294 /* b2CollideEdge.cpp */; };
 		FA0509D3260C6D2D00C80294 /* b2Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A5260C6D2D00C80294 /* b2Collision.cpp */; };
 		FA0509D8260C700800C80294 /* PhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0509D7260C700800C80294 /* PhysicsWorld.mm */; };
-		FA533D9F261698BB00F2DEF9 /* ContactDetected.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA533D9E261698BB00F2DEF9 /* ContactDetected.mm */; };
 		FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B884E25E5C48200F5FBBA /* AppDelegate.m */; };
 		FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885125E5C48200F5FBBA /* SceneDelegate.m */; };
 		FA7B885525E5C48200F5FBBA /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885425E5C48200F5FBBA /* ViewController.mm */; };
@@ -176,8 +175,6 @@
 		FA0509A5260C6D2D00C80294 /* b2Collision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Collision.cpp; sourceTree = "<group>"; };
 		FA0509D6260C6FFA00C80294 /* PhysicsWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsWorld.h; sourceTree = "<group>"; };
 		FA0509D7260C700800C80294 /* PhysicsWorld.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsWorld.mm; sourceTree = "<group>"; };
-		FA533D9C2616982E00F2DEF9 /* ContactDetected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactDetected.h; sourceTree = "<group>"; };
-		FA533D9E261698BB00F2DEF9 /* ContactDetected.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactDetected.mm; sourceTree = "<group>"; };
 		FA594A89260E5A1600584156 /* ScreenInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenInfo.h; sourceTree = "<group>"; };
 		FA7B884A25E5C48200F5FBBA /* WizQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7B884D25E5C48200F5FBBA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -447,8 +444,6 @@
 				FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */,
 				FA0509D6260C6FFA00C80294 /* PhysicsWorld.h */,
 				FA0509D7260C700800C80294 /* PhysicsWorld.mm */,
-				FA533D9C2616982E00F2DEF9 /* ContactDetected.h */,
-				FA533D9E261698BB00F2DEF9 /* ContactDetected.mm */,
 				FA594A89260E5A1600584156 /* ScreenInfo.h */,
 				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 				FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */,
@@ -559,7 +554,6 @@
 			files = (
 				FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */,
 				FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */,
-				FA533D9F261698BB00F2DEF9 /* ContactDetected.mm in Sources */,
 				FA0509C5260C6D2D00C80294 /* b2Timer.cpp in Sources */,
 				FA0509AD260C6D2D00C80294 /* b2PolygonContact.cpp in Sources */,
 				6252092F261A5C64001A753B /* Wall.mm in Sources */,
@@ -765,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6RP3H788Z;
-				HEADER_SEARCH_PATHS = "\"/Users/a01033342/Documents/COMP8051Project/WizQuest\"/**";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/WizQuest/**";
 				INFOPLIST_FILE = WizQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -784,7 +778,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6RP3H788Z;
-				HEADER_SEARCH_PATHS = "\"/Users/a01033342/Documents/COMP8051Project/WizQuest\"/**";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/WizQuest/**";
 				INFOPLIST_FILE = WizQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

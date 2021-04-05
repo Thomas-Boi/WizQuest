@@ -56,6 +56,16 @@
     [_monsters addObject:monster];
 }
 
+- (bool) removeMonster:(Monster *)monster
+{
+    if (!monster.active)
+    {
+        [_monsters removeObject:monster];
+        return true;
+    }
+    return false;
+}
+
 // check and see if we need to delete
 // any objects from the array.
 - (void) cleanUp

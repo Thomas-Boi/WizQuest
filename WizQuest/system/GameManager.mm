@@ -109,6 +109,12 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker addPlatform:rightCeiling];
         [physics addObject:rightCeiling];
         
+        // make kill floor at bottom
+        Spikes *killFloor = [[Spikes alloc] init];
+        [killFloor initPosition:GLKVector3Make(SCREEN_WIDTH / 2 , -5, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:killFloor];
+        [physics addObject:killFloor];
+        
         // monster (only slow moving monster for now)
         Monster *monster = [[Monster alloc] initWithMonsterType:1];
         [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
@@ -144,10 +150,12 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     // platforms don't need to be updated
     
     // update all monsters
-    for (Monster *monster in tracker.monsters)
+    for (NSInteger i = tracker.monsters.count - 1; i >= 0 ; i--)
     {
-        [monster move];
-        [monster update];
+        if ([tracker removeMonster:tracker.monsters[i]])
+            continue;
+        [tracker.monsters[i] move];
+        [tracker.monsters[i] update];
     }
 }
 

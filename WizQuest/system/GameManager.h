@@ -13,6 +13,7 @@
 #import "Player.h"
 #import "Wall.h"
 #import "Monster.h"
+#import "Spikes.h"
 #import "Renderer.h"
 #import "ObjectTracker.h"
 #import "Transformations.h"

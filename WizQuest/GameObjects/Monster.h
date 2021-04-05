@@ -10,8 +10,11 @@
 #import <Foundation/Foundation.h>
 #import "GameObject.h"
 #import "Wall.h"
+#import "Spikes.h"
 
 @interface Monster : GameObject
+
+@property bool active;
 
 -(id)initWithMonsterType:(int)type;
 -(void)setInitialStats;

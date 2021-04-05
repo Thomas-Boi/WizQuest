@@ -14,14 +14,18 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     Renderer *renderer;
     ObjectTracker *tracker;
     PhysicsWorld *physics;
+    
+    float elapsedMonsterSpawnTime;
 }
 
 @end
 
-
 @implementation GameManager
+
 - (void) initManager:(GLKView *)view
 {
+    elapsedMonsterSpawnTime = MONSTER_SPAWN_TIME;
+    
     renderer = [[Renderer alloc] init];
     [renderer setup:view];
     
@@ -114,13 +118,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [killFloor initPosition:GLKVector3Make(SCREEN_WIDTH / 2 , -5, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
         [tracker addPlatform:killFloor];
         [physics addObject:killFloor];
-        
-        // monster (only slow moving monster for now)
-        Monster *monster = [[Monster alloc] initWithMonsterType:1];
-        [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
-        
-        [tracker addMonster:monster];
-        [physics addObject:monster];
 
     }
 }
@@ -157,6 +154,26 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker.monsters[i] move];
         [tracker.monsters[i] update];
     }
+    [self spawnMonster:deltaTime];
+}
+
+- (void) spawnMonster:(float) deltaTime
+{
+    //NSLog(@"%.2f", elapsedMonsterSpawnTime);
+    if (tracker.monsters.count >= MONSTER_MAX_COUNT)
+        return;
+    if (MONSTER_SPAWN_TIME >= (elapsedMonsterSpawnTime += deltaTime))
+        return;
+    
+    elapsedMonsterSpawnTime = 0.0f;
+    
+    // monster (only slow moving monster for now)
+    Monster *monster = [[Monster alloc] initWithMonsterType:1];
+    [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
+    
+    [tracker addMonster:monster];
+    [physics addObject:monster];
+    
 }
 
 - (void) draw

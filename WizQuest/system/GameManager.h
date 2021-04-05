@@ -19,6 +19,7 @@
 #import "Transformations.h"
 #import "PhysicsWorld.h"
 #import "PhysicsBodyTypeEnum.h"
+#import "MonsterInfo.h"
 
 @interface GameManager : NSObject
 

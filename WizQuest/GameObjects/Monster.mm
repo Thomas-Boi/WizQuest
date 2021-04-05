@@ -9,7 +9,6 @@
 
 @interface Monster()
 {
-    bool active;
     int monsterType;
 
     int health;
@@ -19,6 +18,8 @@
 
 
 @implementation Monster
+
+@synthesize active;
 
 -(id)initWithMonsterType:(int)type {
     if (self = [super init]) {
@@ -69,6 +70,11 @@
     if ([otherObj isKindOfClass:[Wall class]])
     {
         [self changeDirection];
+    }
+    if ([otherObj isKindOfClass:[Spikes class]])
+    {
+        //NSLog(@"Dead Monster");
+        active = false;
     }
 }
 

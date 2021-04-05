@@ -22,6 +22,7 @@
 - (void) addPlayer: (Player *) player;
 - (void) addPlatform: (GameObject *) platform;
 - (void) addMonster: (Monster *) monster;
+- (bool) removeMonster:(Monster *)monster;
 - (void) cleanUp;
 
 @end

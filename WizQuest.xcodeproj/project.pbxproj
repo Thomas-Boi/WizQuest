@@ -70,6 +70,7 @@
 		FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887F25E5D14200F5FBBA /* GameManager.mm */; };
 		FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */; };
 		FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888925E5DF9C00F5FBBA /* GameObject.mm */; };
+		FA88AA7A261BB16A00667462 /* Spikes.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA88AA79261BB16A00667462 /* Spikes.mm */; };
 		FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */; };
 		FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */; };
 		FAC0E93625EEBFF8003CBB17 /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E93525EEBFF8003CBB17 /* Player.mm */; };
@@ -204,6 +205,8 @@
 		FA7B888825E5DF9000F5FBBA /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		FA7B888925E5DF9C00F5FBBA /* GameObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
 		FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsBodyTypeEnum.h; sourceTree = "<group>"; };
+		FA88AA78261BB11400667462 /* Spikes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
+		FA88AA79261BB16A00667462 /* Spikes.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Spikes.mm; sourceTree = "<group>"; };
 		FAB23EDA25EAFFB40052DDA3 /* PlatformShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.vsh; sourceTree = "<group>"; };
 		FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PlatformShader.fsh; sourceTree = "<group>"; };
 		FAC0E93425EEBFE3003CBB17 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 				FAC0E94525EED8E4003CBB17 /* Monster.mm */,
 				6252092D261A5C4F001A753B /* Wall.h */,
 				6252092E261A5C64001A753B /* Wall.mm */,
+				FA88AA78261BB11400667462 /* Spikes.h */,
+				FA88AA79261BB16A00667462 /* Spikes.mm */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 				FA0509AA260C6D2D00C80294 /* b2EdgeAndPolygonContact.cpp in Sources */,
 				FA0509C9260C6D2D00C80294 /* b2CollideCircle.cpp in Sources */,
 				FA0509CA260C6D2D00C80294 /* b2CollidePolygon.cpp in Sources */,
+				FA88AA7A261BB16A00667462 /* Spikes.mm in Sources */,
 				FA0509BD260C6D2D00C80294 /* b2PulleyJoint.cpp in Sources */,
 				FA0509CB260C6D2D00C80294 /* b2DynamicTree.cpp in Sources */,
 				FA0509BA260C6D2D00C80294 /* b2GearJoint.cpp in Sources */,

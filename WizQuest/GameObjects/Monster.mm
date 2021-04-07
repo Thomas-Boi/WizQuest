@@ -46,6 +46,13 @@
             speed = 3.5;
             break;
     }
+    
+    // random speed in both direction
+    bool faceRight = arc4random_uniform(2);
+    if (!faceRight)
+    {
+        speed = -speed;
+    }
 }
 
 -(void)takeDamage {

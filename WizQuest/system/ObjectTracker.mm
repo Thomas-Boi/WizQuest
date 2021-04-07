@@ -33,17 +33,35 @@
 
 @synthesize monsters=_monsters;
 
+@synthesize bullets;
+
 - (instancetype) init
 {
     self = [super init];
     _platforms = [NSMutableArray array];
     _monsters = [NSMutableArray array];
+    bullets = [NSMutableArray array];
     return self;
 }
 
 - (void) addPlayer: (Player *) player
 {
     _player = player;
+}
+
+- (void) addBullet: (Bullet *) bullet
+{
+    [bullets addObject:bullet];
+}
+
+- (bool) removeBullet: (Bullet *) bullet
+{
+    if (!bullet.active)
+    {
+        [bullets removeObject:bullet];
+        return true;
+    }
+    return false;
 }
 
 - (void) addPlatform: (GameObject *) platform
@@ -54,6 +72,16 @@
 - (void) addMonster: (Monster *) monster
 {
     [_monsters addObject:monster];
+}
+
+- (bool) removeMonster:(Monster *)monster
+{
+    if (!monster.active)
+    {
+        [_monsters removeObject:monster];
+        return true;
+    }
+    return false;
 }
 
 // check and see if we need to delete

@@ -9,7 +9,6 @@
 
 @interface Monster()
 {
-    bool active;
     int monsterType;
 
     int health;
@@ -19,6 +18,8 @@
 
 
 @implementation Monster
+
+@synthesize active;
 
 -(id)initWithMonsterType:(int)type {
     if (self = [super init]) {
@@ -45,13 +46,19 @@
             speed = 3.5;
             break;
     }
+    
+    // random speed in both direction
+    bool faceRight = arc4random_uniform(2);
+    if (!faceRight)
+    {
+        speed = -speed;
+    }
 }
 
 -(void)takeDamage {
     health--;
     if (health == 0) {
         active = false;
-        // destroy object
     }
 }
 
@@ -69,6 +76,14 @@
     if ([otherObj isKindOfClass:[Wall class]])
     {
         [self changeDirection];
+    }
+    if ([otherObj isKindOfClass:[Spikes class]])
+    {
+        active = false;
+    }
+    if ([otherObj isKindOfClass:[Bullet class]])
+    {
+        [self takeDamage];
     }
 }
 

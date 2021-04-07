@@ -14,14 +14,19 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     Renderer *renderer;
     ObjectTracker *tracker;
     PhysicsWorld *physics;
+    
+    float elapsedMonsterSpawnTime;
+    bool playerDirection;
 }
 
 @end
 
-
 @implementation GameManager
+
 - (void) initManager:(GLKView *)view
 {
+    elapsedMonsterSpawnTime = MONSTER_SPAWN_TIME;
+    
     renderer = [[Renderer alloc] init];
     [renderer setup:view];
     
@@ -29,6 +34,8 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     
     physics = [[PhysicsWorld alloc] init];
     [self createGameScene];
+    
+    playerDirection = true;
 }
 
 
@@ -109,20 +116,13 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker addPlatform:rightCeiling];
         [physics addObject:rightCeiling];
         
-        // monster (only slow moving monster for now)
-        Monster *monster = [[Monster alloc] initWithMonsterType:1];
-        [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
-        
-        [tracker addMonster:monster];
-        [physics addObject:monster];
+        // make kill floor at bottom
+        Spikes *killFloor = [[Spikes alloc] init];
+        [killFloor initPosition:GLKVector3Make(SCREEN_WIDTH / 2 , -5, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:STATIC];
+        [tracker addPlatform:killFloor];
+        [physics addObject:killFloor];
 
     }
-}
-
-// add object during run time here
-- (void) addObject:(GameObject *) obj
-{
-
 }
 
 // for the player
@@ -144,11 +144,60 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     // platforms don't need to be updated
     
     // update all monsters
-    for (Monster *monster in tracker.monsters)
+    for (NSInteger i = tracker.monsters.count - 1; i >= 0 ; i--)
     {
-        [monster move];
-        [monster update];
+        if ([tracker removeMonster:tracker.monsters[i]])
+            continue;
+        [tracker.monsters[i] move];
+        [tracker.monsters[i] update];
     }
+    [self spawnMonster:deltaTime];
+    
+    for (NSInteger i = tracker.bullets.count - 1; i >= 0 ; i--)
+    {
+        if ([tracker removeBullet:tracker.bullets[i]])
+            continue;
+        [tracker.bullets[i] move];
+        [tracker.bullets[i] update];
+    }
+}
+
+- (void) spawnMonster:(float) deltaTime
+{
+    //NSLog(@"%.2f", elapsedMonsterSpawnTime);
+    if (tracker.monsters.count >= MONSTER_MAX_COUNT)
+        return;
+    
+    if (MONSTER_SPAWN_TIME >= (elapsedMonsterSpawnTime += deltaTime))
+        return;
+    
+    elapsedMonsterSpawnTime = 0.0f;
+    
+    // monster (only slow moving monster for now)
+    Monster *monster = [[Monster alloc] initWithMonsterType:1];
+    [monster initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) VertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
+    
+    [tracker addMonster:monster];
+    [physics addObject:monster];
+    
+}
+
+// add object during run time here
+- (void) fireBullet
+{
+    // don't want too many bullets flying around
+    if (tracker.bullets.count >= BULLET_MAX_COUNT)
+        return;
+    
+    Bullet *bullet = [[Bullet alloc] initWithDirection:(playerDirection? 1:-1)];
+    [bullet initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
+    [tracker addBullet:bullet];
+    [physics addObject:bullet];
+}
+
+- (void) direction:(bool) d
+{
+    playerDirection = d;
 }
 
 - (void) draw
@@ -166,6 +215,11 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     for (Monster *monster in tracker.monsters)
     {
         [renderer draw:monster];
+    }
+    
+    for (Bullet *bullet in tracker.bullets)
+    {
+        [renderer draw:bullet];
     }
     
     

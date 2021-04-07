@@ -149,7 +149,7 @@
 
 + (GLKMatrix4) changeMatrix:(GLKMatrix4)matrix ByTranslation:(GLKVector3)translate
 {
-    GLKMatrix4 newMatrix = GLKMatrix4Translate(matrix, translate.x, translate.y, translate.z);
-    return newMatrix;
+    GLKMatrix4 newMatrix = GLKMatrix4Translate(GLKMatrix4Identity, translate.x, translate.y, translate.z);
+    return GLKMatrix4Multiply(newMatrix, matrix);
 }
 @end

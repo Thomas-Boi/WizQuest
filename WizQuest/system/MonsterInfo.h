@@ -9,8 +9,8 @@
 #define MonsterInfo_h
 
 // Amount
-const int MONSTER_MAX_COUNT = 1;
-const int BULLET_MAX_COUNT = 2;
+const int MONSTER_MAX_COUNT = 3;
+const int BULLET_MAX_COUNT = 4;
 
 // Time
 const float MONSTER_SPAWN_TIME = 1.0f;

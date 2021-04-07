@@ -10,6 +10,7 @@
 
 // Amount
 const int MONSTER_MAX_COUNT = 1;
+const int BULLET_MAX_COUNT = 2;
 
 // Time
 const float MONSTER_SPAWN_TIME = 1.0f;

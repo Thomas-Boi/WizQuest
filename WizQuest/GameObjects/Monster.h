@@ -11,6 +11,7 @@
 #import "GameObject.h"
 #import "Wall.h"
 #import "Spikes.h"
+#import "Bullet.h"
 
 @interface Monster : GameObject
 

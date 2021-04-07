@@ -16,6 +16,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     PhysicsWorld *physics;
     
     float elapsedMonsterSpawnTime;
+    bool playerDirection;
 }
 
 @end
@@ -33,6 +34,8 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     
     physics = [[PhysicsWorld alloc] init];
     [self createGameScene];
+    
+    playerDirection = true;
 }
 
 
@@ -122,12 +125,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     }
 }
 
-// add object during run time here
-- (void) addObject:(GameObject *) obj
-{
-
-}
-
 // for the player
 - (void)applyImpulseOnPlayer:(float)x Y:(float)y
 {
@@ -156,6 +153,13 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     }
     [self spawnMonster:deltaTime];
     
+    for (NSInteger i = tracker.bullets.count - 1; i >= 0 ; i--)
+    {
+        if ([tracker removeBullet:tracker.bullets[i]])
+            continue;
+        [tracker.bullets[i] move];
+        [tracker.bullets[i] update];
+    }
 }
 
 - (void) spawnMonster:(float) deltaTime
@@ -178,6 +182,24 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     
 }
 
+// add object during run time here
+- (void) fireBullet
+{
+    // don't want too many bullets flying around
+    if (tracker.bullets.count >= BULLET_MAX_COUNT)
+        return;
+    
+    Bullet *bullet = [[Bullet alloc] initWithDirection:(playerDirection? 1:-1)];
+    [bullet initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 1) VertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh" ModelName:@"cube" PhysicsBodyType:DYNAMIC];
+    [tracker addBullet:bullet];
+    [physics addObject:bullet];
+}
+
+- (void) direction:(bool) d
+{
+    playerDirection = d;
+}
+
 - (void) draw
 {
     [renderer clear];
@@ -193,6 +215,11 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     for (Monster *monster in tracker.monsters)
     {
         [renderer draw:monster];
+    }
+    
+    for (Bullet *bullet in tracker.bullets)
+    {
+        [renderer draw:bullet];
     }
     
     

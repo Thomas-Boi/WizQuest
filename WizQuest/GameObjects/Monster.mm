@@ -52,7 +52,6 @@
     health--;
     if (health == 0) {
         active = false;
-        // destroy object
     }
 }
 
@@ -73,8 +72,11 @@
     }
     if ([otherObj isKindOfClass:[Spikes class]])
     {
-        //NSLog(@"Dead Monster");
         active = false;
+    }
+    if ([otherObj isKindOfClass:[Bullet class]])
+    {
+        [self takeDamage];
     }
 }
 

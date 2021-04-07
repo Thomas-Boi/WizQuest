@@ -10,6 +10,7 @@
 
 #import "Player.h"
 #import "Monster.h"
+#import "Bullet.h"
 #import <Foundation/Foundation.h>
 
 
@@ -18,11 +19,14 @@
 @property(readonly) Player *player;
 @property(readonly) NSMutableArray *platforms;
 @property(readonly) NSMutableArray *monsters;
+@property(readonly) NSMutableArray *bullets;
 
 - (void) addPlayer: (Player *) player;
 - (void) addPlatform: (GameObject *) platform;
 - (void) addMonster: (Monster *) monster;
+- (void) addBullet: (Bullet *) bullet;
 - (bool) removeMonster:(Monster *)monster;
+- (bool) removeBullet:(Bullet *) bullet;
 - (void) cleanUp;
 
 @end

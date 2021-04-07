@@ -36,10 +36,12 @@ const float playerYSpeed = 14;
 
 - (IBAction)moveLeft:(UIButton *)sender {
     [manager applyImpulseOnPlayer:-playerXSpeed Y:0];
+    [manager direction:false];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
     [manager applyImpulseOnPlayer:playerXSpeed Y:0];
+    [manager direction:true];
 }
 
 - (IBAction)jump:(UIButton *)sender
@@ -66,23 +68,19 @@ const float playerYSpeed = 14;
     }
 }
 
+- (IBAction)Shoot:(id)sender {
+    [manager fireBullet];
+}
 
 // MARK: OpenGL setup in ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    /*
-    // Initialize transformations for the player
-    playerTransformations = [[Transformations alloc] initWithDepth:5.0f Scale:1.0f Translation:GLKVector2Make(0.0f, -1.0f) Rotation:0 RotationAxis:GLKVector3Make(0.0, 0.0, 1.0)];
-    [playerTransformations start];
-     */
     
     // set up the opengl window and draw
     // set up the manager
     GLKView *view = (GLKView *)self.view;
     manager = [[GameManager alloc] init];
-    //GLKMatrix4 initialPlayerTransformation = [playerTransformations getModelViewMatrix];
     [manager initManager:view];
     
     // set up UI buttons

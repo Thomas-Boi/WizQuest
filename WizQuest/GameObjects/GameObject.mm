@@ -261,7 +261,7 @@ const int DEFAULT_WIDTH = 1;
 // and z-axis respectively.
 - (void)loadPosition: (GLKVector3)position
 {
-    GLKMatrix4 transform = [Transformations changeMatrix:modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
+    GLKMatrix4 transform = [Transformations changeMatrix:self.modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
     _position = position;
     [self loadModelMatrix:transform];
 }
@@ -270,7 +270,8 @@ const int DEFAULT_WIDTH = 1;
 // load the transformation for the GameObject
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix
 {
-    [self modelMatrix] = modelMatrix;
+    
+    self.modelMatrix = modelMatrix;
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelMatrix), NULL);
     modelViewMatrix = modelMatrix;
 }
@@ -302,10 +303,8 @@ const int DEFAULT_WIDTH = 1;
     {
         // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();
-        [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z) Rotation:_rotation Scale:_scale];
-        //[self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
+        [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
     }
-    
 }
 
 - (void) onCollision:(GameObject *)otherObj

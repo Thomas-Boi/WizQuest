@@ -155,6 +155,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker.monsters[i] update];
     }
     [self spawnMonster:deltaTime];
+    
 }
 
 - (void) spawnMonster:(float) deltaTime
@@ -162,6 +163,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     //NSLog(@"%.2f", elapsedMonsterSpawnTime);
     if (tracker.monsters.count >= MONSTER_MAX_COUNT)
         return;
+    
     if (MONSTER_SPAWN_TIME >= (elapsedMonsterSpawnTime += deltaTime))
         return;
     

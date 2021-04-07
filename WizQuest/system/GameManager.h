@@ -20,15 +20,17 @@
 #import "PhysicsWorld.h"
 #import "PhysicsBodyTypeEnum.h"
 #import "MonsterInfo.h"
+#import "Bullet.h"
 
 @interface GameManager : NSObject
 
 - (void) initManager:(GLKView *)view;
 // for the player and UI 
 - (void) applyImpulseOnPlayer:(float)x Y:(float)y;
-- (void) addObject:(GameObject *) obj;
+- (void) fireBullet;
 - (void) update:(float) deltaTime;
 - (void) draw;
+- (void) direction:(bool) d;
 
 @end
 

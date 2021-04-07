@@ -60,6 +60,9 @@
                                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="shooting-target"/>
+                                        <connections>
+                                            <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TJ5-9J-Wuf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

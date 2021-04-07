@@ -52,7 +52,7 @@
     health--;
     if (health == 0) {
         active = false;
-        // destroy object
+        NSLog(@"Destroy Monster");
     }
 }
 
@@ -75,6 +75,10 @@
     {
         //NSLog(@"Dead Monster");
         active = false;
+    }
+    if ([otherObj isKindOfClass:[Bullet class]])
+    {
+        [self takeDamage];
     }
 }
 

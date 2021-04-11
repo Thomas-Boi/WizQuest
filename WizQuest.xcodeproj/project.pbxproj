@@ -77,6 +77,16 @@
 		FAC0E93B25EEC4AB003CBB17 /* Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E93A25EEC4AB003CBB17 /* Platform.mm */; };
 		FAC0E94625EED8E4003CBB17 /* Monster.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E94525EED8E4003CBB17 /* Monster.mm */; };
 		FAD41C03261D1CFB007F5B07 /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD41C02261D1CFB007F5B07 /* Bullet.mm */; };
+		FAF2F7172622ADDB009E757C /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7142622ADDB009E757C /* platform1.png */; };
+		FAF2F7182622ADDB009E757C /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7152622ADDB009E757C /* platform.png */; };
+		FAF2F7192622ADDB009E757C /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7162622ADDB009E757C /* background1.png */; };
+		FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71B2622AEA2009E757C /* TextureShader.fsh */; };
+		FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71C2622AEA2009E757C /* TextureShader.vsh */; };
+		FAF2F7222622BE91009E757C /* Background.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF2F7212622BE91009E757C /* Background.mm */; };
+		FAF2F7292622C2BC009E757C /* H2TX_142.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7262622C2BC009E757C /* H2TX_142.png */; };
+		FAF2F72A2622C2BC009E757C /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7272622C2BC009E757C /* background2.png */; };
+		FAF2F72B2622C2BC009E757C /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7282622C2BC009E757C /* background3.png */; };
+		FAF2F7332622C6D5009E757C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7322622C6D5009E757C /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +230,17 @@
 		FAD41BFC261D1C5D007F5B07 /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		FAD41C02261D1CFB007F5B07 /* Bullet.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Bullet.mm; sourceTree = "<group>"; };
 		FAE352AD25E9CDFF001043EA /* UniformEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformEnum.h; sourceTree = "<group>"; };
+		FAF2F7142622ADDB009E757C /* platform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform1.png; sourceTree = "<group>"; };
+		FAF2F7152622ADDB009E757C /* platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform.png; sourceTree = "<group>"; };
+		FAF2F7162622ADDB009E757C /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
+		FAF2F71B2622AEA2009E757C /* TextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.fsh; sourceTree = "<group>"; };
+		FAF2F71C2622AEA2009E757C /* TextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.vsh; sourceTree = "<group>"; };
+		FAF2F7212622BE91009E757C /* Background.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Background.mm; sourceTree = "<group>"; };
+		FAF2F7242622BE9B009E757C /* Background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		FAF2F7262622C2BC009E757C /* H2TX_142.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = H2TX_142.png; sourceTree = "<group>"; };
+		FAF2F7272622C2BC009E757C /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		FAF2F7282622C2BC009E757C /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
+		FAF2F7322622C6D5009E757C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +257,13 @@
 		FA05092E260C32AD00C80294 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				FAF2F7282622C2BC009E757C /* background3.png */,
+				FAF2F7272622C2BC009E757C /* background2.png */,
+				FAF2F7262622C2BC009E757C /* H2TX_142.png */,
+				FAF2F7162622ADDB009E757C /* background1.png */,
+				FAF2F7142622ADDB009E757C /* platform1.png */,
+				FAF2F7152622ADDB009E757C /* platform.png */,
+				FAF2F7322622C6D5009E757C /* background.png */,
 				FA7B887125E5CAA900F5FBBA /* crate.jpg */,
 			);
 			path = textures;
@@ -476,6 +504,8 @@
 				FA88AA79261BB16A00667462 /* Spikes.mm */,
 				FAD41BFC261D1C5D007F5B07 /* Bullet.h */,
 				FAD41C02261D1CFB007F5B07 /* Bullet.mm */,
+				FAF2F7212622BE91009E757C /* Background.mm */,
+				FAF2F7242622BE9B009E757C /* Background.h */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -483,6 +513,8 @@
 		FAB23ED725EAE64E0052DDA3 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				FAF2F71B2622AEA2009E757C /* TextureShader.fsh */,
+				FAF2F71C2622AEA2009E757C /* TextureShader.vsh */,
 				FA7B886E25E5CAA900F5FBBA /* PlayerShader.fsh */,
 				FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */,
 				FAB23EDD25EAFFC30052DDA3 /* PlatformShader.fsh */,
@@ -547,13 +579,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */,
+				FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */,
 				FA7B885D25E5C48200F5FBBA /* LaunchScreen.storyboard in Resources */,
 				FA7B885A25E5C48200F5FBBA /* Assets.xcassets in Resources */,
+				FAF2F7292622C2BC009E757C /* H2TX_142.png in Resources */,
 				FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */,
 				FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */,
+				FAF2F7192622ADDB009E757C /* background1.png in Resources */,
 				FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */,
+				FAF2F72B2622C2BC009E757C /* background3.png in Resources */,
+				FAF2F7172622ADDB009E757C /* platform1.png in Resources */,
+				FAF2F72A2622C2BC009E757C /* background2.png in Resources */,
+				FAF2F7182622ADDB009E757C /* platform.png in Resources */,
 				FA7B885825E5C48200F5FBBA /* Main.storyboard in Resources */,
 				FA7B887425E5CAAA00F5FBBA /* PlayerShader.fsh in Resources */,
+				FAF2F7332622C6D5009E757C /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +644,7 @@
 				FA0509CE260C6D2D00C80294 /* b2CircleShape.cpp in Sources */,
 				FA0509CC260C6D2D00C80294 /* b2ChainShape.cpp in Sources */,
 				FA0509D3260C6D2D00C80294 /* b2Collision.cpp in Sources */,
+				FAF2F7222622BE91009E757C /* Background.mm in Sources */,
 				FA0509B3260C6D2D00C80294 /* b2WeldJoint.cpp in Sources */,
 				FA0509CD260C6D2D00C80294 /* b2EdgeShape.cpp in Sources */,
 				FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */,

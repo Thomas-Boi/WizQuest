@@ -76,6 +76,7 @@
 		FAC0E93625EEBFF8003CBB17 /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E93525EEBFF8003CBB17 /* Player.mm */; };
 		FAC0E93B25EEC4AB003CBB17 /* Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E93A25EEC4AB003CBB17 /* Platform.mm */; };
 		FAC0E94625EED8E4003CBB17 /* Monster.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E94525EED8E4003CBB17 /* Monster.mm */; };
+		FAD19FF72623B7160088F6B7 /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD19FF62623B7160088F6B7 /* Score.mm */; };
 		FAD41C03261D1CFB007F5B07 /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD41C02261D1CFB007F5B07 /* Bullet.mm */; };
 		FAF2F7172622ADDB009E757C /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7142622ADDB009E757C /* platform1.png */; };
 		FAF2F7182622ADDB009E757C /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7152622ADDB009E757C /* platform.png */; };
@@ -229,6 +230,8 @@
 		FAC0E93D25EEC4BB003CBB17 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		FAC0E94425EED8C0003CBB17 /* Monster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		FAC0E94525EED8E4003CBB17 /* Monster.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Monster.mm; sourceTree = "<group>"; };
+		FAD19FF52623B61E0088F6B7 /* Score.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		FAD19FF62623B7160088F6B7 /* Score.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Score.mm; sourceTree = "<group>"; };
 		FAD41BFC261D1C5D007F5B07 /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		FAD41C02261D1CFB007F5B07 /* Bullet.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Bullet.mm; sourceTree = "<group>"; };
 		FAE352AD25E9CDFF001043EA /* UniformEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformEnum.h; sourceTree = "<group>"; };
@@ -494,6 +497,8 @@
 				FAE352AD25E9CDFF001043EA /* UniformEnum.h */,
 				FA7EDB3C261409AA009D5FE2 /* PhysicsBodyTypeEnum.h */,
 				FA88AA7E261BC33F00667462 /* MonsterInfo.h */,
+				FAD19FF52623B61E0088F6B7 /* Score.h */,
+				FAD19FF62623B7160088F6B7 /* Score.mm */,
 			);
 			path = system;
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 				FA0509AB260C6D2D00C80294 /* b2ChainAndCircleContact.cpp in Sources */,
 				FA0509AA260C6D2D00C80294 /* b2EdgeAndPolygonContact.cpp in Sources */,
 				FA0509C9260C6D2D00C80294 /* b2CollideCircle.cpp in Sources */,
+				FAD19FF72623B7160088F6B7 /* Score.mm in Sources */,
 				FA0509CA260C6D2D00C80294 /* b2CollidePolygon.cpp in Sources */,
 				FA88AA7A261BB16A00667462 /* Spikes.mm in Sources */,
 				FA0509BD260C6D2D00C80294 /* b2PulleyJoint.cpp in Sources */,

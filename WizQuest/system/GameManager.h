@@ -23,8 +23,11 @@
 #import "Bullet.h"
 #import "Platform.h"
 #import "Background.h"
+#import "Score.h"
 
 @interface GameManager : NSObject
+
+@property (readonly) Score *score;
 
 - (void) initManager:(GLKView *)view;
 // for the player and UI 
@@ -33,6 +36,7 @@
 - (void) update:(float) deltaTime;
 - (void) draw;
 - (void) direction:(bool) d;
+- (int) GetPlayerHealth;
 
 @end
 

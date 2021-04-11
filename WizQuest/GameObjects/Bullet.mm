@@ -18,11 +18,14 @@
 
 @synthesize active;
 
-- (id) initWithDirection:(int) d
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale Direction:(int) d
 {
-    if (self = [super init]) {
+    if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
         speed = d * 10;
+        [self loadVertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh"];
+        [self loadModel:@"cube"];
+        self.bodyType = DYNAMIC;
     }
     return self;
 }

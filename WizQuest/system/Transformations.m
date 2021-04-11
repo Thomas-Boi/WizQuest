@@ -134,7 +134,7 @@
     GLKMatrix4 quatMatrixY = GLKMatrix4MakeWithQuaternion(rotQuatY);
     
     float rotZRad = GLKMathDegreesToRadians(rotZ);
-    GLKVector3 rotAxisZ = GLKVector3Make(0, 1, 0);
+    GLKVector3 rotAxisZ = GLKVector3Make(0, 0, 1);
     GLKQuaternion rotQuatZ = GLKQuaternionMakeWithAngleAndVector3Axis(rotZRad, rotAxisZ);
     GLKMatrix4 quatMatrixZ = GLKMatrix4MakeWithQuaternion(rotQuatZ);
 

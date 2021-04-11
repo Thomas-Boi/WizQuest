@@ -11,7 +11,7 @@
 {
     int monsterType;
 
-    int health;
+    int health, value;
     float speed;
 }
 @end
@@ -20,11 +20,13 @@
 @implementation Monster
 
 @synthesize active;
+@synthesize score;
 
--(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type {
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type ScoreSystem:(Score *)s{
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
         monsterType = type;
+        score = s;
         [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
         [self loadModel:@"cube"];
         [self setInitialStats];
@@ -39,14 +41,17 @@
         case 1:  // Slow moving monster, 3 hp
             health = 3;
             speed = 3.5;
+            value = 1;
             break;
         case 2: // Fast moving monster, 1 hp
             health = 1;
             speed = 6.0;
+            value = 1;
             break;
         case 3: // Big monster, same as slow except 5 hp
             health = 5;
             speed = 3.5;
+            value = 2;
             break;
     }
     
@@ -61,6 +66,7 @@
 -(void)takeDamage {
     health--;
     if (health == 0) {
+        [score addPoints:value];
         active = false;
     }
 }

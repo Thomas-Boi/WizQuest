@@ -93,12 +93,14 @@ const int DEFAULT_WIDTH = 1;
 // position is counting from the center of the game object
 // scale along the x-axis will be used as the width
 // scale along the y-axis will be used as the height
-- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName   PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale
 {
-    [self loadPosition:position Rotation:rotation Scale:scale];
-    [self loadVertShader:vShaderName AndFragShader:fShaderName];
-    [self loadModel:modelName];
-    _bodyType = bodyType;
+    if (self = [super init])
+    {
+        [self loadPosition:position Rotation:rotation Scale:scale];
+    }
+    return self;
+
 }
 
 // get the model info from GLESRenderer then bind it to the vertexArray
@@ -255,22 +257,27 @@ const int DEFAULT_WIDTH = 1;
     _width = scale.y / DEFAULT_HEIGHT;
 }
 
-// load the position, rotation, and scale of an object.
-// this is usually used to init an object.
-// each element in the rotation are around the x-axis, y-axis,
-// and z-axis respectively.
-- (void)loadPosition: (GLKVector3)position
+// update the openGL position only. This is best used
+// to sync the openGL coordinates with PhysicsWorld coordinate
+// of the GameObject
+- (void)updateOpenGLPosition: (GLKVector3)position
 {
-    GLKMatrix4 transform = [Transformations changeMatrix:modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
+    GLKMatrix4 transform = [Transformations changeMatrix:self.modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
     _position = position;
     [self loadModelMatrix:transform];
 }
 
+// set the position of the body
+- (void)setPhysicsBodyPosition:(GLKVector3)position
+{
+    _body->SetTransform(b2Vec2(position.x, position.y), 0);
+}
 
 // load the transformation for the GameObject
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix
 {
-    [self modelMatrix] = modelMatrix;
+    
+    self.modelMatrix = modelMatrix;
     normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelMatrix), NULL);
     modelViewMatrix = modelMatrix;
 }
@@ -302,10 +309,8 @@ const int DEFAULT_WIDTH = 1;
     {
         // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();
-        [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z) Rotation:_rotation Scale:_scale];
-        //[self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
+        [self updateOpenGLPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
     }
-    
 }
 
 - (void) onCollision:(GameObject *)otherObj

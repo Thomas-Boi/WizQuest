@@ -13,7 +13,7 @@
     Player *_player;
     
     // platforms don't change throughout the game
-    NSMutableArray *_platforms;
+    NSMutableArray *_staticObjs;
     
     // monsters change throughout the game
     NSMutableArray *_monsters;
@@ -26,9 +26,9 @@
 // props
 @synthesize player=_player;
 
-- (NSMutableArray *) platforms
+- (NSMutableArray *) staticObjs
 {
-    return _platforms;
+    return _staticObjs;
 }
 
 @synthesize monsters=_monsters;
@@ -38,7 +38,7 @@
 - (instancetype) init
 {
     self = [super init];
-    _platforms = [NSMutableArray array];
+    _staticObjs = [NSMutableArray array];
     _monsters = [NSMutableArray array];
     bullets = [NSMutableArray array];
     return self;
@@ -64,9 +64,9 @@
     return false;
 }
 
-- (void) addPlatform: (GameObject *) platform
+- (void) addStaticObj: (GameObject *) obj
 {
-    [_platforms addObject:platform];
+    [_staticObjs addObject:obj];
 }
 
 - (void) addMonster: (Monster *) monster

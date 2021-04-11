@@ -21,6 +21,8 @@
 #import "PhysicsBodyTypeEnum.h"
 #import "MonsterInfo.h"
 #import "Bullet.h"
+#import "Platform.h"
+#import "Background.h"
 
 @interface GameManager : NSObject
 

@@ -134,7 +134,7 @@
     GLKMatrix4 quatMatrixY = GLKMatrix4MakeWithQuaternion(rotQuatY);
     
     float rotZRad = GLKMathDegreesToRadians(rotZ);
-    GLKVector3 rotAxisZ = GLKVector3Make(0, 1, 0);
+    GLKVector3 rotAxisZ = GLKVector3Make(0, 0, 1);
     GLKQuaternion rotQuatZ = GLKQuaternionMakeWithAngleAndVector3Axis(rotZRad, rotAxisZ);
     GLKMatrix4 quatMatrixZ = GLKMatrix4MakeWithQuaternion(rotQuatZ);
 
@@ -149,7 +149,7 @@
 
 + (GLKMatrix4) changeMatrix:(GLKMatrix4)matrix ByTranslation:(GLKVector3)translate
 {
-    GLKMatrix4 newMatrix = GLKMatrix4Translate(matrix, translate.x, translate.y, translate.z);
-    return newMatrix;
+    GLKMatrix4 newMatrix = GLKMatrix4Translate(GLKMatrix4Identity, translate.x, translate.y, translate.z);
+    return GLKMatrix4Multiply(newMatrix, matrix);
 }
 @end

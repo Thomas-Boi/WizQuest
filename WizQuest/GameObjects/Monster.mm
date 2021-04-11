@@ -21,11 +21,14 @@
 
 @synthesize active;
 
--(id)initWithMonsterType:(int)type {
-    if (self = [super init]) {
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type {
+    if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
         monsterType = type;
+        [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
+        [self loadModel:@"cube"];
         [self setInitialStats];
+        self.bodyType = DYNAMIC;
     }
     return self;
     

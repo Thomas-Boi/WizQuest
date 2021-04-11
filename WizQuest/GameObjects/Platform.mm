@@ -15,4 +15,14 @@
 
 @implementation Platform
 
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale
+{
+    if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
+        [self loadVertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh"];
+        [self loadModel:@"cube"];
+        self.bodyType = STATIC;
+    }
+    return self;
+}
+
 @end

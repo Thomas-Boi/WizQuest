@@ -47,18 +47,18 @@
 @property(readonly) GLuint texture;
 
 // physics stuff
-@property(readonly) PhysicsBodyTypeEnum bodyType;
+@property PhysicsBodyTypeEnum bodyType;
 @property(readonly) b2Body *body;
 
 
 // creating the object
-- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType;
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale;
 
 // props
-
 - (void)loadPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale;
 - (void)loadModel:(NSString *)modelName;
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix;
+- (void)setPhysicsBodyPosition:(GLKVector3)position;
 
 // shaders stuff
 - (bool)loadVertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName;- (void)loadTexture:(NSString *)textureFileName;

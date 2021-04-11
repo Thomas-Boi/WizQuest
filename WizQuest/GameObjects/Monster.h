@@ -17,7 +17,7 @@
 
 @property bool active;
 
--(id)initWithMonsterType:(int)type;
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type;
 -(void)setInitialStats;
 -(void)takeDamage;
 -(void)move;

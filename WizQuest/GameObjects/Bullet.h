@@ -18,7 +18,7 @@
 
 @property bool active;
 -(void)move;
-- (id) initWithDirection:(int) d;
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale Direction:(int) d;
 
 @end
 #endif 

@@ -19,7 +19,7 @@
 @property int health;
 
 -(void)resetDamage;
-
+-(void)takeDamage;
 @end
 
 #endif /* Player_h */

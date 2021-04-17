@@ -9,7 +9,8 @@
 
 @interface Player()
 {
-
+    NSTimer *timer;
+    int invincibleCounter;
 }
 
 @end
@@ -42,11 +43,22 @@
     health = 3;
 }
 
+-(void)countDownInvincibleTime {
+    if (--invincibleCounter == 0) {
+        [timer invalidate];
+    }
+}
+
 - (void) onCollision:(GameObject *)otherObj
 {
     if ([otherObj isKindOfClass:[Monster class]])
     {
+        if (invincibleCounter > 0) return;
+        
         [self takeDamage];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(countDownInvincibleTime) userInfo:nil repeats:YES];
+        invincibleCounter = 10;
+        
     }
     if ([otherObj isKindOfClass:[Spikes class]])
     {

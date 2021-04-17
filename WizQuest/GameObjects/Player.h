@@ -19,6 +19,7 @@
 @property int health;
 
 -(void)resetDamage;
+-(void)takeDamage;
 
 @end
 

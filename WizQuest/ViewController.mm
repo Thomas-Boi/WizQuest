@@ -19,9 +19,10 @@ const float playerYSpeed = 14;
     bool jumping;
 }
 
-// MARK: Button references
+// MARK: UI References
+@property (weak, nonatomic) IBOutlet UIStackView *playerHealth;
 
-@property (weak, nonatomic) IBOutlet UIView *actBtnView;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
@@ -47,7 +48,6 @@ const float playerYSpeed = 14;
 - (IBAction)jump:(UIButton *)sender
 {
     [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
-    
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {
@@ -92,12 +92,33 @@ const float playerYSpeed = 14;
     leftPress.minimumPressDuration = 0.0f;
     rightPress.minimumPressDuration = 0.0f;
     
-    // Set jump/shoot buttons to be bottom right
-    self.actBtnView.translatesAutoresizingMaskIntoConstraints = false;
-    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0]];
-    [self.actBtnView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.actBtnView.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.actBtnView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+}
 
-    
+- (void)updatePlayerHealth {
+    int currentHealth = [manager GetPlayerHealth];
+    switch (currentHealth) {
+        case 3:
+            [[[self.playerHealth subviews] objectAtIndex:2] setHidden:false];
+            [[[self.playerHealth subviews] objectAtIndex:1] setHidden:false];
+            [[[self.playerHealth subviews] objectAtIndex:0] setHidden:false];
+            break;
+        case 2:
+            [[[self.playerHealth subviews] objectAtIndex:2] setHidden:true];
+            [[[self.playerHealth subviews] objectAtIndex:1] setHidden:false];
+            [[[self.playerHealth subviews] objectAtIndex:0] setHidden:false];
+            break;
+        case 1:
+            [[[self.playerHealth subviews] objectAtIndex:2] setHidden:true];
+            [[[self.playerHealth subviews] objectAtIndex:1] setHidden:true];
+            [[[self.playerHealth subviews] objectAtIndex:0] setHidden:false];
+            break;
+        case 0:
+            [[[self.playerHealth subviews] objectAtIndex:2] setHidden:true];
+            [[[self.playerHealth subviews] objectAtIndex:1] setHidden:true];
+            [[[self.playerHealth subviews] objectAtIndex:0] setHidden:true];
+            break;
+    }
+
 }
 
 - (void)update
@@ -105,6 +126,12 @@ const float playerYSpeed = 14;
     //GLKMatrix4 modelViewMatrix = [playerTransformations getModelViewMatrix];
     [manager update:self.timeSinceLastUpdate];
     
+    // update score
+    NSString* scoreString = [NSString stringWithFormat:@"SCORE: %i", manager.score.currentScore];
+    [self.scoreLabel setText:scoreString];
+    
+    // update player health
+    [self updatePlayerHealth];
 }
 
 

@@ -33,6 +33,7 @@
 // for the player and UI 
 - (void) applyImpulseOnPlayer:(float)x Y:(float)y;
 - (void) fireBullet;
+- (void) respawn;
 - (void) update:(float) deltaTime;
 - (void) draw;
 - (void) direction:(bool) d;

@@ -22,6 +22,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 @end
 
 @implementation GameManager
+@synthesize score;
 
 - (void) initManager:(GLKView *)view
 {
@@ -36,6 +37,8 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     [self createGameScene];
     
     playerDirection = true;
+	
+	score = [[Score alloc] init];
 }
 
 
@@ -143,7 +146,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker.monsters[i] move];
         [tracker.monsters[i] update];
     }
-    //[self spawnMonster:deltaTime];
+    [self spawnMonster:deltaTime];
     
     for (NSInteger i = tracker.bullets.count - 1; i >= 0 ; i--)
     {

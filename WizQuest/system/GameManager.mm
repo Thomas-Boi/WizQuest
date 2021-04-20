@@ -37,8 +37,8 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     [self createGameScene];
     
     playerDirection = true;
-	
-	score = [[Score alloc] init];
+
+    score = [[Score alloc] init];
 }
 
 
@@ -126,14 +126,23 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     tracker.player.body->ApplyLinearImpulse(b2Vec2(x, y), tracker.player.body->GetPosition(), true);
 }
 
+- (int) GetPlayerHealth
+{
+    return tracker.player.health;
+}
+
 // update the player movement and any physics here
 - (void) update:(float) deltaTime
 {
+    //NSLog(@"highscore: %i, current score: %i", score.highScore, score.currentScore);
     // update physics engine
     [physics update:deltaTime];
     
     // update each object's position based on physics engine's data
     // this is required for non-static physics bodies
+    if(!tracker.player.active) {
+        //[self respawn];
+    }
     [tracker.player update];
     
     // platforms don't need to be updated
@@ -165,6 +174,20 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     }
 }
 
+- (void) respawn
+{
+    for (Monster *monster in tracker.monsters)
+        monster.active = false;
+    for (Monster *bullet in tracker.bullets)
+        bullet.active = false;
+    [tracker.player resetDamage];
+    
+    b2Vec2 playerInitPos = b2Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    tracker.player.body->SetTransform(playerInitPos, 0);
+    
+    [score resetCurrent];
+}
+
 - (void) spawnMonster:(float) deltaTime
 {
     //NSLog(@"%.2f", elapsedMonsterSpawnTime);
@@ -177,7 +200,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     elapsedMonsterSpawnTime = 0.0f;
     
     // monster (only slow moving monster for now)
-    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) MonsterType:1];
+    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) MonsterType:1 ScoreSystem:score];
     
     [tracker addMonster:monster];
     [physics addObject:monster];

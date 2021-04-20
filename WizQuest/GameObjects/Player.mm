@@ -25,8 +25,7 @@
         [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
         [self loadModel:@"cube"];
         self.bodyType = DYNAMIC;
-		
-		[self resetDamage];
+        [self resetDamage];
     }
     return self;
 }
@@ -54,11 +53,9 @@
     if ([otherObj isKindOfClass:[Monster class]])
     {
         if (invincibleCounter > 0) return;
-
         [self takeDamage];
         timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(countDownInvincibleTime) userInfo:nil repeats:YES];
         invincibleCounter = 10;
-
     }
     if ([otherObj isKindOfClass:[Spikes class]])
     {

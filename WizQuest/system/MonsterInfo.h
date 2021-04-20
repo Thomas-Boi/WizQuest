@@ -14,5 +14,6 @@ const int BULLET_MAX_COUNT = 4;
 
 // Time
 const float MONSTER_SPAWN_TIME = 1.0f;
+const float BULLET_SPAWN_TIME = 0.5f;
 
 #endif /* MonsterInfo_h */

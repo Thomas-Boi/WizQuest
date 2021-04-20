@@ -34,6 +34,7 @@
 @synthesize monsters=_monsters;
 
 @synthesize bullets;
+@synthesize bigbulls;
 
 - (instancetype) init
 {
@@ -41,6 +42,7 @@
     _staticObjs = [NSMutableArray array];
     _monsters = [NSMutableArray array];
     bullets = [NSMutableArray array];
+    bigbulls = [NSMutableArray array];
     return self;
 }
 
@@ -59,6 +61,21 @@
     if (!bullet.active)
     {
         [bullets removeObject:bullet];
+        return true;
+    }
+    return false;
+}
+
+- (void) addBigbull: (Bigbull *) bigbull
+{
+    [bigbulls addObject:bigbull];
+}
+
+- (bool) removeBigbull: (Bigbull *) bigbull
+{
+    if (!bigbull.active)
+    {
+        [bigbulls removeObject:bigbull];
         return true;
     }
     return false;

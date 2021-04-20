@@ -64,6 +64,15 @@
                                             <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TJ5-9J-Wuf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yjH-Lf-wu4" userLabel="ShootButton2">
+                                        <rect key="frame" x="8" y="91" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="shooting-target"/>
+                                        <connections>
+                                            <action selector="Shoot2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MUG-ly-e3H"/>
+                                            <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oFt-Nb-hzU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="f5a-yv-e2T"/>

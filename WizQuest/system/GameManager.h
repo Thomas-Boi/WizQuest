@@ -21,6 +21,7 @@
 #import "PhysicsBodyTypeEnum.h"
 #import "MonsterInfo.h"
 #import "Bullet.h"
+#import "Bigbull.h"
 #import "Platform.h"
 #import "Background.h"
 
@@ -30,6 +31,7 @@
 // for the player and UI 
 - (void) applyImpulseOnPlayer:(float)x Y:(float)y;
 - (void) fireBullet;
+- (void) fireBigbull;
 - (void) update:(float) deltaTime;
 - (void) draw;
 - (void) direction:(bool) d;

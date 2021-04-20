@@ -16,9 +16,10 @@
 
 @interface Monster : GameObject
 
+@property (readonly) Score *score;
 @property bool active;
 
--(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type;
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type ScoreSystem:(Score *)s;
 -(void)setInitialStats;
 -(void)takeDamage;
 -(void)move;

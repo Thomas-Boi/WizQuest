@@ -55,6 +55,7 @@
 		FA0509D2260C6D2D00C80294 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A4260C6D2D00C80294 /* b2CollideEdge.cpp */; };
 		FA0509D3260C6D2D00C80294 /* b2Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A5260C6D2D00C80294 /* b2Collision.cpp */; };
 		FA0509D8260C700800C80294 /* PhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0509D7260C700800C80294 /* PhysicsWorld.mm */; };
+		FA58B9252623ADF900A4BED8 /* Bigbull.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA58B9242623ADF900A4BED8 /* Bigbull.mm */; };
 		FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B884E25E5C48200F5FBBA /* AppDelegate.m */; };
 		FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885125E5C48200F5FBBA /* SceneDelegate.m */; };
 		FA7B885525E5C48200F5FBBA /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885425E5C48200F5FBBA /* ViewController.mm */; };
@@ -190,6 +191,8 @@
 		FA0509A5260C6D2D00C80294 /* b2Collision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Collision.cpp; sourceTree = "<group>"; };
 		FA0509D6260C6FFA00C80294 /* PhysicsWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsWorld.h; sourceTree = "<group>"; };
 		FA0509D7260C700800C80294 /* PhysicsWorld.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsWorld.mm; sourceTree = "<group>"; };
+		FA58B9222623AD9300A4BED8 /* Bigbull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bigbull.h; sourceTree = "<group>"; };
+		FA58B9242623ADF900A4BED8 /* Bigbull.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Bigbull.mm; sourceTree = "<group>"; };
 		FA594A89260E5A1600584156 /* ScreenInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenInfo.h; sourceTree = "<group>"; };
 		FA7B884A25E5C48200F5FBBA /* WizQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7B884D25E5C48200F5FBBA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -518,10 +521,12 @@
 				6252092E261A5C64001A753B /* Wall.mm */,
 				FA88AA78261BB11400667462 /* Spikes.h */,
 				FA88AA79261BB16A00667462 /* Spikes.mm */,
-				FAD41BFC261D1C5D007F5B07 /* Bullet.h */,
-				FAD41C02261D1CFB007F5B07 /* Bullet.mm */,
 				FAF2F7212622BE91009E757C /* Background.mm */,
 				FAF2F7242622BE9B009E757C /* Background.h */,
+				FAD41BFC261D1C5D007F5B07 /* Bullet.h */,
+				FAD41C02261D1CFB007F5B07 /* Bullet.mm */,
+				FA58B9222623AD9300A4BED8 /* Bigbull.h */,
+				FA58B9242623ADF900A4BED8 /* Bigbull.mm */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 				FA0509D2260C6D2D00C80294 /* b2CollideEdge.cpp in Sources */,
 				FA0509C6260C6D2D00C80294 /* b2StackAllocator.cpp in Sources */,
 				FA0509BB260C6D2D00C80294 /* b2Joint.cpp in Sources */,
+				FA58B9252623ADF900A4BED8 /* Bigbull.mm in Sources */,
 				FA0509BE260C6D2D00C80294 /* b2RopeJoint.cpp in Sources */,
 				FA0509AC260C6D2D00C80294 /* b2PolygonAndCircleContact.cpp in Sources */,
 				FA0509B0260C6D2D00C80294 /* b2EdgeAndCircleContact.cpp in Sources */,

@@ -27,6 +27,7 @@ const float playerYSpeed = 14;
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton *shootButton;
+@property (weak, nonatomic) IBOutlet UIButton *shootButton2;
 @property (weak, nonatomic) IBOutlet UIButton *jumpButton;
 
 @property UIView *gameOverView;
@@ -127,6 +128,9 @@ const float playerYSpeed = 14;
     [manager respawn];
 }
 
+- (IBAction)Shoot2:(id)sender {
+    [manager fireBigbull];
+}
 
 // MARK: OpenGL setup in ViewController
 

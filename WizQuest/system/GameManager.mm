@@ -37,7 +37,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     [self createGameScene];
     
     playerDirection = true;
-    
+
     score = [[Score alloc] init];
 }
 
@@ -164,6 +164,14 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker.bullets[i] move];
         [tracker.bullets[i] update];
     }
+    
+    for (NSInteger i = tracker.bigbulls.count - 1; i >= 0 ; i--)
+    {
+        if ([tracker removeBigbull:tracker.bigbulls[i]])
+            continue;
+        [tracker.bigbulls[i] move];
+        [tracker.bigbulls[i] update];
+    }
 }
 
 - (void) respawn
@@ -211,6 +219,17 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     [physics addObject:bullet];
 }
 
+- (void) fireBigbull
+{
+    // don't want too many bullets flying around
+    //if (tracker.bigbulls.count >= BULLET_MAX_COUNT)
+        //return;
+    
+    Bigbull *bigbull = [[Bigbull alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 1) Direction:(playerDirection? 1:-1)];
+    [tracker addBigbull:bigbull];
+    [physics addObject:bigbull];
+}
+
 - (void) direction:(bool) d
 {
     playerDirection = d;
@@ -238,6 +257,10 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [renderer draw:bullet];
     }
     
+    for (Bigbull *bigbull in tracker.bigbulls)
+    {
+        [renderer draw:bigbull];
+    }
     
 }
 

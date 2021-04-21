@@ -18,12 +18,13 @@
 @implementation StartViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     
     score = [[Score alloc] init];
     
     [self.highScoreLabel setText:[NSString stringWithFormat:@"High Score: %i", score.highScore]];
 }
+
 
 
 

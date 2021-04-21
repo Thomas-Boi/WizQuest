@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wL6-cN-Z2h">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,6 +8,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="Rbq-47-p33">
+            <objects>
+                <viewController id="wL6-cN-Z2h" customClass="StartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r7K-Ue-TUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ac-Mj-Ji6">
+                                <rect key="frame" x="381" y="243" width="146" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Start Game">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="fih-Ct-QTX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WizQuest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-fc-hcE">
+                                <rect key="frame" x="332" y="86" width="234" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score: DEFAULT " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KX-aC-y7o">
+                                <rect key="frame" x="306" y="303" width="287" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sSL-4m-aF9"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="sY7-fc-hcE" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="1" id="1eW-lP-t1z"/>
+                            <constraint firstItem="9KX-aC-y7o" firstAttribute="top" secondItem="0Ac-Mj-Ji6" secondAttribute="bottom" constant="12" id="5wS-x4-3HH"/>
+                            <constraint firstItem="sY7-fc-hcE" firstAttribute="top" secondItem="sSL-4m-aF9" secondAttribute="top" constant="86" id="Hby-xK-siQ"/>
+                            <constraint firstItem="9KX-aC-y7o" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="1.5" id="a2i-aI-v81"/>
+                            <constraint firstItem="0Ac-Mj-Ji6" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="6" id="p4v-ir-89v"/>
+                            <constraint firstItem="sSL-4m-aF9" firstAttribute="bottom" secondItem="9KX-aC-y7o" secondAttribute="bottom" constant="54" id="y9Q-EA-tm3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="highScoreLabel" destination="9KX-aC-y7o" id="9Pv-in-Cye"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAG-1E-yDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-753" y="77"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -143,6 +193,7 @@
                         <outlet property="rightButton" destination="zp5-L4-Wyn" id="o4Q-Xl-Ey4"/>
                         <outlet property="scoreLabel" destination="crg-nZ-kVg" id="0H5-yX-H2o"/>
                         <outlet property="shootButton" destination="K3I-JV-6X0" id="kHg-jG-IbZ"/>
+                        <outlet property="shootButton2" destination="yjH-Lf-wu4" id="Yl5-gH-ynf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -170,6 +221,12 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

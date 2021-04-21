@@ -31,8 +31,6 @@
         monsterType = type;
         score = s;
         [self loadVertShader:@"TextureShader.vsh" AndFragShader:@"TextureShader.fsh"];
-        [self loadModel:@"jaguar"];
-        [self loadTexture:@"spider.png"];
         [self setInitialStats];
         self.bodyType = DYNAMIC;
     }
@@ -46,16 +44,22 @@
             health = 3;
             speed = 3.5;
             value = 1;
+            [self loadModel:@"spider"];
+            [self loadTexture:@"background.png"];
             break;
         case 2: // Fast moving monster, 1 hp
             health = 1;
             speed = 6.0;
             value = 1;
+            [self loadModel:@"jaguar"];
+            [self loadTexture:@"background.png"];
             break;
         case 3: // Big monster, same as slow except 5 hp
             health = 5;
             speed = 3.5;
             value = 2;
+            [self loadModel:@"boar"];
+            [self loadTexture:@"background.png"];
             break;
     }
     

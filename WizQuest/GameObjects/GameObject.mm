@@ -127,14 +127,14 @@ const int DEFAULT_WIDTH = 1;
         numVertices = [self loadSpider];
         numIndices = 0;
     }
-    else if ([modelName isEqualToString:@"necro"])
-    {
-        numVertices = [self loadNecro];
-        numIndices = 0;
-    }
     else if ([modelName isEqualToString:@"jaguar"])
     {
         numVertices = [self loadJaguar];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"necro"])
+    {
+        numVertices = [self loadNecro];
         numIndices = 0;
     }
     

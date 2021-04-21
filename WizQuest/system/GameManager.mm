@@ -49,9 +49,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 {
     @autoreleasepool {
         // background
-        Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
+        //Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
     
-        [tracker addStaticObj:background];
+        //[tracker addStaticObj:background];
         
         // note: models only accept "cube" or "sphere"
         Player* player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];
@@ -142,11 +142,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     // update physics engine
     [physics update:deltaTime];
     
-    // update each object's position based on physics engine's data
-    // this is required for non-static physics bodies
-    if(!tracker.player.active) {
-        //[self respawn];
-    }
     [tracker.player update];
     
     // platforms don't need to be updated
@@ -186,7 +181,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
         bullet.active = false;
     [tracker.player resetDamage];
     
-    b2Vec2 playerInitPos = b2Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    b2Vec2 playerInitPos = b2Vec2(SCREEN_CENTER_X, SCREEN_CENTER_Y);
     tracker.player.body->SetTransform(playerInitPos, 0);
     
     [score resetCurrent];
@@ -218,7 +213,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     if (tracker.bullets.count >= BULLET_MAX_COUNT)
         return;
     
-    Bullet *bullet = [[Bullet alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 1) Direction:(playerDirection? 1:-1)];
+    Bullet *bullet = [[Bullet alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 0.5) Direction:(playerDirection? 1:-1)];
     [tracker addBullet:bullet];
     [physics addObject:bullet];
 }

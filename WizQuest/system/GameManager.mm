@@ -238,7 +238,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 - (void) draw
 {
     [renderer clear];
-    [renderer draw:tracker.player];
+    
+    if(tracker.player.active)
+        [renderer draw:tracker.player];
     
     
     for (GameObject *platform in tracker.staticObjs)

@@ -95,6 +95,8 @@
 {
     if (!monster.active)
     {
+        if (!monster.spike)
+            [self.player takeDamage];
         [_monsters removeObject:monster];
         return true;
     }

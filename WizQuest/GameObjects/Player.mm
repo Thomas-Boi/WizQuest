@@ -23,7 +23,7 @@
 {
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
-        [self loadModel:@"cube"];
+        [self loadModel:@"necro"];
         self.bodyType = DYNAMIC;
         [self resetDamage];
     }

@@ -21,8 +21,10 @@
 
 @synthesize active;
 @synthesize score;
+//@synthesize player;
 
--(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type ScoreSystem:(Score *)s{
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type
+      ScoreSystem:(Score *)s{
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
         monsterType = type;

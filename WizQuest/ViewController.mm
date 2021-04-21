@@ -116,7 +116,7 @@ const float playerYSpeed = 14;
     [retryButton setTitle:@"Restart" forState:UIControlStateNormal];
     retryButton.titleLabel.font = [retryButton.titleLabel.font fontWithSize:26];
     retryButton.titleLabel.textColor = [UIColor blackColor];
-    retryButton.center = CGPointMake(self.gameOverView.frame.origin.x, 200);
+    retryButton.center = CGPointMake(self.gameOverView.frame.origin.x, 180);
     [self.gameOverView addSubview:retryButton];
     
     [retryButton addTarget:self action:@selector(restartGame) forControlEvents:UIControlEventTouchUpInside];

@@ -92,30 +92,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-el-alb" userLabel="PlayerHealth">
-                                <rect key="frame" x="49" y="20" width="171" height="54"/>
+                                <rect key="frame" x="49" y="20" width="135" height="45"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rFH-lP-552">
-                                        <rect key="frame" x="0.0" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="Fge-3g-x36"/>
-                                            <constraint firstAttribute="width" constant="57" id="zNZ-dR-X8T"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="SPb-sZ-BWh"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="itO-cr-dbC"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-og-i0F">
-                                        <rect key="frame" x="57" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="45" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="0HL-dd-JEK"/>
-                                            <constraint firstAttribute="width" constant="57" id="4FS-oL-UKJ"/>
+                                            <constraint firstAttribute="width" constant="45" id="4hg-UC-Ppz"/>
+                                            <constraint firstAttribute="height" constant="45" id="ZFq-8S-TBw"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-1E-QTR">
-                                        <rect key="frame" x="114" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="90" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="57" id="0AT-Ti-p1B"/>
-                                            <constraint firstAttribute="height" constant="54" id="cQk-NT-WDL"/>
+                                            <constraint firstAttribute="width" constant="45" id="4hJ-XN-mAT"/>
+                                            <constraint firstAttribute="height" constant="45" id="74F-r7-wN7"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>

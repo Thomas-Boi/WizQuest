@@ -23,6 +23,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 
 @implementation GameManager
 @synthesize score;
+//@synthesize player;
 
 - (void) initManager:(GLKView *)view
 {
@@ -52,7 +53,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
         [tracker addStaticObj:background];
         
         // note: models only accept "cube" or "sphere"
-        Player *player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];
+        Player* player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];
         
         // tracker tracks things to be used for render and physics
         [tracker addPlayer:player];

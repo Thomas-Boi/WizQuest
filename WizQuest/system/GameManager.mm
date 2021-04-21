@@ -140,8 +140,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     
     // update each object's position based on physics engine's data
     // this is required for non-static physics bodies
-    if(!tracker.player.active)
-        [self respawn];
+    if(!tracker.player.active) {
+        //[self respawn];
+    }
     [tracker.player update];
     
     // platforms don't need to be updated
@@ -218,7 +219,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 - (void) draw
 {
     [renderer clear];
-    [renderer draw:tracker.player];
+    
+    if(tracker.player.active)
+        [renderer draw:tracker.player];
     
     
     for (GameObject *platform in tracker.staticObjs)

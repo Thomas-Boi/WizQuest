@@ -121,10 +121,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-3x-g8f" userLabel="JumpButton">
-                                        <rect key="frame" x="99" y="57.5" width="65" height="65"/>
+                                        <rect key="frame" x="99" y="63.5" width="55" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="gj1-Nm-ktF"/>
-                                            <constraint firstAttribute="height" constant="65" id="lVd-my-4lP"/>
+                                            <constraint firstAttribute="height" constant="55" id="bZa-F0-IuS"/>
+                                            <constraint firstAttribute="width" constant="55" id="fY3-z1-RVC"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
                                         <state key="normal" backgroundImage="arrow-up">
@@ -136,7 +136,7 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="eEj-3x-g8f" firstAttribute="top" secondItem="XRp-gT-tfN" secondAttribute="top" constant="57.5" id="ATq-1p-a5v"/>
+                                    <constraint firstItem="eEj-3x-g8f" firstAttribute="top" secondItem="XRp-gT-tfN" secondAttribute="top" constant="63.5" id="ATq-1p-a5v"/>
                                     <constraint firstItem="eEj-3x-g8f" firstAttribute="leading" secondItem="K3I-JV-6X0" secondAttribute="trailing" constant="31" id="DDq-g6-Jxo"/>
                                     <constraint firstItem="Ep4-Ol-nIj" firstAttribute="leading" secondItem="K3I-JV-6X0" secondAttribute="leading" id="T3B-KL-JjR"/>
                                     <constraint firstItem="Ep4-Ol-nIj" firstAttribute="trailing" secondItem="K3I-JV-6X0" secondAttribute="trailing" id="cOt-I1-xkN"/>

@@ -23,7 +23,7 @@
     if (self = [super init])
     {
         // highScore should be saved and loaded
-        highScore = 0;
+        highScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"];
         currentScore = 0;
     }
     return self;
@@ -38,8 +38,12 @@
 {
     currentScore += points;
     
-    if (currentScore > highScore)
+    if (currentScore > highScore){
         highScore = currentScore;
+        [[NSUserDefaults standardUserDefaults] setInteger:highScore forKey:@"highscore"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
 
 }
 

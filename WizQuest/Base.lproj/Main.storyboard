@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wL6-cN-Z2h">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -8,6 +8,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="Rbq-47-p33">
+            <objects>
+                <viewController id="wL6-cN-Z2h" customClass="StartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r7K-Ue-TUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start-background" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-Kr-bGa" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ac-Mj-Ji6">
+                                <rect key="frame" x="381" y="243" width="146" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Start Game">
+                                    <color key="titleColor" systemColor="systemTealColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="fih-Ct-QTX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score: DEFAULT " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KX-aC-y7o">
+                                <rect key="frame" x="306" y="303" width="287" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WizQuest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-fc-hcE">
+                                <rect key="frame" x="292.5" y="86" width="313.5" height="84"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="70"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sSL-4m-aF9"/>
+                        <constraints>
+                            <constraint firstItem="sY7-fc-hcE" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="1" id="1eW-lP-t1z"/>
+                            <constraint firstItem="9KX-aC-y7o" firstAttribute="top" secondItem="0Ac-Mj-Ji6" secondAttribute="bottom" constant="12" id="5wS-x4-3HH"/>
+                            <constraint firstItem="h9i-Kr-bGa" firstAttribute="trailing" secondItem="sSL-4m-aF9" secondAttribute="trailing" constant="44" id="7OW-h1-cij"/>
+                            <constraint firstItem="sSL-4m-aF9" firstAttribute="leading" secondItem="h9i-Kr-bGa" secondAttribute="leading" constant="44" id="BC1-Ap-agr"/>
+                            <constraint firstItem="sY7-fc-hcE" firstAttribute="top" secondItem="sSL-4m-aF9" secondAttribute="top" constant="86" id="Hby-xK-siQ"/>
+                            <constraint firstItem="9KX-aC-y7o" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="1.5" id="a2i-aI-v81"/>
+                            <constraint firstItem="h9i-Kr-bGa" firstAttribute="bottom" secondItem="sSL-4m-aF9" secondAttribute="bottom" constant="21" id="nu5-J7-GsR"/>
+                            <constraint firstItem="0Ac-Mj-Ji6" firstAttribute="centerX" secondItem="sSL-4m-aF9" secondAttribute="centerX" constant="6" id="p4v-ir-89v"/>
+                            <constraint firstItem="h9i-Kr-bGa" firstAttribute="top" secondItem="sSL-4m-aF9" secondAttribute="top" id="xak-7E-kFW"/>
+                            <constraint firstItem="sSL-4m-aF9" firstAttribute="bottom" secondItem="9KX-aC-y7o" secondAttribute="bottom" constant="54" id="y9Q-EA-tm3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="highScoreLabel" destination="9KX-aC-y7o" id="9Pv-in-Cye"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAG-1E-yDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-753.34821428571422" y="76.811594202898561"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -92,30 +148,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-el-alb" userLabel="PlayerHealth">
-                                <rect key="frame" x="49" y="20" width="171" height="54"/>
+                                <rect key="frame" x="49" y="20" width="135" height="45"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rFH-lP-552">
-                                        <rect key="frame" x="0.0" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="0.0" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="Fge-3g-x36"/>
-                                            <constraint firstAttribute="width" constant="57" id="zNZ-dR-X8T"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="SPb-sZ-BWh"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="itO-cr-dbC"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-og-i0F">
-                                        <rect key="frame" x="57" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="45" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="0HL-dd-JEK"/>
-                                            <constraint firstAttribute="width" constant="57" id="4FS-oL-UKJ"/>
+                                            <constraint firstAttribute="width" constant="45" id="4hg-UC-Ppz"/>
+                                            <constraint firstAttribute="height" constant="45" id="ZFq-8S-TBw"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-1E-QTR">
-                                        <rect key="frame" x="114" y="1.5" width="57" height="51.5"/>
+                                        <rect key="frame" x="90" y="1.5" width="45" height="42.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="57" id="0AT-Ti-p1B"/>
-                                            <constraint firstAttribute="height" constant="54" id="cQk-NT-WDL"/>
+                                            <constraint firstAttribute="width" constant="45" id="4hJ-XN-mAT"/>
+                                            <constraint firstAttribute="height" constant="45" id="74F-r7-wN7"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -143,6 +199,7 @@
                         <outlet property="rightButton" destination="zp5-L4-Wyn" id="o4Q-Xl-Ey4"/>
                         <outlet property="scoreLabel" destination="crg-nZ-kVg" id="0H5-yX-H2o"/>
                         <outlet property="shootButton" destination="K3I-JV-6X0" id="kHg-jG-IbZ"/>
+                        <outlet property="shootButton2" destination="yjH-Lf-wu4" id="Yl5-gH-ynf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -156,6 +213,7 @@
         <image name="left" width="490" height="448"/>
         <image name="right" width="490" height="448"/>
         <image name="shooting-target" width="256" height="256"/>
+        <image name="start-background" width="1024" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -170,6 +228,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

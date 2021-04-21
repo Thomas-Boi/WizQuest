@@ -20,11 +20,14 @@
 @implementation Monster
 
 @synthesize active;
+@synthesize spike;
 @synthesize score;
+//@synthesize player;
 
--(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type ScoreSystem:(Score *)s{
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type
+      ScoreSystem:(Score *)s{
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
-        active = true;
+        spike = active = true;
         monsterType = type;
         score = s;
         [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
@@ -88,7 +91,7 @@
     }
     if ([otherObj isKindOfClass:[Spikes class]])
     {
-        active = false;
+        spike = active = false;
     }
     if ([otherObj isKindOfClass:[Bullet class]])
     {

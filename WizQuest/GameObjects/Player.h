@@ -20,7 +20,6 @@
 
 -(void)resetDamage;
 -(void)takeDamage;
-
 @end
 
 #endif /* Player_h */

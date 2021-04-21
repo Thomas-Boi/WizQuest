@@ -29,8 +29,10 @@
 @interface GameManager : NSObject
 
 @property (readonly) Score *score;
+//@property (readonly) Player *player;
 
 - (void) initManager:(GLKView *)view;
+
 // for the player and UI 
 - (void) applyImpulseOnPlayer:(float)x Y:(float)y;
 - (void) fireBullet;

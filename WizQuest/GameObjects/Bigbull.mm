@@ -22,7 +22,7 @@
 {
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
-        speed = d * 10;
+        speed = d * 20;
         [self loadVertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh"];
         [self loadModel:@"cube"];
         self.bodyType = DYNAMIC;
@@ -33,6 +33,10 @@
 
 -(void)move {
     self.body->SetLinearVelocity(b2Vec2(speed, 0.6));
+}
+
+-(void)del {
+    active = false;
 }
 
 - (void) onCollision:(GameObject *)otherObj

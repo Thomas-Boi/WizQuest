@@ -77,6 +77,11 @@ const float playerYSpeed = 14;
     [manager fireBullet];
 }
 
+- (IBAction)Shoot2:(id)sender {
+    [manager fireBigbull];
+}
+
+
 // MARK: Adding GameOver Screen
 
 - (void) initGameOverScreen {
@@ -126,10 +131,6 @@ const float playerYSpeed = 14;
 -(void)restartGame {
     [self.gameOverView setHidden:true];
     [manager respawn];
-}
-
-- (IBAction)Shoot2:(id)sender {
-    [manager fireBigbull];
 }
 
 // MARK: OpenGL setup in ViewController

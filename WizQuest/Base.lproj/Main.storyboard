@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="width" constant="68" id="0p3-AH-HG0"/>
                                     <constraint firstAttribute="height" constant="66" id="7wx-fa-wjm"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                <color key="tintColor" systemColor="systemTealColor"/>
                                 <state key="normal" title="Button" image="left">
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
@@ -92,7 +92,7 @@
                                     <constraint firstAttribute="height" constant="66" id="6cs-0N-lxO"/>
                                     <constraint firstAttribute="width" constant="68" id="raS-Hi-KCT"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                <color key="tintColor" systemColor="systemTealColor"/>
                                 <state key="normal" title="Button" image="right">
                                     <color key="titleShadowColor" systemColor="labelColor"/>
                                 </state>
@@ -106,7 +106,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K3I-JV-6X0" userLabel="ShootButton">
                                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button" image="shooting-target"/>
                                         <connections>
                                             <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TJ5-9J-Wuf"/>
@@ -126,7 +126,7 @@
                                             <constraint firstAttribute="height" constant="55" id="bZa-F0-IuS"/>
                                             <constraint firstAttribute="width" constant="55" id="fY3-z1-RVC"/>
                                         </constraints>
-                                        <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <color key="tintColor" systemColor="systemTealColor"/>
                                         <state key="normal" backgroundImage="arrow-up">
                                             <color key="titleColor" systemColor="linkColor"/>
                                         </state>
@@ -152,7 +152,7 @@
                                     <constraint firstAttribute="width" constant="186" id="0pL-Sn-ukH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" systemColor="systemGroupedBackgroundColor"/>
+                                <color key="textColor" systemColor="systemTealColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-el-alb" userLabel="PlayerHealth">
@@ -230,8 +230,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

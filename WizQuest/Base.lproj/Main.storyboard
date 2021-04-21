@@ -103,17 +103,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRp-gT-tfN" userLabel="ActionButtonView">
                                 <rect key="frame" x="666" y="234" width="186" height="159"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-3x-g8f" userLabel="JumpButton">
-                                        <rect key="frame" x="85" y="57.5" width="85" height="85"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
-                                        <state key="normal" backgroundImage="arrowshape.bounce.forward" catalog="system">
-                                            <color key="titleColor" systemColor="linkColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="jump:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tig-Nv-AFy"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K3I-JV-6X0" userLabel="ShootButton">
                                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,19 +112,38 @@
                                             <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TJ5-9J-Wuf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ep4-Ol-nIj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ep4-Ol-nIj">
                                         <rect key="frame" x="8" y="91" width="60" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" systemColor="systemTealColor"/>
                                         <state key="normal" title="ShootButton2" image="shooting-target"/>
                                         <connections>
                                             <action selector="Shoot2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C68-yn-4qt"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-3x-g8f" userLabel="JumpButton">
+                                        <rect key="frame" x="99" y="63.5" width="55" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="bZa-F0-IuS"/>
+                                            <constraint firstAttribute="width" constant="55" id="fY3-z1-RVC"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <state key="normal" backgroundImage="arrow-up">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="jump:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tig-Nv-AFy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="eEj-3x-g8f" firstAttribute="top" secondItem="XRp-gT-tfN" secondAttribute="top" constant="63.5" id="ATq-1p-a5v"/>
+                                    <constraint firstItem="eEj-3x-g8f" firstAttribute="leading" secondItem="K3I-JV-6X0" secondAttribute="trailing" constant="31" id="DDq-g6-Jxo"/>
+                                    <constraint firstItem="Ep4-Ol-nIj" firstAttribute="leading" secondItem="K3I-JV-6X0" secondAttribute="leading" id="T3B-KL-JjR"/>
+                                    <constraint firstItem="Ep4-Ol-nIj" firstAttribute="trailing" secondItem="K3I-JV-6X0" secondAttribute="trailing" id="cOt-I1-xkN"/>
                                     <constraint firstAttribute="width" constant="186" id="f5a-yv-e2T"/>
+                                    <constraint firstItem="Ep4-Ol-nIj" firstAttribute="bottom" secondItem="XRp-gT-tfN" secondAttribute="bottomMargin" id="h3K-Hb-hWh"/>
                                     <constraint firstAttribute="height" constant="159" id="rC1-eL-TPP"/>
+                                    <constraint firstItem="Ep4-Ol-nIj" firstAttribute="top" secondItem="K3I-JV-6X0" secondAttribute="bottom" constant="23" id="tqG-Zj-Yao"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crg-nZ-kVg" userLabel="ScoreLabel">
@@ -148,30 +156,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XwE-el-alb" userLabel="PlayerHealth">
-                                <rect key="frame" x="49" y="20" width="135" height="45"/>
+                                <rect key="frame" x="49" y="20" width="150" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rFH-lP-552">
-                                        <rect key="frame" x="0.0" y="1.5" width="45" height="42.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="rFH-lP-552">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="SPb-sZ-BWh"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="itO-cr-dbC"/>
+                                            <constraint firstAttribute="height" constant="50" id="AOP-k3-1nW"/>
+                                            <constraint firstAttribute="width" constant="50" id="e1b-iF-y4P"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-og-i0F">
-                                        <rect key="frame" x="45" y="1.5" width="45" height="42.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-og-i0F">
+                                        <rect key="frame" x="50" y="0.0" width="50" height="50"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="4hg-UC-Ppz"/>
-                                            <constraint firstAttribute="height" constant="45" id="ZFq-8S-TBw"/>
+                                            <constraint firstAttribute="height" constant="50" id="83j-mw-lfM"/>
+                                            <constraint firstAttribute="width" constant="50" id="Mqx-bU-DWe"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-1E-QTR">
-                                        <rect key="frame" x="90" y="1.5" width="45" height="42.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="fhZ-1E-QTR">
+                                        <rect key="frame" x="100" y="0.0" width="50" height="50"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="4hJ-XN-mAT"/>
-                                            <constraint firstAttribute="height" constant="45" id="74F-r7-wN7"/>
+                                            <constraint firstAttribute="height" constant="50" id="16g-iV-qMK"/>
+                                            <constraint firstAttribute="width" constant="50" id="7ho-n1-NRW"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -207,8 +215,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.bounce.forward" catalog="system" width="128" height="86"/>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="arrow-up" width="490.5" height="495"/>
+        <image name="heart" width="128" height="128"/>
         <image name="left" width="490" height="448"/>
         <image name="right" width="490" height="448"/>
         <image name="shooting-target" width="256" height="256"/>

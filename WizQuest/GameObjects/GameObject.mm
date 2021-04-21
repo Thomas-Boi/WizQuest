@@ -367,9 +367,9 @@ const int DEFAULT_WIDTH = 1;
 - (void)dealloc
 {
     glDeleteProgram(programObject);
-    if (vertices) delete(vertices);
-    if (normals) delete(normals);
-    if (texCoords) delete(texCoords);
+    //if (vertices) delete(&vertices);
+    //if (normals) delete(&normals);
+    //if (texCoords) delete(&texCoords);
     if (_body)
     {
         b2World *world = _body->GetWorld();

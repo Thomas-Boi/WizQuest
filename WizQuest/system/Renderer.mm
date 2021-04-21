@@ -4,6 +4,9 @@
 
 #import "Renderer.h"
 
+int SCREEN_WIDTH;
+int SCREEN_LEFT_X;
+int SCREEN_RIGHT_X;
 
 // Attribute index.
 enum
@@ -63,11 +66,14 @@ enum
     // Calculate projection matrix
     
     // perspective for 3D view
-    //float aspect = fabsf((float)(theView.bounds.size.width / theView.bounds.size.height));
-    //projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
+    float aspect = fabsf((float)(theView.bounds.size.width / theView.bounds.size.height));
+    SCREEN_WIDTH = SCREEN_HEIGHT * aspect;
+    SCREEN_LEFT_X = SCREEN_CENTER_X - SCREEN_WIDTH / 2;
+    SCREEN_RIGHT_X = SCREEN_CENTER_X + SCREEN_WIDTH / 2;
+    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     // orthographic makes everything looks 2D
-    projectionMatrix = GLKMatrix4MakeOrtho(SCREEN_LEFT_X_COORD, SCREEN_LEFT_X_COORD + SCREEN_WIDTH, SCREEN_BOTTOM_Y_COORD, SCREEN_BOTTOM_Y_COORD + SCREEN_HEIGHT, EYE_NEAR_COORD, EYE_FAR_COORD);
+    //projectionMatrix = GLKMatrix4MakeOrtho(SCREEN_LEFT_X_COORD, SCREEN_LEFT_X_COORD + SCREEN_WIDTH, SCREEN_BOTTOM_Y_COORD, SCREEN_BOTTOM_Y_COORD + SCREEN_HEIGHT, EYE_NEAR_COORD, EYE_FAR_COORD);
     
 }
 

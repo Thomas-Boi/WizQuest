@@ -13,12 +13,12 @@
 #import "Wall.h"
 #import "Player.h"
 #import "Monster.h"
-#import "Bullet.h"
 
 @interface Bigbull: GameObject
 
 @property bool active;
 -(void)move;
+-(void)del;
 - (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale Direction:(int) d;
 
 @end

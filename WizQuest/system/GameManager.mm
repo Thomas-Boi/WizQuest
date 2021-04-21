@@ -202,8 +202,23 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     
     elapsedMonsterSpawnTime = 0.0f;
     
+    int r = arc4random_uniform(3) + 1;
+    
+    GLKVector3 scale;
+    switch (r) {
+        case 1:
+            scale = GLKVector3Make(1.5, 1.5, 1);
+            break;
+        case 2:
+            scale = GLKVector3Make(1, 2, 1);
+            break;
+        default:
+            scale = GLKVector3Make(1.5, 2, 1);
+            break;
+    }
+    
     // monster (only slow moving monster for now)
-    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) MonsterType:1 ScoreSystem:score];
+    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:scale MonsterType:r ScoreSystem:score];
     
     [tracker addMonster:monster];
     [physics addObject:monster];

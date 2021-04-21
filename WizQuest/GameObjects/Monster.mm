@@ -102,6 +102,10 @@
     {
         [self takeDamage];
     }
+	if ([otherObj isKindOfClass:[Bigbull class]])
+    {
+        [self takeDamage];
+    }
 }
 
 @end

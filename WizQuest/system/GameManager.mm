@@ -16,6 +16,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     PhysicsWorld *physics;
     
     float elapsedMonsterSpawnTime;
+	float elapsedBulletTime;
     bool playerDirection;
 }
 
@@ -28,6 +29,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 - (void) initManager:(GLKView *)view
 {
     elapsedMonsterSpawnTime = MONSTER_SPAWN_TIME;
+	elapsedBulletTime = BULLET_SPAWN_TIME;
     
     // this will change the game screen size
     renderer = [[Renderer alloc] init];
@@ -198,8 +200,22 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     
     elapsedMonsterSpawnTime = 0.0f;
     
-    // monster (only slow moving monster for now)
-    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) MonsterType:1 ScoreSystem:score];
+    int r = arc4random_uniform(3) + 1;
+    
+    GLKVector3 scale;
+    switch (r) {
+        case 1:
+            scale = GLKVector3Make(1.5, 1.5, 1);
+            break;
+        case 2:
+            scale = GLKVector3Make(1, 2, 1);
+            break;
+        default:
+            scale = GLKVector3Make(1.5, 2, 1);
+            break;
+    }
+    
+    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:scale MonsterType:r ScoreSystem:score];
     
     [tracker addMonster:monster];
     [physics addObject:monster];
@@ -221,10 +237,12 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 - (void) fireBigbull
 {
     // don't want too many bullets flying around
-    //if (tracker.bigbulls.count >= BULLET_MAX_COUNT)
-        //return;
+    if (tracker.bigbulls.count >= 1)
+        return;
     
-    Bigbull *bigbull = [[Bigbull alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 1) Direction:(playerDirection? 1:-1)];
+    elapsedBulletTime = 0.0f;
+    
+    Bigbull *bigbull = [[Bigbull alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y + 0.6 , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.25, 2.0, 1) Direction:(playerDirection? 1:-1)];
     [tracker addBigbull:bigbull];
     [physics addObject:bigbull];
 }

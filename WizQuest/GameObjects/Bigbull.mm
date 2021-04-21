@@ -35,6 +35,10 @@
     self.body->SetLinearVelocity(b2Vec2(speed, 0.6));
 }
 
+-(void)del {
+    active = false;
+}
+
 - (void) onCollision:(GameObject *)otherObj
 {
     if (![otherObj isKindOfClass:[Player class]])

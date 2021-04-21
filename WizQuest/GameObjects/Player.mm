@@ -59,6 +59,7 @@
     }
     if ([otherObj isKindOfClass:[Spikes class]])
     {
+        health = 0;
         active = false;
     }
 }

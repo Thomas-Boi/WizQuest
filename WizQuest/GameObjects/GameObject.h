@@ -17,6 +17,9 @@
 #import <Box2D/Box2D.h>
 #import "PhysicsBodyTypeEnum.h"
 #import "boar.h"
+#import "jaguar.h"
+#import "spider.h"
+#import "necro.h"
 
 @interface GameObject : NSObject
 @property(readonly) int _id;
@@ -41,6 +44,7 @@
 @property(readonly) GLuint vertexArray;
 @property(readonly) GLuint indexBuffer;
 @property(readonly) GLuint numIndices;
+@property(readonly) int numVertices;
 
 // shaders
 @property(readonly) GLint *uniforms;

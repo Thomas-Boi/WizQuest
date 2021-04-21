@@ -48,9 +48,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 {
     @autoreleasepool {
         // background
-        //Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT / 2, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
+        Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT / 2, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
     
-        //[tracker addStaticObj:background];
+        [tracker addStaticObj:background];
         
         // note: models only accept "cube" or "sphere"
         Player* player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];
@@ -201,7 +201,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
     elapsedMonsterSpawnTime = 0.0f;
     
     // monster (only slow moving monster for now)
-    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(2, 2, 1) MonsterType:1 ScoreSystem:score];
+    Monster *monster = [[Monster alloc] initPosition:GLKVector3Make( MONSTER_SPAWN_POSITION.x, MONSTER_SPAWN_POSITION.y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1) MonsterType:1 ScoreSystem:score];
     
     [tracker addMonster:monster];
     [physics addObject:monster];

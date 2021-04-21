@@ -71,6 +71,7 @@ const int DEFAULT_WIDTH = 1;
 @synthesize vertexArray;
 @synthesize indexBuffer;
 @synthesize numIndices;
+@synthesize numVertices;
 
 // shaders
 @synthesize programObject;
@@ -108,18 +109,33 @@ const int DEFAULT_WIDTH = 1;
 - (void)loadModel:(NSString *)modelName
 {
     // Generate vertex attribute values from model
-    int numVerts;
     if ([modelName isEqualToString:@"cube"])
     {
-        numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices, &numVerts);
+        numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices, &numVertices);
         glGenBuffers(1, &indexBuffer);                 // Index buffer
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*numIndices, indices, GL_STATIC_DRAW);
         
     }
-    else
+    else if ([modelName isEqualToString:@"boar"])
     {
-        numVerts = [self loadBoar];
+        numVertices = [self loadBoar];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"spider"])
+    {
+        numVertices = [self loadSpider];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"necro"])
+    {
+        numVertices = [self loadNecro];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"jaguar"])
+    {
+        numVertices = [self loadJaguar];
+        numIndices = 0;
     }
     
     // Create VAOs
@@ -133,19 +149,19 @@ const int DEFAULT_WIDTH = 1;
     
     // Position
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVertices, vertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_POSITION);
     glVertexAttribPointer(ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), BUFFER_OFFSET(0));
     
     // Normal vector
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, normals, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVertices, normals, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_NORMAL);
     glVertexAttribPointer(ATTRIB_NORMAL, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), BUFFER_OFFSET(0));
     
     // Texture coordinate
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[2]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*2*numVerts, texCoords, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*2*numVertices, texCoords, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_TEXTURE_COORDINATE);
     glVertexAttribPointer(ATTRIB_TEXTURE_COORDINATE, 2, GL_FLOAT, GL_FALSE, 2*sizeof(float), BUFFER_OFFSET(0));
     
@@ -155,12 +171,34 @@ const int DEFAULT_WIDTH = 1;
 
 - (int)loadBoar
 {
-    
     vertices = (float *) boarPositions;
     normals = (float *) boarNormals;
     texCoords = (float *) boarTexels;
-    NSLog(@"first: %f", *vertices);
     return boarVertices;
+}
+
+- (int)loadSpider
+{
+    vertices = (float *) spiderPositions;
+    normals = (float *) spiderNormals;
+    texCoords = (float *) spiderTexels;
+    return spiderVertices;
+}
+
+- (int)loadNecro
+{
+    vertices = (float *) necroPositions;
+    normals = (float *) necroNormals;
+    texCoords = (float *) necroTexels;
+    return necroVertices;
+}
+
+- (int)loadJaguar
+{
+    vertices = (float *) jaguarPositions;
+    normals = (float *) jaguarNormals;
+    texCoords = (float *) jaguarTexels;
+    return jaguarVertices;
 }
 
 // attach the shaders to the program object

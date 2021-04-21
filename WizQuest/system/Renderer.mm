@@ -86,8 +86,6 @@ enum
     // select the shader program
     glUseProgram(obj.programObject);
     
-    // Select IBO (index buffer object) and draw
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.indexBuffer);
     
     // select the texture
     glBindTexture(GL_TEXTURE_2D, obj.texture);
@@ -110,8 +108,18 @@ enum
     glUniformMatrix4fv(obj.uniforms[UNIFORM_MODELVIEW_MATRIX], 1, 0, obj.modelViewMatrix.m);
     glUniformMatrix3fv(obj.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, obj.normalMatrix.m);
 
-    glDrawElements(GL_TRIANGLES, obj.numIndices, GL_UNSIGNED_INT, 0);
+    
+    // Select IBO (index buffer object) and draw
+    if (obj.numIndices != 0)
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.indexBuffer);
+        glDrawElements(GL_TRIANGLES, obj.numIndices, GL_UNSIGNED_INT, 0);
     }
+    else
+    {
+        glDrawArrays(GL_TRIANGLES, 0, obj.numVertices);
+    }
+}
 
 
 @end

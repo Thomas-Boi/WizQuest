@@ -31,8 +31,8 @@
         monsterType = type;
         score = s;
         [self loadVertShader:@"TextureShader.vsh" AndFragShader:@"TextureShader.fsh"];
-        [self loadModel:@"cube"];
-        [self loadTexture:@"jaguar.png"];
+        [self loadModel:@"necro"];
+        [self loadTexture:@"spider.png"];
         [self setInitialStats];
         self.bodyType = DYNAMIC;
     }

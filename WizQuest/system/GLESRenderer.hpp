@@ -20,6 +20,8 @@ public:
     int GenCube(float scale, GLfloat **vertices, GLfloat **normals,
                 GLfloat **texCoords, GLuint **indices, int *numVerts);
     int GenSphere(int numSlices, float radius, GLfloat **vertices, GLfloat **normals, GLfloat **texCoords, GLuint **indices, int *numVerts);
+    int GenBoar(GLfloat **vertices, GLfloat **normals, GLfloat **texCoords);
+    int Test();
 private:
     GLuint vertexShader, fragmentShader;
 

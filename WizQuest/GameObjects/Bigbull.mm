@@ -22,7 +22,7 @@
 {
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
         active = true;
-        speed = d * 20;
+        speed = d * 10;
         [self loadVertShader:@"PlatformShader.vsh" AndFragShader:@"PlatformShader.fsh"];
         [self loadModel:@"cube"];
         self.bodyType = DYNAMIC;

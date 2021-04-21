@@ -30,8 +30,9 @@
         spike = active = true;
         monsterType = type;
         score = s;
-        [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
+        [self loadVertShader:@"TextureShader.vsh" AndFragShader:@"TextureShader.fsh"];
         [self loadModel:@"cube"];
+        [self loadTexture:@"jaguar.png"];
         [self setInitialStats];
         self.bodyType = DYNAMIC;
     }

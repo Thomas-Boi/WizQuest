@@ -16,6 +16,7 @@
 #import "Transformations.h"
 #import <Box2D/Box2D.h>
 #import "PhysicsBodyTypeEnum.h"
+#import "boar.h"
 
 @interface GameObject : NSObject
 @property(readonly) int _id;

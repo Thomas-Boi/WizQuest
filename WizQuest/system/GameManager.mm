@@ -48,9 +48,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_WIDTH/2, SCREEN_
 {
     @autoreleasepool {
         // background
-        Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT / 2, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
+        //Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT / 2, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
     
-        [tracker addStaticObj:background];
+        //[tracker addStaticObj:background];
         
         // note: models only accept "cube" or "sphere"
         Player* player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];

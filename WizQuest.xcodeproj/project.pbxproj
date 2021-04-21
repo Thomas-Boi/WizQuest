@@ -56,6 +56,11 @@
 		FA0509D2260C6D2D00C80294 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A4260C6D2D00C80294 /* b2CollideEdge.cpp */; };
 		FA0509D3260C6D2D00C80294 /* b2Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA0509A5260C6D2D00C80294 /* b2Collision.cpp */; };
 		FA0509D8260C700800C80294 /* PhysicsWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0509D7260C700800C80294 /* PhysicsWorld.mm */; };
+		FA5335CF262FDF9800778CCA /* jaguar.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335C3262FDF9800778CCA /* jaguar.obj */; };
+		FA5335D0262FDF9800778CCA /* necro.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335C6262FDF9800778CCA /* necro.obj */; };
+		FA5335D1262FDF9800778CCA /* spider.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335C8262FDF9800778CCA /* spider.obj */; };
+		FA5335D2262FDF9800778CCA /* boar.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335CC262FDF9800778CCA /* boar.obj */; };
+		FA5335E6262FF6E700778CCA /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */; };
 		FA58B9252623ADF900A4BED8 /* Bigbull.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA58B9242623ADF900A4BED8 /* Bigbull.mm */; };
 		FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B884E25E5C48200F5FBBA /* AppDelegate.m */; };
 		FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885125E5C48200F5FBBA /* SceneDelegate.m */; };
@@ -68,7 +73,6 @@
 		FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FA7B886F25E5CAA900F5FBBA /* PlayerShader.vsh */; };
 		FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887225E5CAA900F5FBBA /* Renderer.mm */; };
 		FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887025E5CAA900F5FBBA /* Transformations.m */; };
-		FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */; };
 		FA7B888025E5D14200F5FBBA /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887F25E5D14200F5FBBA /* GameManager.mm */; };
 		FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888225E5DEEA00F5FBBA /* ObjectTracker.mm */; };
 		FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA7B888925E5DF9C00F5FBBA /* GameObject.mm */; };
@@ -82,16 +86,10 @@
 		FAD41C03261D1CFB007F5B07 /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD41C02261D1CFB007F5B07 /* Bullet.mm */; };
 		FAF2F7172622ADDB009E757C /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7142622ADDB009E757C /* platform1.png */; };
 		FAF2F7182622ADDB009E757C /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7152622ADDB009E757C /* platform.png */; };
-		FAF2F7192622ADDB009E757C /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7162622ADDB009E757C /* background1.png */; };
 		FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71B2622AEA2009E757C /* TextureShader.fsh */; };
 		FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71C2622AEA2009E757C /* TextureShader.vsh */; };
 		FAF2F7222622BE91009E757C /* Background.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF2F7212622BE91009E757C /* Background.mm */; };
-		FAF2F72B2622C2BC009E757C /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7282622C2BC009E757C /* background3.png */; };
 		FAF2F7332622C6D5009E757C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7322622C6D5009E757C /* background.png */; };
-		FAF2F7512622C896009E757C /* boar.obj in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F74D2622C896009E757C /* boar.obj */; };
-		FAF2F7522622C896009E757C /* Spider.obj in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F74E2622C896009E757C /* Spider.obj */; };
-		FAF2F7532622C896009E757C /* jaguar.obj in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F74F2622C896009E757C /* jaguar.obj */; };
-		FAF2F7542622C896009E757C /* necro.obj in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7502622C896009E757C /* necro.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +192,18 @@
 		FA0509A5260C6D2D00C80294 /* b2Collision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Collision.cpp; sourceTree = "<group>"; };
 		FA0509D6260C6FFA00C80294 /* PhysicsWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsWorld.h; sourceTree = "<group>"; };
 		FA0509D7260C700800C80294 /* PhysicsWorld.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsWorld.mm; sourceTree = "<group>"; };
+		FA5335C3262FDF9800778CCA /* jaguar.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jaguar.obj; sourceTree = "<group>"; };
+		FA5335C4262FDF9800778CCA /* boar1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boar1.h; sourceTree = "<group>"; };
+		FA5335C5262FDF9800778CCA /* necro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = necro.h; sourceTree = "<group>"; };
+		FA5335C6262FDF9800778CCA /* necro.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = necro.obj; sourceTree = "<group>"; };
+		FA5335C7262FDF9800778CCA /* necro1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = necro1.h; sourceTree = "<group>"; };
+		FA5335C8262FDF9800778CCA /* spider.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = spider.obj; sourceTree = "<group>"; };
+		FA5335C9262FDF9800778CCA /* spider1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spider1.h; sourceTree = "<group>"; };
+		FA5335CA262FDF9800778CCA /* boar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boar.h; sourceTree = "<group>"; };
+		FA5335CB262FDF9800778CCA /* spider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spider.h; sourceTree = "<group>"; };
+		FA5335CC262FDF9800778CCA /* boar.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boar.obj; sourceTree = "<group>"; };
+		FA5335CD262FDF9800778CCA /* jaguar1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jaguar1.h; sourceTree = "<group>"; };
+		FA5335CE262FDF9800778CCA /* jaguar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jaguar.h; sourceTree = "<group>"; };
 		FA58B9222623AD9300A4BED8 /* Bigbull.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bigbull.h; sourceTree = "<group>"; };
 		FA58B9242623ADF900A4BED8 /* Bigbull.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Bigbull.mm; sourceTree = "<group>"; };
 		FA594A89260E5A1600584156 /* ScreenInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenInfo.h; sourceTree = "<group>"; };
@@ -243,21 +253,15 @@
 		FAE352AD25E9CDFF001043EA /* UniformEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformEnum.h; sourceTree = "<group>"; };
 		FAF2F7142622ADDB009E757C /* platform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform1.png; sourceTree = "<group>"; };
 		FAF2F7152622ADDB009E757C /* platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform.png; sourceTree = "<group>"; };
-		FAF2F7162622ADDB009E757C /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
 		FAF2F71B2622AEA2009E757C /* TextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.fsh; sourceTree = "<group>"; };
 		FAF2F71C2622AEA2009E757C /* TextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.vsh; sourceTree = "<group>"; };
 		FAF2F7212622BE91009E757C /* Background.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Background.mm; sourceTree = "<group>"; };
 		FAF2F7242622BE9B009E757C /* Background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
-		FAF2F7282622C2BC009E757C /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
 		FAF2F7322622C6D5009E757C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		FAF2F7472622C889009E757C /* necro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = necro.png; sourceTree = "<group>"; };
 		FAF2F7482622C889009E757C /* jaguar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jaguar.png; sourceTree = "<group>"; };
 		FAF2F7492622C889009E757C /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		FAF2F74A2622C889009E757C /* boar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boar.png; sourceTree = "<group>"; };
-		FAF2F74D2622C896009E757C /* boar.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boar.obj; sourceTree = "<group>"; };
-		FAF2F74E2622C896009E757C /* Spider.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Spider.obj; sourceTree = "<group>"; };
-		FAF2F74F2622C896009E757C /* jaguar.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jaguar.obj; sourceTree = "<group>"; };
-		FAF2F7502622C896009E757C /* necro.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = necro.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,8 +282,6 @@
 				FAF2F74A2622C889009E757C /* boar.png */,
 				FAF2F7472622C889009E757C /* necro.png */,
 				FAF2F7482622C889009E757C /* jaguar.png */,
-				FAF2F7282622C2BC009E757C /* background3.png */,
-				FAF2F7162622ADDB009E757C /* background1.png */,
 				FAF2F7142622ADDB009E757C /* platform1.png */,
 				FAF2F7152622ADDB009E757C /* platform.png */,
 				FAF2F7322622C6D5009E757C /* background.png */,
@@ -552,10 +554,18 @@
 		FAF2F74C2622C896009E757C /* models */ = {
 			isa = PBXGroup;
 			children = (
-				FAF2F74D2622C896009E757C /* boar.obj */,
-				FAF2F74E2622C896009E757C /* Spider.obj */,
-				FAF2F74F2622C896009E757C /* jaguar.obj */,
-				FAF2F7502622C896009E757C /* necro.obj */,
+				FA5335CA262FDF9800778CCA /* boar.h */,
+				FA5335CC262FDF9800778CCA /* boar.obj */,
+				FA5335C4262FDF9800778CCA /* boar1.h */,
+				FA5335CE262FDF9800778CCA /* jaguar.h */,
+				FA5335C3262FDF9800778CCA /* jaguar.obj */,
+				FA5335CD262FDF9800778CCA /* jaguar1.h */,
+				FA5335C5262FDF9800778CCA /* necro.h */,
+				FA5335C6262FDF9800778CCA /* necro.obj */,
+				FA5335C7262FDF9800778CCA /* necro1.h */,
+				FA5335CB262FDF9800778CCA /* spider.h */,
+				FA5335C8262FDF9800778CCA /* spider.obj */,
+				FA5335C9262FDF9800778CCA /* spider1.h */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -620,18 +630,16 @@
 				FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */,
 				FA7B885D25E5C48200F5FBBA /* LaunchScreen.storyboard in Resources */,
 				FA7B885A25E5C48200F5FBBA /* Assets.xcassets in Resources */,
-				FAF2F7532622C896009E757C /* jaguar.obj in Resources */,
-				FAF2F7512622C896009E757C /* boar.obj in Resources */,
 				FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */,
 				FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */,
-				FAF2F7192622ADDB009E757C /* background1.png in Resources */,
 				FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */,
-				FAF2F72B2622C2BC009E757C /* background3.png in Resources */,
+				FA5335D0262FDF9800778CCA /* necro.obj in Resources */,
 				FAF2F7172622ADDB009E757C /* platform1.png in Resources */,
-				FAF2F7542622C896009E757C /* necro.obj in Resources */,
-				FAF2F7522622C896009E757C /* Spider.obj in Resources */,
 				FAF2F7182622ADDB009E757C /* platform.png in Resources */,
 				FA7B885825E5C48200F5FBBA /* Main.storyboard in Resources */,
+				FA5335CF262FDF9800778CCA /* jaguar.obj in Resources */,
+				FA5335D1262FDF9800778CCA /* spider.obj in Resources */,
+				FA5335D2262FDF9800778CCA /* boar.obj in Resources */,
 				FA7B887425E5CAAA00F5FBBA /* PlayerShader.fsh in Resources */,
 				FAF2F7332622C6D5009E757C /* background.png in Resources */,
 			);
@@ -644,13 +652,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5335E6262FF6E700778CCA /* GLESRenderer.cpp in Sources */,
 				FA7B888A25E5DF9C00F5FBBA /* GameObject.mm in Sources */,
 				FA7B887725E5CAAA00F5FBBA /* Transformations.m in Sources */,
 				FA0509C5260C6D2D00C80294 /* b2Timer.cpp in Sources */,
 				FA0509AD260C6D2D00C80294 /* b2PolygonContact.cpp in Sources */,
 				6252092F261A5C64001A753B /* Wall.mm in Sources */,
 				FAC0E94625EED8E4003CBB17 /* Monster.mm in Sources */,
-				FA7B887825E5CAAA00F5FBBA /* GLESRenderer.cpp in Sources */,
 				FA7B887625E5CAAA00F5FBBA /* Renderer.mm in Sources */,
 				FA7B885525E5C48200F5FBBA /* ViewController.mm in Sources */,
 				FA7B888325E5DEEA00F5FBBA /* ObjectTracker.mm in Sources */,

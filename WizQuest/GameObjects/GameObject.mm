@@ -112,14 +112,15 @@ const int DEFAULT_WIDTH = 1;
     if ([modelName isEqualToString:@"cube"])
     {
         numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices, &numVerts);
+        glGenBuffers(1, &indexBuffer);                 // Index buffer
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*numIndices, indices, GL_STATIC_DRAW);
         
     }
-    else if ([modelName isEqualToString:@"sphere"])
+    else
     {
-        numIndices = glesRenderer.GenSphere(24, 0.1, &vertices, &normals, &texCoords, &indices, &numVerts);
-        
+        numVerts = [self loadBoar];
     }
-    else return;
     
     // Create VAOs
     glGenVertexArrays(1, &vertexArray);
@@ -127,7 +128,6 @@ const int DEFAULT_WIDTH = 1;
 
     // Create VBOs
     glGenBuffers(NUM_ATTRIBUTES, vertexBuffers);   // One buffer for each attribute (position, tex, normal). See the uniforms at the top
-    glGenBuffers(1, &indexBuffer);                 // Index buffer
 
     // Set up VBOs...
     
@@ -145,17 +145,22 @@ const int DEFAULT_WIDTH = 1;
     
     // Texture coordinate
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[2]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, texCoords, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*2*numVerts, texCoords, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_TEXTURE_COORDINATE);
     glVertexAttribPointer(ATTRIB_TEXTURE_COORDINATE, 2, GL_FLOAT, GL_FALSE, 2*sizeof(float), BUFFER_OFFSET(0));
     
-    
-    // Set up index buffer
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*numIndices, indices, GL_STATIC_DRAW);
-    
     // Reset VAO
     glBindVertexArray(0);
+}
+
+- (int)loadBoar
+{
+    
+    vertices = (float *) boarPositions;
+    normals = (float *) boarNormals;
+    texCoords = (float *) boarTexels;
+    NSLog(@"first: %f", *vertices);
+    return boarVertices;
 }
 
 // attach the shaders to the program object
@@ -211,6 +216,7 @@ const int DEFAULT_WIDTH = 1;
 // Load in and set up texture image (adapted from Ray Wenderlich)
 - (GLuint)setupTexture:(NSString *)fileName
 {
+    NSFileManager *manager = [[NSFileManager alloc] init];
     CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
     if (!spriteImage) {
         NSLog(@"Failed to load image %@", fileName);

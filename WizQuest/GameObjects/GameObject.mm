@@ -334,7 +334,7 @@ const int DEFAULT_WIDTH = 1;
 
 - (void)loadDefaultDiffuseLight
 {
-    [self loadDiffuseLightPosition:GLKVector4Make(0, 1, 0, 1) DiffuseComponent:GLKVector4Make(255/255.0f, 255/255.0f, 255/255.0f, 1.0)];
+    [self loadDiffuseLightPosition:GLKVector4Make(0, 0, 1, 1) DiffuseComponent:GLKVector4Make(0/255.0f, 0/255.0f, 0/255.0f, 1)];
 }
 
 

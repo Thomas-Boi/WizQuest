@@ -47,10 +47,14 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 - (void) createGameScene
 {
     @autoreleasepool {
+        // wall stats
+        float platformThickness = 1;
+        float halfWallWidth = platformThickness/2;
+        
         // background
-        //Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH, SCREEN_HEIGHT, 1)];
+        Background *background = [[Background alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH-1) Rotation:GLKVector3Make(0, 0, 180) Scale:GLKVector3Make(SCREEN_WIDTH + platformThickness, SCREEN_HEIGHT + platformThickness, 1)];
     
-        //[tracker addStaticObj:background];
+        [tracker addStaticObj:background];
         
         // note: models only accept "cube" or "sphere"
         Player* player = [[Player alloc] initPosition:GLKVector3Make(SCREEN_CENTER_X, SCREEN_CENTER_Y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(1, 1, 1)];
@@ -61,8 +65,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
         [physics addObject:player];
         
         // make the walls
-        float platformThickness = 1;
-        float halfWallWidth = platformThickness/2;
         Wall *leftWall = [[Wall alloc] initPosition:GLKVector3Make(SCREEN_LEFT_X, SCREEN_CENTER_Y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(platformThickness, SCREEN_HEIGHT, 1)];
         [tracker addStaticObj:leftWall];
         [physics addObject:leftWall];
@@ -124,9 +126,10 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 }
 
 // for the player
-- (void)applyImpulseOnPlayer:(float)x Y:(float)y
+- (void)movePlayerVelocity:(float)x Y:(float)y
 {
-    tracker.player.body->ApplyLinearImpulse(b2Vec2(x, y), tracker.player.body->GetPosition(), true);
+    float impulse = x * tracker.player.body->GetMass();
+    tracker.player.body->ApplyLinearImpulse(b2Vec2(impulse, y), tracker.player.body->GetPosition(), true);
     [tracker.player flipFaceRight:x > 0];
 }
 

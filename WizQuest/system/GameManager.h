@@ -34,7 +34,7 @@
 - (void) initManager:(GLKView *)view;
 
 // for the player and UI 
-- (void) applyImpulseOnPlayer:(float)x Y:(float)y;
+- (void) movePlayerVelocity:(float)x Y:(float)y;
 - (void) fireBullet;
 - (void) respawn;
 - (void) fireBigbull;

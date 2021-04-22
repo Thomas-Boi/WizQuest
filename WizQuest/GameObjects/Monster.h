@@ -25,7 +25,7 @@
 -(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type
       ScoreSystem:(Score *)s;
 -(void)setInitialStats;
--(void)takeDamage;
+-(void)takeDamage: (int)damage;
 -(void)move;
 -(void)changeDirection;
 

@@ -17,7 +17,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     
     float elapsedMonsterSpawnTime;
 	float elapsedBulletTime;
-    bool playerDirection;
 }
 
 @end
@@ -39,8 +38,6 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     
     physics = [[PhysicsWorld alloc] init];
     [self createGameScene];
-    
-    playerDirection = true;
 
     score = [[Score alloc] init];
 }
@@ -76,7 +73,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
         
         
         // make the horizontal platform ( bottom)
-        float floorWidth = (SCREEN_WIDTH / 5) * 2.5; // some how dividing by two doesn't make the same value
+        float floorWidth = (float) SCREEN_WIDTH / 5 * 2;
         Platform *leftFloor = [[Platform alloc] initPosition:GLKVector3Make(floorWidth/2 + halfWallWidth + SCREEN_LEFT_X, SCREEN_BOTTOM_Y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1)];
         [tracker addStaticObj:leftFloor];
         [physics addObject:leftFloor];
@@ -130,6 +127,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
 - (void)applyImpulseOnPlayer:(float)x Y:(float)y
 {
     tracker.player.body->ApplyLinearImpulse(b2Vec2(x, y), tracker.player.body->GetPosition(), true);
+    [tracker.player flipFaceRight:x > 0];
 }
 
 - (int) GetPlayerHealth
@@ -205,13 +203,13 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     GLKVector3 scale;
     switch (r) {
         case 1:
-            scale = GLKVector3Make(1.5, 1.5, 1);
+            scale = GLKVector3Make(1, 1, 1);
             break;
         case 2:
-            scale = GLKVector3Make(1, 2, 1);
+            scale = GLKVector3Make(1, 1, 1);
             break;
         default:
-            scale = GLKVector3Make(1.5, 2, 1);
+            scale = GLKVector3Make(1, 1, 1);
             break;
     }
     
@@ -229,7 +227,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     if (tracker.bullets.count >= BULLET_MAX_COUNT)
         return;
     
-    Bullet *bullet = [[Bullet alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 0.5) Direction:(playerDirection? 1:-1)];
+    Bullet *bullet = [[Bullet alloc] initPosition:GLKVector3Make(tracker.player.position.x + (tracker.player.isFacingRight? 1 :-1), tracker.player.position.y , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.5, 0.5, 0.5) Direction:(tracker.player.isFacingRight? 1:-1)];
     [tracker addBullet:bullet];
     [physics addObject:bullet];
 }
@@ -242,14 +240,9 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
     
     elapsedBulletTime = 0.0f;
     
-    Bigbull *bigbull = [[Bigbull alloc] initPosition:GLKVector3Make(tracker.player.position.x + (playerDirection? 1:-1), tracker.player.position.y + 0.6 , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.25, 2.0, 1) Direction:(playerDirection? 1:-1)];
+    Bigbull *bigbull = [[Bigbull alloc] initPosition:GLKVector3Make(tracker.player.position.x + (tracker.player.isFacingRight? 1 : -1), tracker.player.position.y + 0.6 , tracker.player.position.z) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(0.25, 2.0, 1) Direction:(tracker.player.isFacingRight? 1 : -1)];
     [tracker addBigbull:bigbull];
     [physics addObject:bigbull];
-}
-
-- (void) direction:(bool) d
-{
-    playerDirection = d;
 }
 
 - (void) draw

@@ -57,6 +57,7 @@ const int DEFAULT_WIDTH = 1;
 @synthesize scale=_scale;
 @synthesize height=_height;
 @synthesize width=_width;
+@synthesize isFacingRight;
 
 // opengl matrices
 @synthesize _id;
@@ -99,6 +100,7 @@ const int DEFAULT_WIDTH = 1;
     if (self = [super init])
     {
         [self loadPosition:position Rotation:rotation Scale:scale];
+        isFacingRight = true;
     }
     return self;
 
@@ -245,7 +247,6 @@ const int DEFAULT_WIDTH = 1;
 {
     // Load texture to apply and set up texture in GL
     texture = [self setupTexture:textureFileName];
-    glActiveTexture(GL_TEXTURE0); // set texture 0 to be active
     // uniforms[UNIFORM_TEXTURE] will store the sampler2D
     // 0 is the number of texture.
     glUniform1i(_uniforms[UNIFORM_TEXTURE], 0);
@@ -254,7 +255,6 @@ const int DEFAULT_WIDTH = 1;
 // Load in and set up texture image (adapted from Ray Wenderlich)
 - (GLuint)setupTexture:(NSString *)fileName
 {
-    NSFileManager *manager = [[NSFileManager alloc] init];
     CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
     if (!spriteImage) {
         NSLog(@"Failed to load image %@", fileName);
@@ -343,6 +343,22 @@ const int DEFAULT_WIDTH = 1;
     _body = newBody;
 }
 
+// visual stuff
+- (void)flipFaceRight:(bool)facingRight
+{
+    if (facingRight)
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 0, _rotation.z);
+    }
+    else
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 180, _rotation.z);
+    }
+    [self loadPosition:_position Rotation:_rotation Scale:_scale];
+    isFacingRight = facingRight;
+}
 
 // lifecycle
 // update the object every draw cycle

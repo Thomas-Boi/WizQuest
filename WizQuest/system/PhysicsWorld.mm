@@ -61,8 +61,10 @@ public:
 {
     if (self = [super init])
     {
+        bool allowSleeping = false;
         gravity = new b2Vec2(0.0f, -20.0f);
         world = new b2World(*gravity);
+        world->SetAllowSleeping(allowSleeping);
         
         contactListener = new PhysicsContactListener();
         world->SetContactListener(contactListener);

@@ -22,8 +22,9 @@
 - (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale
 {
     if (self = [super initPosition:position Rotation:rotation Scale:scale]) {
-        [self loadVertShader:@"PlayerShader.vsh" AndFragShader:@"PlayerShader.fsh"];
+        [self loadVertShader:@"TextureShader.vsh" AndFragShader:@"TextureShader.fsh"];
         [self loadModel:@"necro"];
+        [self loadTexture:@"necro.png"];
         self.bodyType = DYNAMIC;
         [self resetDamage];
     }

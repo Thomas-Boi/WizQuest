@@ -58,10 +58,10 @@ enum
     ambientComponent = GLKVector4Make(0.2f, 0.2f, 0.2f, 1.0f);
     
     // Setup blending for alpha values (transparent things)
-    /*
+    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-     */
+    
     
     // Calculate projection matrix
     
@@ -95,6 +95,7 @@ enum
     
     // select the texture
     glBindTexture(GL_TEXTURE_2D, obj.texture);
+    glActiveTexture(GL_TEXTURE0); // set texture 0 to be active
     
     // Set up uniforms for the shaders
     GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, obj.modelViewMatrix);

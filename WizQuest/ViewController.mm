@@ -42,12 +42,10 @@ const float playerYSpeed = 14;
 
 - (IBAction)moveLeft:(UIButton *)sender {
     [manager applyImpulseOnPlayer:-playerXSpeed Y:0];
-    [manager direction:false];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
     [manager applyImpulseOnPlayer:playerXSpeed Y:0];
-    [manager direction:true];
 }
 
 - (IBAction)jump:(UIButton *)sender

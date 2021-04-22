@@ -57,6 +57,7 @@ const int DEFAULT_WIDTH = 1;
 @synthesize scale=_scale;
 @synthesize height=_height;
 @synthesize width=_width;
+@synthesize isFacingRight;
 
 // opengl matrices
 @synthesize _id;
@@ -99,6 +100,7 @@ const int DEFAULT_WIDTH = 1;
     if (self = [super init])
     {
         [self loadPosition:position Rotation:rotation Scale:scale];
+        isFacingRight = true;
     }
     return self;
 
@@ -343,6 +345,22 @@ const int DEFAULT_WIDTH = 1;
     _body = newBody;
 }
 
+// visual stuff
+- (void)flipFaceRight:(bool)facingRight
+{
+    if (facingRight)
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 0, _rotation.z);
+    }
+    else
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 180, _rotation.z);
+    }
+    [self loadPosition:_position Rotation:_rotation Scale:_scale];
+    isFacingRight = facingRight;
+}
 
 // lifecycle
 // update the object every draw cycle

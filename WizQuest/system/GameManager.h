@@ -40,7 +40,6 @@
 - (void) fireBigbull;
 - (void) update:(float) deltaTime;
 - (void) draw;
-- (void) direction:(bool) d;
 - (int) GetPlayerHealth;
 
 @end

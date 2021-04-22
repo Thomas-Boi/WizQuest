@@ -68,6 +68,7 @@
     if (!faceRight)
     {
         speed = -speed;
+        [self flipFaceRight:false];
     }
 }
 
@@ -81,6 +82,7 @@
 
 -(void)changeDirection {
     speed = -speed;
+    [self flipFaceRight:!self.isFacingRight];
 }
 
 -(void)move {

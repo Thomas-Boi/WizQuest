@@ -30,6 +30,7 @@
 @property (readonly) GLKVector3 scale;
 @property (readonly) float height;
 @property (readonly) float width;
+@property (readonly) bool isFacingRight;
 
 // matrices
 @property GLKMatrix4 modelMatrix;
@@ -72,6 +73,9 @@
 
 // physics
 - (void)loadPhysicsBody:(b2Body *)body;
+
+// visual
+- (void)flipFaceRight:(bool)facingRight;
 
 // lifecycles
 - (void)update;

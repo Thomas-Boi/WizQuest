@@ -20,6 +20,7 @@
         [self loadVertShader:@"TextureShader.vsh" AndFragShader:@"TextureShader.fsh"];
         [self loadModel:@"cube"];
         [self loadTexture:@"background.png"];
+        [self loadDefaultDiffuseLight];
     }
     return self;
 }

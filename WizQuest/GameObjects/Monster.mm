@@ -72,9 +72,10 @@
     }
 }
 
--(void)takeDamage {
-    health--;
-    if (health == 0) {
+-(void)takeDamage:(int)damage
+{
+    health -= damage;
+    if (health <= 0) {
         [score addPoints:value];
         active = false;
     }
@@ -102,11 +103,11 @@
     }
     if ([otherObj isKindOfClass:[Bullet class]])
     {
-        [self takeDamage];
+        [self takeDamage:1];
     }
 	if ([otherObj isKindOfClass:[Bigbull class]])
     {
-        [self takeDamage];
+        [self takeDamage:3];
     }
 }
 

@@ -89,16 +89,15 @@
 		FAC0E94625EED8E4003CBB17 /* Monster.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAC0E94525EED8E4003CBB17 /* Monster.mm */; };
 		FAD19FF72623B7160088F6B7 /* Score.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD19FF62623B7160088F6B7 /* Score.mm */; };
 		FAD41C03261D1CFB007F5B07 /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAD41C02261D1CFB007F5B07 /* Bullet.mm */; };
-		FAF2F7172622ADDB009E757C /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7142622ADDB009E757C /* platform1.png */; };
-		FAF2F7182622ADDB009E757C /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7152622ADDB009E757C /* platform.png */; };
 		FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71B2622AEA2009E757C /* TextureShader.fsh */; };
 		FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71C2622AEA2009E757C /* TextureShader.vsh */; };
 		FAF2F7222622BE91009E757C /* Background.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF2F7212622BE91009E757C /* Background.mm */; };
-		FAF2F7332622C6D5009E757C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7322622C6D5009E757C /* background.png */; };
+		FAF2F7332622C6D5009E757C /* platform.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7322622C6D5009E757C /* platform.png */; };
 		FAFF778426312143006C34F8 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778026312143006C34F8 /* spider.png */; };
 		FAFF778526312143006C34F8 /* jaguar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778126312143006C34F8 /* jaguar.png */; };
 		FAFF778626312143006C34F8 /* necro.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778226312143006C34F8 /* necro.png */; };
 		FAFF778726312143006C34F8 /* boar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778326312143006C34F8 /* boar.png */; };
+		FAFF778B263129B2006C34F8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778A263129B2006C34F8 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -257,17 +256,16 @@
 		FAD41BFC261D1C5D007F5B07 /* Bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		FAD41C02261D1CFB007F5B07 /* Bullet.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Bullet.mm; sourceTree = "<group>"; };
 		FAE352AD25E9CDFF001043EA /* UniformEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniformEnum.h; sourceTree = "<group>"; };
-		FAF2F7142622ADDB009E757C /* platform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform1.png; sourceTree = "<group>"; };
-		FAF2F7152622ADDB009E757C /* platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform.png; sourceTree = "<group>"; };
 		FAF2F71B2622AEA2009E757C /* TextureShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.fsh; sourceTree = "<group>"; };
 		FAF2F71C2622AEA2009E757C /* TextureShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureShader.vsh; sourceTree = "<group>"; };
 		FAF2F7212622BE91009E757C /* Background.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Background.mm; sourceTree = "<group>"; };
 		FAF2F7242622BE9B009E757C /* Background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
-		FAF2F7322622C6D5009E757C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		FAF2F7322622C6D5009E757C /* platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform.png; sourceTree = "<group>"; };
 		FAFF778026312143006C34F8 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
 		FAFF778126312143006C34F8 /* jaguar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jaguar.png; sourceTree = "<group>"; };
 		FAFF778226312143006C34F8 /* necro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = necro.png; sourceTree = "<group>"; };
 		FAFF778326312143006C34F8 /* boar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boar.png; sourceTree = "<group>"; };
+		FAFF778A263129B2006C34F8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,13 +282,12 @@
 		FA05092E260C32AD00C80294 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				FAFF778A263129B2006C34F8 /* background.png */,
 				FAFF778326312143006C34F8 /* boar.png */,
 				FAFF778126312143006C34F8 /* jaguar.png */,
 				FAFF778226312143006C34F8 /* necro.png */,
 				FAFF778026312143006C34F8 /* spider.png */,
-				FAF2F7142622ADDB009E757C /* platform1.png */,
-				FAF2F7152622ADDB009E757C /* platform.png */,
-				FAF2F7322622C6D5009E757C /* background.png */,
+				FAF2F7322622C6D5009E757C /* platform.png */,
 				FA7B887125E5CAA900F5FBBA /* crate.jpg */,
 			);
 			path = textures;
@@ -652,14 +649,13 @@
 				FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */,
 				FAB23EDE25EAFFC30052DDA3 /* PlatformShader.fsh in Resources */,
 				FA5335D0262FDF9800778CCA /* necro.obj in Resources */,
-				FAF2F7172622ADDB009E757C /* platform1.png in Resources */,
-				FAF2F7182622ADDB009E757C /* platform.png in Resources */,
 				FA7B885825E5C48200F5FBBA /* Main.storyboard in Resources */,
 				FA5335CF262FDF9800778CCA /* jaguar.obj in Resources */,
+				FAFF778B263129B2006C34F8 /* background.png in Resources */,
 				FA5335D1262FDF9800778CCA /* spider.obj in Resources */,
 				FA5335D2262FDF9800778CCA /* boar.obj in Resources */,
 				FA7B887425E5CAAA00F5FBBA /* PlayerShader.fsh in Resources */,
-				FAF2F7332622C6D5009E757C /* background.png in Resources */,
+				FAF2F7332622C6D5009E757C /* platform.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

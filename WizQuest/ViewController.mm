@@ -41,16 +41,16 @@ const float playerYSpeed = 14;
 // MARK: Handle actions
 
 - (IBAction)moveLeft:(UIButton *)sender {
-    [manager applyImpulseOnPlayer:-playerXSpeed Y:0];
+    [manager movePlayerVelocity:-playerXSpeed Y:0];
 }
 
 - (IBAction)moveRight:(UIButton *)sender {
-    [manager applyImpulseOnPlayer:playerXSpeed Y:0];
+    [manager movePlayerVelocity:playerXSpeed Y:0];
 }
 
 - (IBAction)jump:(UIButton *)sender
 {
-    [manager applyImpulseOnPlayer:0 Y:playerYSpeed];
+    [manager movePlayerVelocity:0 Y:playerYSpeed];
 }
 
 - (void)longPressHandler:(UILongPressGestureRecognizer*)gesture {
@@ -100,14 +100,14 @@ const float playerYSpeed = 14;
     gameOverTitle.textColor = [UIColor blackColor];
     [self.gameOverView addSubview:gameOverTitle];
     
-    self.currentScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 20)];
+    self.currentScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     self.currentScoreLabel.font = [self.currentScoreLabel.font fontWithSize:22];
     self.currentScoreLabel.textAlignment = NSTextAlignmentCenter;
     self.currentScoreLabel.center = CGPointMake(self.gameOverView.frame.origin.x, 110);
     self.currentScoreLabel.textColor = [UIColor redColor];
     [self.gameOverView addSubview:self.currentScoreLabel];
     
-    self.highScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 20)];
+    self.highScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
     self.highScoreLabel.font = [self.highScoreLabel.font fontWithSize:22];
     self.highScoreLabel.textAlignment = NSTextAlignmentCenter;
     self.highScoreLabel.center = CGPointMake(self.gameOverView.frame.origin.x, 140);

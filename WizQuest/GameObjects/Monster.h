@@ -12,14 +12,20 @@
 #import "Wall.h"
 #import "Spikes.h"
 #import "Bullet.h"
+#import "Bigbull.h"
+#import "Score.h"
 
 @interface Monster : GameObject
 
+@property (readonly) Score *score;
+//@property (readonly) Player *player;
 @property bool active;
+@property bool spike;
 
--(id)initWithMonsterType:(int)type;
+-(id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale MonsterType:(int)type
+      ScoreSystem:(Score *)s;
 -(void)setInitialStats;
--(void)takeDamage;
+-(void)takeDamage: (int)damage;
 -(void)move;
 -(void)changeDirection;
 

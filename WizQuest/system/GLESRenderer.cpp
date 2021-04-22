@@ -166,9 +166,9 @@ int GLESRenderer::GenCube(float scale, GLfloat **vertices, GLfloat **normals,
         -0.5f,  0.5f, -0.5f,
         0.5f,  0.5f, -0.5f,
         0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, 0.5f,
-        -0.5f,  0.5f, 0.5f,
-        0.5f,  0.5f, 0.5f,
+        -0.5f, -0.5f, 0.5f,//13 - bottom left
+        -0.5f,  0.5f, 0.5f,//top left
+        0.5f,  0.5f, 0.5f,//top right
         0.5f, -0.5f, 0.5f,
         -0.5f, -0.5f, -0.5f,
         -0.5f, -0.5f,  0.5f,
@@ -222,7 +222,7 @@ int GLESRenderer::GenCube(float scale, GLfloat **vertices, GLfloat **normals,
         0.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, 0.0f,
-        0.0f, 0.0f,
+        0.0f, 0.0f,//
         0.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, 0.0f,

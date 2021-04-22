@@ -21,16 +21,26 @@
 #import "PhysicsBodyTypeEnum.h"
 #import "MonsterInfo.h"
 #import "Bullet.h"
+#import "Bigbull.h"
+#import "Platform.h"
+#import "Background.h"
+#import "Score.h"
 
 @interface GameManager : NSObject
 
+@property (readonly) Score *score;
+//@property (readonly) Player *player;
+
 - (void) initManager:(GLKView *)view;
+
 // for the player and UI 
-- (void) applyImpulseOnPlayer:(float)x Y:(float)y;
+- (void) movePlayerVelocity:(float)x Y:(float)y;
 - (void) fireBullet;
+- (void) respawn;
+- (void) fireBigbull;
 - (void) update:(float) deltaTime;
 - (void) draw;
-- (void) direction:(bool) d;
+- (int) GetPlayerHealth;
 
 @end
 

@@ -10,9 +10,16 @@
 
 #import <Foundation/Foundation.h>
 #import "GameObject.h"
+#import "Monster.h"
+#import "Spikes.h"
 
 @interface Player : GameObject
 
+@property bool active;
+@property int health;
+
+-(void)resetDamage;
+-(void)takeDamage;
 @end
 
 #endif /* Player_h */

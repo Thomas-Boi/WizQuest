@@ -57,6 +57,7 @@ const int DEFAULT_WIDTH = 1;
 @synthesize scale=_scale;
 @synthesize height=_height;
 @synthesize width=_width;
+@synthesize isFacingRight;
 
 // opengl matrices
 @synthesize _id;
@@ -71,6 +72,7 @@ const int DEFAULT_WIDTH = 1;
 @synthesize vertexArray;
 @synthesize indexBuffer;
 @synthesize numIndices;
+@synthesize numVertices;
 
 // shaders
 @synthesize programObject;
@@ -93,12 +95,15 @@ const int DEFAULT_WIDTH = 1;
 // position is counting from the center of the game object
 // scale along the x-axis will be used as the width
 // scale along the y-axis will be used as the height
-- (void)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale VertShader:(NSString *) vShaderName AndFragShader:(NSString *) fShaderName ModelName:(NSString *)modelName   PhysicsBodyType:(PhysicsBodyTypeEnum) bodyType
+- (id)initPosition: (GLKVector3)position Rotation: (GLKVector3)rotation Scale: (GLKVector3)scale
 {
-    [self loadPosition:position Rotation:rotation Scale:scale];
-    [self loadVertShader:vShaderName AndFragShader:fShaderName];
-    [self loadModel:modelName];
-    _bodyType = bodyType;
+    if (self = [super init])
+    {
+        [self loadPosition:position Rotation:rotation Scale:scale];
+        isFacingRight = true;
+    }
+    return self;
+
 }
 
 // get the model info from GLESRenderer then bind it to the vertexArray
@@ -106,18 +111,34 @@ const int DEFAULT_WIDTH = 1;
 - (void)loadModel:(NSString *)modelName
 {
     // Generate vertex attribute values from model
-    int numVerts;
     if ([modelName isEqualToString:@"cube"])
     {
-        numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices, &numVerts);
+        numIndices = glesRenderer.GenCube(1.0f, &vertices, &normals, &texCoords, &indices, &numVertices);
+        glGenBuffers(1, &indexBuffer);                 // Index buffer
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*numIndices, indices, GL_STATIC_DRAW);
         
     }
-    else if ([modelName isEqualToString:@"sphere"])
+    else if ([modelName isEqualToString:@"boar"])
     {
-        numIndices = glesRenderer.GenSphere(24, 0.1, &vertices, &normals, &texCoords, &indices, &numVerts);
-        
+        numVertices = [self loadBoar];
+        numIndices = 0;
     }
-    else return;
+    else if ([modelName isEqualToString:@"spider"])
+    {
+        numVertices = [self loadSpider];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"jaguar"])
+    {
+        numVertices = [self loadJaguar];
+        numIndices = 0;
+    }
+    else if ([modelName isEqualToString:@"necro"])
+    {
+        numVertices = [self loadNecro];
+        numIndices = 0;
+    }
     
     // Create VAOs
     glGenVertexArrays(1, &vertexArray);
@@ -125,35 +146,61 @@ const int DEFAULT_WIDTH = 1;
 
     // Create VBOs
     glGenBuffers(NUM_ATTRIBUTES, vertexBuffers);   // One buffer for each attribute (position, tex, normal). See the uniforms at the top
-    glGenBuffers(1, &indexBuffer);                 // Index buffer
 
     // Set up VBOs...
     
     // Position
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVertices, vertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_POSITION);
     glVertexAttribPointer(ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), BUFFER_OFFSET(0));
     
     // Normal vector
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, normals, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVertices, normals, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_NORMAL);
     glVertexAttribPointer(ATTRIB_NORMAL, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), BUFFER_OFFSET(0));
     
     // Texture coordinate
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[2]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*3*numVerts, texCoords, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*2*numVertices, texCoords, GL_STATIC_DRAW);
     glEnableVertexAttribArray(ATTRIB_TEXTURE_COORDINATE);
     glVertexAttribPointer(ATTRIB_TEXTURE_COORDINATE, 2, GL_FLOAT, GL_FALSE, 2*sizeof(float), BUFFER_OFFSET(0));
     
-    
-    // Set up index buffer
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*numIndices, indices, GL_STATIC_DRAW);
-    
     // Reset VAO
     glBindVertexArray(0);
+}
+
+- (int)loadBoar
+{
+    vertices = (float *) boarPositions;
+    normals = (float *) boarNormals;
+    texCoords = (float *) boarTexels;
+    return boarVertices;
+}
+
+- (int)loadSpider
+{
+    vertices = (float *) spiderPositions;
+    normals = (float *) spiderNormals;
+    texCoords = (float *) spiderTexels;
+    return spiderVertices;
+}
+
+- (int)loadNecro
+{
+    vertices = (float *) necroPositions;
+    normals = (float *) necroNormals;
+    texCoords = (float *) necroTexels;
+    return necroVertices;
+}
+
+- (int)loadJaguar
+{
+    vertices = (float *) jaguarPositions;
+    normals = (float *) jaguarNormals;
+    texCoords = (float *) jaguarTexels;
+    return jaguarVertices;
 }
 
 // attach the shaders to the program object
@@ -200,7 +247,6 @@ const int DEFAULT_WIDTH = 1;
 {
     // Load texture to apply and set up texture in GL
     texture = [self setupTexture:textureFileName];
-    glActiveTexture(GL_TEXTURE0); // set texture 0 to be active
     // uniforms[UNIFORM_TEXTURE] will store the sampler2D
     // 0 is the number of texture.
     glUniform1i(_uniforms[UNIFORM_TEXTURE], 0);
@@ -255,17 +301,21 @@ const int DEFAULT_WIDTH = 1;
     _width = scale.y / DEFAULT_HEIGHT;
 }
 
-// load the position, rotation, and scale of an object.
-// this is usually used to init an object.
-// each element in the rotation are around the x-axis, y-axis,
-// and z-axis respectively.
-- (void)loadPosition: (GLKVector3)position
+// update the openGL position only. This is best used
+// to sync the openGL coordinates with PhysicsWorld coordinate
+// of the GameObject
+- (void)updateOpenGLPosition: (GLKVector3)position
 {
     GLKMatrix4 transform = [Transformations changeMatrix:self.modelMatrix ByTranslation:GLKVector3Subtract(position, _position)];
     _position = position;
     [self loadModelMatrix:transform];
 }
 
+// set the position of the body
+- (void)setPhysicsBodyPosition:(GLKVector3)position
+{
+    _body->SetTransform(b2Vec2(position.x, position.y), 0);
+}
 
 // load the transformation for the GameObject
 - (void)loadModelMatrix:(GLKMatrix4) modelMatrix
@@ -284,7 +334,7 @@ const int DEFAULT_WIDTH = 1;
 
 - (void)loadDefaultDiffuseLight
 {
-    [self loadDiffuseLightPosition:GLKVector4Make(0, 1, 0, 1) DiffuseComponent:GLKVector4Make(255/255.0f, 255/255.0f, 255/255.0f, 1.0)];
+    [self loadDiffuseLightPosition:GLKVector4Make(0, 0, 1, 1) DiffuseComponent:GLKVector4Make(0/255.0f, 0/255.0f, 0/255.0f, 1)];
 }
 
 
@@ -293,6 +343,22 @@ const int DEFAULT_WIDTH = 1;
     _body = newBody;
 }
 
+// visual stuff
+- (void)flipFaceRight:(bool)facingRight
+{
+    if (facingRight)
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 0, _rotation.z);
+    }
+    else
+    {
+        // by default everything faces right
+        _rotation = GLKVector3Make(_rotation.x, 180, _rotation.z);
+    }
+    [self loadPosition:_position Rotation:_rotation Scale:_scale];
+    isFacingRight = facingRight;
+}
 
 // lifecycle
 // update the object every draw cycle
@@ -303,7 +369,7 @@ const int DEFAULT_WIDTH = 1;
     {
         // update the position based on physics
         b2Vec2 position2D = _body->GetPosition();
-        [self loadPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
+        [self updateOpenGLPosition:GLKVector3Make(position2D.x, position2D.y, _position.z)];
     }
 }
 
@@ -317,9 +383,9 @@ const int DEFAULT_WIDTH = 1;
 - (void)dealloc
 {
     glDeleteProgram(programObject);
-    if (vertices) delete(vertices);
-    if (normals) delete(normals);
-    if (texCoords) delete(texCoords);
+    //if (vertices) delete(&vertices);
+    //if (normals) delete(&normals);
+    //if (texCoords) delete(&texCoords);
     if (_body)
     {
         b2World *world = _body->GetWorld();

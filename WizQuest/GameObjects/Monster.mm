@@ -45,30 +45,30 @@
             speed = 3.5;
             value = 1;
             [self loadModel:@"spider"];
-            [self loadTexture:@"background.png"];
+            [self loadTexture:@"spider.png"];
             break;
         case 2: // Fast moving monster, 1 hp
             health = 1;
             speed = 6.0;
             value = 1;
             [self loadModel:@"jaguar"];
-            [self loadTexture:@"background.png"];
+            [self loadTexture:@"jaguar.png"];
             break;
         case 3: // Big monster, same as slow except 5 hp
             health = 5;
             speed = 3.5;
             value = 2;
             [self loadModel:@"boar"];
-            [self loadTexture:@"background.png"];
+            [self loadTexture:@"boar.png"];
             break;
     }
     
     // random speed in both direction
     bool faceRight = arc4random_uniform(2);
+    // recall by default everything faces right
     if (!faceRight)
     {
-        speed = -speed;
-        [self flipFaceRight:false];
+        [self changeDirection];
     }
 }
 

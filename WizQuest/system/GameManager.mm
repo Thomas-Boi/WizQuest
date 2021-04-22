@@ -73,7 +73,7 @@ const GLKVector2 MONSTER_SPAWN_POSITION = GLKVector2Make(SCREEN_CENTER_X, SCREEN
         
         
         // make the horizontal platform ( bottom)
-        float floorWidth = (SCREEN_WIDTH / 5) * 2.5; // some how dividing by two doesn't make the same value
+        float floorWidth = (float) SCREEN_WIDTH / 5 * 2;
         Platform *leftFloor = [[Platform alloc] initPosition:GLKVector3Make(floorWidth/2 + halfWallWidth + SCREEN_LEFT_X, SCREEN_BOTTOM_Y, DEPTH) Rotation:GLKVector3Make(0, 0, 0) Scale:GLKVector3Make(floorWidth, platformThickness, 1)];
         [tracker addStaticObj:leftFloor];
         [physics addObject:leftFloor];

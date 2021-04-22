@@ -61,10 +61,6 @@
 		FA5335D1262FDF9800778CCA /* spider.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335C8262FDF9800778CCA /* spider.obj */; };
 		FA5335D2262FDF9800778CCA /* boar.obj in Resources */ = {isa = PBXBuildFile; fileRef = FA5335CC262FDF9800778CCA /* boar.obj */; };
 		FA5335E6262FF6E700778CCA /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA7B887325E5CAAA00F5FBBA /* GLESRenderer.cpp */; };
-		FA5335EB2630025A00778CCA /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7492622C889009E757C /* spider.png */; };
-		FA5335EC2630025A00778CCA /* boar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F74A2622C889009E757C /* boar.png */; };
-		FA5335ED2630025A00778CCA /* necro.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7472622C889009E757C /* necro.png */; };
-		FA5335EE2630025A00778CCA /* jaguar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7482622C889009E757C /* jaguar.png */; };
 		FA58B9252623ADF900A4BED8 /* Bigbull.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA58B9242623ADF900A4BED8 /* Bigbull.mm */; };
 		FA7B884F25E5C48200F5FBBA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B884E25E5C48200F5FBBA /* AppDelegate.m */; };
 		FA7B885225E5C48200F5FBBA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7B885125E5C48200F5FBBA /* SceneDelegate.m */; };
@@ -99,6 +95,10 @@
 		FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F71C2622AEA2009E757C /* TextureShader.vsh */; };
 		FAF2F7222622BE91009E757C /* Background.mm in Sources */ = {isa = PBXBuildFile; fileRef = FAF2F7212622BE91009E757C /* Background.mm */; };
 		FAF2F7332622C6D5009E757C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF2F7322622C6D5009E757C /* background.png */; };
+		FAFF778426312143006C34F8 /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778026312143006C34F8 /* spider.png */; };
+		FAFF778526312143006C34F8 /* jaguar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778126312143006C34F8 /* jaguar.png */; };
+		FAFF778626312143006C34F8 /* necro.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778226312143006C34F8 /* necro.png */; };
+		FAFF778726312143006C34F8 /* boar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFF778326312143006C34F8 /* boar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -264,10 +264,10 @@
 		FAF2F7212622BE91009E757C /* Background.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Background.mm; sourceTree = "<group>"; };
 		FAF2F7242622BE9B009E757C /* Background.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		FAF2F7322622C6D5009E757C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		FAF2F7472622C889009E757C /* necro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = necro.png; sourceTree = "<group>"; };
-		FAF2F7482622C889009E757C /* jaguar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jaguar.png; sourceTree = "<group>"; };
-		FAF2F7492622C889009E757C /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
-		FAF2F74A2622C889009E757C /* boar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boar.png; sourceTree = "<group>"; };
+		FAFF778026312143006C34F8 /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spider.png; sourceTree = "<group>"; };
+		FAFF778126312143006C34F8 /* jaguar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jaguar.png; sourceTree = "<group>"; };
+		FAFF778226312143006C34F8 /* necro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = necro.png; sourceTree = "<group>"; };
+		FAFF778326312143006C34F8 /* boar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,10 +284,10 @@
 		FA05092E260C32AD00C80294 /* textures */ = {
 			isa = PBXGroup;
 			children = (
-				FAF2F7492622C889009E757C /* spider.png */,
-				FAF2F74A2622C889009E757C /* boar.png */,
-				FAF2F7472622C889009E757C /* necro.png */,
-				FAF2F7482622C889009E757C /* jaguar.png */,
+				FAFF778326312143006C34F8 /* boar.png */,
+				FAFF778126312143006C34F8 /* jaguar.png */,
+				FAFF778226312143006C34F8 /* necro.png */,
+				FAFF778026312143006C34F8 /* spider.png */,
 				FAF2F7142622ADDB009E757C /* platform1.png */,
 				FAF2F7152622ADDB009E757C /* platform.png */,
 				FAF2F7322622C6D5009E757C /* background.png */,
@@ -640,13 +640,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5335EB2630025A00778CCA /* spider.png in Resources */,
-				FA5335EC2630025A00778CCA /* boar.png in Resources */,
-				FA5335ED2630025A00778CCA /* necro.png in Resources */,
-				FA5335EE2630025A00778CCA /* jaguar.png in Resources */,
+				FAFF778626312143006C34F8 /* necro.png in Resources */,
+				FAFF778526312143006C34F8 /* jaguar.png in Resources */,
+				FAFF778726312143006C34F8 /* boar.png in Resources */,
 				FAF2F71E2622AEA2009E757C /* TextureShader.vsh in Resources */,
 				FAF2F71D2622AEA2009E757C /* TextureShader.fsh in Resources */,
 				FA7B885D25E5C48200F5FBBA /* LaunchScreen.storyboard in Resources */,
+				FAFF778426312143006C34F8 /* spider.png in Resources */,
 				FA7B885A25E5C48200F5FBBA /* Assets.xcassets in Resources */,
 				FAB23EDB25EAFFB40052DDA3 /* PlatformShader.vsh in Resources */,
 				FA7B887525E5CAAA00F5FBBA /* PlayerShader.vsh in Resources */,

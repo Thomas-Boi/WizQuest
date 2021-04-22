@@ -247,7 +247,6 @@ const int DEFAULT_WIDTH = 1;
 {
     // Load texture to apply and set up texture in GL
     texture = [self setupTexture:textureFileName];
-    glActiveTexture(GL_TEXTURE0); // set texture 0 to be active
     // uniforms[UNIFORM_TEXTURE] will store the sampler2D
     // 0 is the number of texture.
     glUniform1i(_uniforms[UNIFORM_TEXTURE], 0);
@@ -256,7 +255,6 @@ const int DEFAULT_WIDTH = 1;
 // Load in and set up texture image (adapted from Ray Wenderlich)
 - (GLuint)setupTexture:(NSString *)fileName
 {
-    NSFileManager *manager = [[NSFileManager alloc] init];
     CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
     if (!spriteImage) {
         NSLog(@"Failed to load image %@", fileName);
